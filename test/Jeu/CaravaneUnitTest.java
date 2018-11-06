@@ -19,4 +19,22 @@ public class CaravaneUnitTest {
         Assert.assertEquals(Epice.safran, epicesCaravane.get(1));
         Assert.assertEquals(Epice.tumeric, epicesCaravane.get(2));
     }
+
+    @Test
+    public void testTailleListeEpicesToujoursInferieureOuEgaleA10(){
+        Caravane caravane = new Caravane();
+        caravane.addEpice(Epice.tumeric); //1er ajout
+        caravane.addEpice(Epice.tumeric); //2e ajout
+        caravane.addEpice(Epice.tumeric); //3e ajout
+        caravane.addEpice(Epice.tumeric); //4e ajout
+        caravane.addEpice(Epice.tumeric); //5e ajout
+        caravane.addEpice(Epice.tumeric); //6e ajout
+        caravane.addEpice(Epice.tumeric); //7e ajout
+        caravane.addEpice(Epice.tumeric); //8e ajout
+        caravane.addEpice(Epice.tumeric); //9e ajout
+        caravane.addEpice(Epice.tumeric); //10e ajout
+        caravane.addEpice(Epice.tumeric); //11e ajout
+
+        Assert.assertEquals(10, caravane.getEpices().size());
+    }
 }

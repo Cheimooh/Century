@@ -10,7 +10,9 @@ public class Caravane {
     }
 
     public void addEpice(Epice epice) {
-        listeEpices.add(epice);
+        if (listeEpices.size()<10){
+            listeEpices.add(epice);
+        }
     }
 
     public ArrayList<Epice> getEpices() {
