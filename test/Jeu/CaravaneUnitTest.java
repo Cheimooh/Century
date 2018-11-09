@@ -11,13 +11,13 @@ public class CaravaneUnitTest {
         Caravane caravane = new Caravane();
         caravane.addEpice(Epice.tumeric);
         caravane.addEpice(Epice.safran);
-        caravane.addEpice(Epice.tumeric);
+        caravane.addEpice(Epice.cannelle);
 
         ArrayList<Epice> epicesCaravane = caravane.getEpices();
 
         Assert.assertEquals(Epice.tumeric, epicesCaravane.get(0));
         Assert.assertEquals(Epice.safran, epicesCaravane.get(1));
-        Assert.assertEquals(Epice.tumeric, epicesCaravane.get(2));
+        Assert.assertEquals(Epice.cannelle, epicesCaravane.get(2));
     }
 
     @Test
