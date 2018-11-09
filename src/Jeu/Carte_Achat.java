@@ -1,3 +1,5 @@
+package Jeu;
+
 public class Carte_Achat extends Carte {
     int[] tab_achat;
 

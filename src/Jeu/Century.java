@@ -1,3 +1,5 @@
+package Jeu;
+
 import java.util.Queue;
 
 public class Century {
@@ -15,8 +17,6 @@ public class Century {
         pioche.add(new Carte_Achat(2,1,0,0));
         pioche.add(new Carte_Achat(3,0,0,0));
         pioche.add(new Carte_Achat(4,0,0,0));
-
-
 
     }
 }
