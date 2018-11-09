@@ -1,9 +1,9 @@
 package Jeu;
 
-public class Carte_Achat extends Carte {
+public class CarteAchat extends Carte {
     int[] tab_achat;
 
-    public Carte_Achat(int nb_Jaune, int nb_Rouge, int nb_Vert, int nb_Brun){
+    public CarteAchat(int nb_Jaune, int nb_Rouge, int nb_Vert, int nb_Brun){
         tab_achat = new int[4];
         tab_achat[0]=nb_Jaune;
         tab_achat[1]=nb_Rouge;

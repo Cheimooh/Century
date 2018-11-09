@@ -47,4 +47,12 @@ public enum TypeCarteEchange {
         this.epicesDonnees=epicesDonnees;
         this.epicesRecues=epicesRecues;
     }
+
+    public int[] getEpicesDonnees() {
+        return epicesDonnees;
+    }
+
+    public int[] getEpicesRecues() {
+        return epicesRecues;
+    }
 }

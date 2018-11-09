@@ -1,6 +1,12 @@
 package Jeu;
 
 public class CarteEchange extends Carte {
-    int[] Tab_Carte_Base;
+    int[] tab_cartes_donnees;
+    int[] tab_cartes_recues;
+
+    public CarteEchange (TypeCarteEchange t){
+        this.tab_cartes_donnees = t.getEpicesDonnees();
+        this.tab_cartes_recues = t.getEpicesRecues();
+    }
 
 }
