@@ -11,15 +11,15 @@ public class Century {
     public Century(){}
     
     public void creerCartesAchat(){
-        piocheMarchand.add(new CarteAchat(0,0,1,0));
-        piocheMarchand.add(new CarteAchat(0,0,0,1));
-        piocheMarchand.add(new CarteAchat(1,0,1,0));
-        piocheMarchand.add(new CarteAchat(0,2,0,0));
-        piocheMarchand.add(new CarteAchat(1,1,0,0));
-        piocheMarchand.add(new CarteAchat(0,0,0,0));
-        piocheMarchand.add(new CarteAchat(2,1,0,0));
-        piocheMarchand.add(new CarteAchat(3,0,0,0));
-        piocheMarchand.add(new CarteAchat(4,0,0,0));
+        piocheMarchand.add(new CarteProduction(0,0,1,0));
+        piocheMarchand.add(new CarteProduction(0,0,0,1));
+        piocheMarchand.add(new CarteProduction(1,0,1,0));
+        piocheMarchand.add(new CarteProduction(0,2,0,0));
+        piocheMarchand.add(new CarteProduction(1,1,0,0));
+        piocheMarchand.add(new CarteProduction(0,0,0,0));
+        piocheMarchand.add(new CarteProduction(2,1,0,0));
+        piocheMarchand.add(new CarteProduction(3,0,0,0));
+        piocheMarchand.add(new CarteProduction(4,0,0,0));
     }
 
     public void creerCartesEchange(){

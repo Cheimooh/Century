@@ -1,5 +1,7 @@
 package Jeu;
 
+import javafx.scene.image.Image;
+
 import java.util.*;
 
 public class Pioche {
@@ -7,8 +9,9 @@ public class Pioche {
 
     public Pioche(){
         pioche = new ArrayDeque<Carte>();
-        creerCartesAchat();
+        creerCartesProduction();
         creerCartesEchange();
+        creerCarteAmelioration();
         melangerPioche();
     }
 
@@ -18,16 +21,21 @@ public class Pioche {
         pioche= new ArrayDeque<>(listeCartes);
     }
 
-    private void creerCartesAchat(){
-        pioche.add(new CarteAchat(0,0,1,0));
-        pioche.add(new CarteAchat(0,0,0,1));
-        pioche.add(new CarteAchat(1,0,1,0));
-        pioche.add(new CarteAchat(0,2,0,0));
-        pioche.add(new CarteAchat(1,1,0,0));
-        pioche.add(new CarteAchat(0,0,0,0));
-        pioche.add(new CarteAchat(2,1,0,0));
-        pioche.add(new CarteAchat(3,0,0,0));
-        pioche.add(new CarteAchat(4,0,0,0));
+    private void creerCarteAmelioration(){
+        pioche.add(new CarteAmelioration(2));
+        pioche.add(new CarteAmelioration(3));
+    }
+
+    private void creerCartesProduction(){
+        pioche.add(new CarteProduction(0,0,1,0, new Image("imgCartes/PG.png")));
+        pioche.add(new CarteProduction(0,0,0,1, new Image("imgCartes/PB.png")));
+        pioche.add(new CarteProduction(1,0,1,0, new Image("imgCartes/PYG.png")));
+        pioche.add(new CarteProduction(0,2,0,0, new Image("imgCartes/PRR.png")));
+        pioche.add(new CarteProduction(1,1,0,0, new Image("imgCartes/PYR.png")));
+        pioche.add(new CarteProduction(2,0,0,0,  new Image("imgCartes/PYY.png")));
+        pioche.add(new CarteProduction(2,1,0,0,  new Image("imgCartes/PYYR.png")));
+        pioche.add(new CarteProduction(3,0,0,0,  new Image("imgCartes/PYYY.png")));
+        pioche.add(new CarteProduction(4,0,0,0,  new Image("imgCartes/PYYYY.png")));
     }
 
     private void creerCartesEchange(){
