@@ -1,7 +1,5 @@
 package Jeu;
 
-import java.util.Queue;
-
 public class Century {
 
     public Century(){
