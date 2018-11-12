@@ -3,57 +3,68 @@ package Jeu;
 import java.util.Queue;
 
 public class Century {
-    private static Queue<Carte> pioche;
+    private static Queue<Carte> piocheMarchand;
+    int nbJoueurs;
+    int nbPieceOr;
+    int nbPieceArgent;
     
     public Century(){}
     
     public void creerCartesAchat(){
-        pioche.add(new CarteAchat(0,0,1,0));
-        pioche.add(new CarteAchat(0,0,0,1));
-        pioche.add(new CarteAchat(1,0,1,0));
-        pioche.add(new CarteAchat(0,2,0,0));
-        pioche.add(new CarteAchat(1,1,0,0));
-        pioche.add(new CarteAchat(0,0,0,0));
-        pioche.add(new CarteAchat(2,1,0,0));
-        pioche.add(new CarteAchat(3,0,0,0));
-        pioche.add(new CarteAchat(4,0,0,0));
+        piocheMarchand.add(new CarteAchat(0,0,1,0));
+        piocheMarchand.add(new CarteAchat(0,0,0,1));
+        piocheMarchand.add(new CarteAchat(1,0,1,0));
+        piocheMarchand.add(new CarteAchat(0,2,0,0));
+        piocheMarchand.add(new CarteAchat(1,1,0,0));
+        piocheMarchand.add(new CarteAchat(0,0,0,0));
+        piocheMarchand.add(new CarteAchat(2,1,0,0));
+        piocheMarchand.add(new CarteAchat(3,0,0,0));
+        piocheMarchand.add(new CarteAchat(4,0,0,0));
     }
 
     public void creerCartesEchange(){
-        pioche.add(new CarteEchange(TypeCarteEchange.trade_R_YYY));
-        pioche.add(new CarteEchange(TypeCarteEchange.trade_G_RR));
-        pioche.add(new CarteEchange(TypeCarteEchange.trade_G_RRY));
-        pioche.add(new CarteEchange(TypeCarteEchange.trade_G_RYYYY));
-        pioche.add(new CarteEchange(TypeCarteEchange.trade_B_GYYY));
-        pioche.add(new CarteEchange(TypeCarteEchange.trade_B_GYYY));
-        pioche.add(new CarteEchange(TypeCarteEchange.trade_B_RRR));
-        pioche.add(new CarteEchange(TypeCarteEchange.trade_B_RRYY));
-        pioche.add(new CarteEchange(TypeCarteEchange.trade_B_GRY));
-        pioche.add(new CarteEchange(TypeCarteEchange.trade_B_GG));
-        pioche.add(new CarteEchange(TypeCarteEchange.trade_RY_G));
-        pioche.add(new CarteEchange(TypeCarteEchange.trade_YY_RR));
-        pioche.add(new CarteEchange(TypeCarteEchange.trade_YY_G));
-        pioche.add(new CarteEchange(TypeCarteEchange.trade_RR_GG));
-        pioche.add(new CarteEchange(TypeCarteEchange.trade_RR_GYYY));
-        pioche.add(new CarteEchange(TypeCarteEchange.trade_RR_BYY));
-        pioche.add(new CarteEchange(TypeCarteEchange.trade_GG_BRYY));
-        pioche.add(new CarteEchange(TypeCarteEchange.trade_GG_RRRYY));
-        pioche.add(new CarteEchange(TypeCarteEchange.trade_GG_BRR));
-        pioche.add(new CarteEchange(TypeCarteEchange.trade_GG_BB));
-        pioche.add(new CarteEchange(TypeCarteEchange.trade_BB_GGGRY));
-        pioche.add(new CarteEchange(TypeCarteEchange.trade_BB_GGRRR));
-        pioche.add(new CarteEchange(TypeCarteEchange.trade_GYY_BB));
-        pioche.add(new CarteEchange(TypeCarteEchange.trade_YYY_RRR));
-        pioche.add(new CarteEchange(TypeCarteEchange.trade_YYY_RG));
-        pioche.add(new CarteEchange(TypeCarteEchange.trade_YYY_B));
-        pioche.add(new CarteEchange(TypeCarteEchange.trade_RRR_BGY));
-        pioche.add(new CarteEchange(TypeCarteEchange.trade_RRR_GGG));
-        pioche.add(new CarteEchange(TypeCarteEchange.trade_RRR_GGYY));
-        pioche.add(new CarteEchange(TypeCarteEchange.trade_RRR_BB));
-        pioche.add(new CarteEchange(TypeCarteEchange.trade_GGG_BBB));
-        pioche.add(new CarteEchange(TypeCarteEchange.trade_YYYY_GB));
-        pioche.add(new CarteEchange(TypeCarteEchange.trade_YYYY_GG));
-        pioche.add(new CarteEchange(TypeCarteEchange.trade_YYYYY_BB));
-        pioche.add(new CarteEchange(TypeCarteEchange.trade_YYYYY_GGG));
+        piocheMarchand.add(new CarteEchange(TypeCarteEchange.trade_R_YYY));
+        piocheMarchand.add(new CarteEchange(TypeCarteEchange.trade_G_RR));
+        piocheMarchand.add(new CarteEchange(TypeCarteEchange.trade_G_RRY));
+        piocheMarchand.add(new CarteEchange(TypeCarteEchange.trade_G_RYYYY));
+        piocheMarchand.add(new CarteEchange(TypeCarteEchange.trade_B_GYYY));
+        piocheMarchand.add(new CarteEchange(TypeCarteEchange.trade_B_GYYY));
+        piocheMarchand.add(new CarteEchange(TypeCarteEchange.trade_B_RRR));
+        piocheMarchand.add(new CarteEchange(TypeCarteEchange.trade_B_RRYY));
+        piocheMarchand.add(new CarteEchange(TypeCarteEchange.trade_B_GRY));
+        piocheMarchand.add(new CarteEchange(TypeCarteEchange.trade_B_GG));
+        piocheMarchand.add(new CarteEchange(TypeCarteEchange.trade_RY_G));
+        piocheMarchand.add(new CarteEchange(TypeCarteEchange.trade_YY_RR));
+        piocheMarchand.add(new CarteEchange(TypeCarteEchange.trade_YY_G));
+        piocheMarchand.add(new CarteEchange(TypeCarteEchange.trade_RR_GG));
+        piocheMarchand.add(new CarteEchange(TypeCarteEchange.trade_RR_GYYY));
+        piocheMarchand.add(new CarteEchange(TypeCarteEchange.trade_RR_BYY));
+        piocheMarchand.add(new CarteEchange(TypeCarteEchange.trade_GG_BRYY));
+        piocheMarchand.add(new CarteEchange(TypeCarteEchange.trade_GG_RRRYY));
+        piocheMarchand.add(new CarteEchange(TypeCarteEchange.trade_GG_BRR));
+        piocheMarchand.add(new CarteEchange(TypeCarteEchange.trade_GG_BB));
+        piocheMarchand.add(new CarteEchange(TypeCarteEchange.trade_BB_GGGRY));
+        piocheMarchand.add(new CarteEchange(TypeCarteEchange.trade_BB_GGRRR));
+        piocheMarchand.add(new CarteEchange(TypeCarteEchange.trade_GYY_BB));
+        piocheMarchand.add(new CarteEchange(TypeCarteEchange.trade_YYY_RRR));
+        piocheMarchand.add(new CarteEchange(TypeCarteEchange.trade_YYY_RG));
+        piocheMarchand.add(new CarteEchange(TypeCarteEchange.trade_YYY_B));
+        piocheMarchand.add(new CarteEchange(TypeCarteEchange.trade_RRR_BGY));
+        piocheMarchand.add(new CarteEchange(TypeCarteEchange.trade_RRR_GGG));
+        piocheMarchand.add(new CarteEchange(TypeCarteEchange.trade_RRR_GGYY));
+        piocheMarchand.add(new CarteEchange(TypeCarteEchange.trade_RRR_BB));
+        piocheMarchand.add(new CarteEchange(TypeCarteEchange.trade_GGG_BBB));
+        piocheMarchand.add(new CarteEchange(TypeCarteEchange.trade_YYYY_GB));
+        piocheMarchand.add(new CarteEchange(TypeCarteEchange.trade_YYYY_GG));
+        piocheMarchand.add(new CarteEchange(TypeCarteEchange.trade_YYYYY_BB));
+        piocheMarchand.add(new CarteEchange(TypeCarteEchange.trade_YYYYY_GGG));
+    }
+
+    public void creerCarteAmelioration(){
+    }
+
+    public void creerPieces(){
+        this.nbPieceOr = 2*nbJoueurs;
+        this.nbPieceArgent = 2*nbJoueurs;
     }
 }
