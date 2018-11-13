@@ -15,7 +15,7 @@ public class Jeu extends Application {
         primaryStage.setTitle("Century : la route des épices");
         Group root = new Group();
         Century century = new Century();
-        int height = 1000;
+        int height = 700;
         int width = 1000;
         Fenetre fenetre = new Fenetre(century, width, height);
         root.getChildren().add(fenetre);

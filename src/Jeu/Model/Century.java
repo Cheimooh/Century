@@ -1,7 +1,5 @@
 package Jeu.Model;
 
-import Jeu.Jeu;
-
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
@@ -42,4 +40,8 @@ public class Century {
             tabJoueur[i]=listeJoueurs.get(i);
         }
     }
+
+    public int getNbJoueur() { return nbJoueur; }
+
+    public Joueur[] getTabJoueur() { return tabJoueur; }
 }

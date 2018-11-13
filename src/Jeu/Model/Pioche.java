@@ -16,9 +16,9 @@ public class Pioche {
     public Pioche(){
         piocheMarchand = new ArrayDeque<Carte>();
         piochePoints = new ArrayDeque<Carte>();
-        creerCartesProduction();
-        creerCartesEchange();
-        creerCarteAmelioration();
+        //creerCartesProduction();
+        //creerCartesEchange();
+        //creerCarteAmelioration();
         melangerPioche();
     }
 
