@@ -1,5 +1,7 @@
-package Jeu;
+package Jeu.Model;
 
+import Jeu.Jeu;
+import Jeu.Model.Carte;
 import javafx.scene.image.Image;
 
 public class CarteProduction extends Carte {

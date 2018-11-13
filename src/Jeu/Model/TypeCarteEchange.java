@@ -1,5 +1,6 @@
-package Jeu;
+package Jeu.Model;
 
+import Jeu.Jeu;
 import javafx.scene.image.Image;
 
 public enum TypeCarteEchange {

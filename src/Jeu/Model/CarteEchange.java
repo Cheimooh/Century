@@ -1,4 +1,7 @@
-package Jeu;
+package Jeu.Model;
+
+import Jeu.Jeu;
+import Jeu.Model.Carte;
 
 public class CarteEchange extends Carte {
     int[] tab_cartes_donnees;

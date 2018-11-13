@@ -1,5 +1,7 @@
 package Jeu;
 
+import Jeu.Model.Caravane;
+import Jeu.Model.Epice;
 import org.junit.Assert;
 import org.junit.Test;
 import java.util.ArrayList;

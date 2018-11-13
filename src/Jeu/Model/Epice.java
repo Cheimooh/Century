@@ -1,4 +1,6 @@
-package Jeu;
+package Jeu.Model;
+
+import Jeu.Jeu;
 
 import java.awt.*;
 

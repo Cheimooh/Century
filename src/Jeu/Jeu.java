@@ -1,5 +1,7 @@
 package Jeu;
 
+import Jeu.Model.Century;
+import Jeu.View.Fenetre;
 import javafx.application.Application;
 import javafx.scene.Group;
 import javafx.scene.Scene;

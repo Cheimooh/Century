@@ -1,5 +1,10 @@
-package Jeu;
+package Jeu.Model;
 
+import Jeu.Jeu;
+import Jeu.Model.Carte;
+import Jeu.Model.CarteAmelioration;
+import Jeu.Model.CarteEchange;
+import Jeu.Model.CarteProduction;
 import javafx.scene.image.Image;
 
 import java.util.*;

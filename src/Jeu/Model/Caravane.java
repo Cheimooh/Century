@@ -1,4 +1,7 @@
-package Jeu;
+package Jeu.Model;
+
+import Jeu.Jeu;
+import Jeu.Model.Epice;
 
 import java.util.ArrayList;
 

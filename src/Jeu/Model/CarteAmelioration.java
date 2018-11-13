@@ -1,8 +1,10 @@
-package Jeu;
+package Jeu.Model;
 
+import Jeu.Jeu;
+import Jeu.Model.Carte;
 import javafx.scene.image.Image;
 
-public class CarteAmelioration extends Carte{
+public class CarteAmelioration extends Carte {
     int nbAmelioration;
     Image image;
 
