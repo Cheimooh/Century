@@ -5,11 +5,12 @@ import java.util.Arrays;
 import java.util.Collections;
 
 public class Century {
-    int nbJoueur;
-    Joueur[] tabJoueur;
+    private int nbJoueur;
+    private Joueur[] tabJoueur;
+    private Pioche pioche;
 
     public Century(){
-        Pioche p = new Pioche();
+        pioche = new Pioche();
         // A MODIFIER
         nbJoueur = 4;
         String[] nomsJoueurs = new String[4];
@@ -44,4 +45,6 @@ public class Century {
     public int getNbJoueur() { return nbJoueur; }
 
     public Joueur[] getTabJoueur() { return tabJoueur; }
+
+    public Pioche getPioche() { return pioche; }
 }

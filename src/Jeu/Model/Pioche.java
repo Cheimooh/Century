@@ -17,9 +17,13 @@ public class Pioche {
         piocheMarchand = new ArrayDeque<Carte>();
         piochePoints = new ArrayDeque<Carte>();
         //creerCartesProduction();
-        //creerCartesEchange();
-        //creerCarteAmelioration();
+        creerCartesEchange();
+        creerCarteAmelioration();
         melangerPioche();
+    }
+
+    public Carte getCarteMarchand(){
+        return piocheMarchand.poll();
     }
 
     private void melangerPioche() {
@@ -34,15 +38,15 @@ public class Pioche {
     }
 
     private void creerCartesProduction(){
-        piocheMarchand.add(new CarteProduction(0,0,1,0, new Image("imgCartes/PG.png")));
-        piocheMarchand.add(new CarteProduction(0,0,0,1, new Image("imgCartes/PB.png")));
-        piocheMarchand.add(new CarteProduction(1,0,1,0, new Image("imgCartes/PYG.png")));
-        piocheMarchand.add(new CarteProduction(0,2,0,0, new Image("imgCartes/PRR.png")));
-        piocheMarchand.add(new CarteProduction(1,1,0,0, new Image("imgCartes/PYR.png")));
-        piocheMarchand.add(new CarteProduction(2,0,0,0,  new Image("imgCartes/PYY.png")));
-        piocheMarchand.add(new CarteProduction(2,1,0,0,  new Image("imgCartes/PYYR.png")));
-        piocheMarchand.add(new CarteProduction(3,0,0,0,  new Image("imgCartes/PYYY.png")));
-        piocheMarchand.add(new CarteProduction(4,0,0,0,  new Image("imgCartes/PYYYY.png")));
+        piocheMarchand.add(new CarteProduction(0,0,1,0, new Image("Jeu/imgCartes/PG.png")));
+        piocheMarchand.add(new CarteProduction(0,0,0,1, new Image("Jeu/imgCartes/PB.png")));
+        piocheMarchand.add(new CarteProduction(1,0,1,0, new Image("Jeu/imgCartes/PYG.png")));
+        piocheMarchand.add(new CarteProduction(0,2,0,0, new Image("Jeu/imgCartes/PRR.png")));
+        piocheMarchand.add(new CarteProduction(1,1,0,0, new Image("Jeu/imgCartes/PYR.png")));
+        piocheMarchand.add(new CarteProduction(2,0,0,0,  new Image("Jeu/imgCartes/PYY.png")));
+        piocheMarchand.add(new CarteProduction(2,1,0,0,  new Image("Jeu/imgCartes/PRYY.png")));
+        piocheMarchand.add(new CarteProduction(3,0,0,0,  new Image("Jeu/imgCartes/PYYY.png")));
+        piocheMarchand.add(new CarteProduction(4,0,0,0,  new Image("Jeu/imgCartes/PYYYY.png")));
     }
 
     private void creerCartesEchange(){

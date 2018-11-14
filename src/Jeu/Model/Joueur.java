@@ -14,8 +14,8 @@ public class Joueur {
         this.nom=nom;
         this.listeCartes = new ArrayList<Carte>();
         this.caravane=new Caravane();
-        //listeCartes.add(new CarteAmelioration(2));
-        //listeCartes.add(new CarteProduction(2,0,0,0,new Image("imgCartes/PYY.png")));
+        listeCartes.add(new CarteAmelioration(2));
+        listeCartes.add(new CarteProduction(2,0,0,0,new Image("Jeu/imgCartes/PYY.png")));
     }
 
     public void addEpices(Epice[] epices) {
