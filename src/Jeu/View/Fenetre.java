@@ -6,22 +6,31 @@ import Jeu.Controller.ControlMouse;
 import javafx.scene.Parent;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
+import javafx.scene.control.Alert;
+import javafx.scene.control.ButtonBar;
+import javafx.scene.control.ButtonType;
+import javafx.scene.control.Dialog;
 import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
+import javafx.util.Pair;
+
+import java.util.ArrayList;
+import java.util.Optional;
 
 public class Fenetre extends Parent {
     private Century century;
     private int height;
     private int width;
-    private final int largeurImage=111;
-    private final int hauteurImage=500/3;
     private GraphicsContext graphicsContext;
+    private ArrayList<Carte> cartePresente;
 
     public Fenetre(Century century, int width, int height) {
         this.century=century;
         this.height=height;
         this.width=width;
+        cartePresente=new ArrayList<>();
         Canvas canvas = new Canvas(width, height);
-        ControlMouse controlMouse = new ControlMouse(this);
+        ControlMouse controlMouse = new ControlMouse(this, width, height);
         canvas.setOnMouseClicked(controlMouse);
         graphicsContext = canvas.getGraphicsContext2D();
         afficherPlateau();
@@ -35,20 +44,19 @@ public class Fenetre extends Parent {
             drawLine(0,hauteur-1,250,hauteur-1);
             afficherJoueur(i,hauteur);
         }
-        afficherPiocheMarchande();
-    }
-
-    private void afficherPiocheMarchande() {
         for (int i = 0; i < 5; i++) {
             Carte c = century.getPioche().getCarteMarchand();
             Image imageCarte = c.getImage();
             drawCartePiocheMarchande(imageCarte,i);
+            cartePresente.add(c);
         }
     }
 
     private void drawCartePiocheMarchande(Image imageCarte,int i) {
-        int emplacement = width-largeurImage*(i+1)-(30*(i+1));
-        graphicsContext.drawImage(imageCarte,emplacement,(height/3)+30,largeurImage,hauteurImage);
+        int largeurImage = 111;
+        int emplacement = width- largeurImage *(i+1)-(30*(i+1));
+        int hauteurImage = 500 / 3;
+        graphicsContext.drawImage(imageCarte,emplacement,(height/3), largeurImage, hauteurImage);
     }
 
     private void afficherJoueur(int numJoueur, int hauteur) {
@@ -60,5 +68,36 @@ public class Fenetre extends Parent {
         graphicsContext.moveTo(x1,y1);
         graphicsContext.lineTo(x2,y2);
         graphicsContext.stroke();
+    }
+
+    public void retirerCarte(int i) {
+        cartePresente.remove(i);
+        cartePresente.add(century.getPioche().getCarteMarchand());
+        for (int j = 0; j < 5; j++) {
+            Image imageCarte = cartePresente.get(j).getImage();
+            drawCartePiocheMarchande(imageCarte,j);
+        }
+    }
+
+    public boolean confirmation(int i) {
+        Carte c = cartePresente.get(i);
+
+        Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+        alert.setTitle("Confirmation");
+
+        String s = "Voulez-vous prendre cette carte ?";
+        ImageView img = new ImageView(c.getImage());
+        img.setFitWidth(111);
+        img.setFitHeight(500/3);
+
+        alert.setContentText(s);
+        alert.setGraphic(img);
+        Optional<ButtonType> result = alert.showAndWait();
+        boolean confirmation=false;
+        if ((result.isPresent()) && (result.get() == ButtonType.OK)) {
+            confirmation = true;
+        }
+
+        return confirmation;
     }
 }
