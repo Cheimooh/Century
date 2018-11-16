@@ -24,5 +24,11 @@ public class Joueur {
         }
     }
 
+    public void addCarte(Carte carte) {
+        listeCartes.add(carte);
+    }
+
     public String getNom() { return nom; }
+
+    public ArrayList<Carte> getListeCartes() { return listeCartes; }
 }

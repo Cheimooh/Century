@@ -8,6 +8,7 @@ public class Century {
     private int nbJoueur;
     private Joueur[] tabJoueur;
     private Pioche pioche;
+    private int joueurActuel;
 
     public Century(){
         pioche = new Pioche();
@@ -19,6 +20,12 @@ public class Century {
         nomsJoueurs[2]="Matthieu";
         nomsJoueurs[3]="Theo";
         initJoueur(nomsJoueurs);
+        joueurActuel=0;
+    }
+
+    public void tourSuivant(){
+        joueurActuel++;
+        if(joueurActuel>nbJoueur-1) joueurActuel=0;
     }
 
     private void initJoueur(String[] noms) {
@@ -42,9 +49,15 @@ public class Century {
         }
     }
 
+    public void ajouterCarteALaMain(Carte carte) {
+        tabJoueur[joueurActuel].addCarte(carte);
+    }
+
     public int getNbJoueur() { return nbJoueur; }
 
     public Joueur[] getTabJoueur() { return tabJoueur; }
 
     public Pioche getPioche() { return pioche; }
+
+    public int getJoueurActuel() { return joueurActuel; }
 }

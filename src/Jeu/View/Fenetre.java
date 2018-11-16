@@ -3,16 +3,16 @@ package Jeu.View;
 import Jeu.Model.Carte;
 import Jeu.Model.Century;
 import Jeu.Controller.ControlMouse;
+import Jeu.Model.Joueur;
 import javafx.scene.Parent;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.control.Alert;
-import javafx.scene.control.ButtonBar;
 import javafx.scene.control.ButtonType;
-import javafx.scene.control.Dialog;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
-import javafx.util.Pair;
+import javafx.scene.paint.Color;
+import javafx.scene.paint.Paint;
 
 import java.util.ArrayList;
 import java.util.Optional;
@@ -49,6 +49,30 @@ public class Fenetre extends Parent {
             Image imageCarte = c.getImage();
             drawCartePiocheMarchande(imageCarte,i);
             cartePresente.add(c);
+        }
+        afficherMainDuJoueur();
+    }
+
+    public void tourSuivant(){
+        afficherMainDuJoueur();
+    }
+
+    private void afficherMainDuJoueur() {
+        int largeurImage = 111;
+        int hauteurImage = 500 / 3;
+        Joueur j = century.getTabJoueur()[century.getJoueurActuel()];
+        int y = (height/3)*2;
+        Color color = Color.LIGHTGREY;
+        graphicsContext.setFill(color);
+        graphicsContext.fillRect(250, y, width, height);
+        drawLine(250, y, width, y);
+        graphicsContext.strokeText(j.getNom(), 260, y+20);
+        Image imageCarte;
+        int emplacement;
+        for (int i = 0; i < j.getListeCartes().size(); i++) {
+            emplacement = 250+ largeurImage *(i+1)+(30*(i));
+            imageCarte=j.getListeCartes().get(i).getImage();
+            graphicsContext.drawImage(imageCarte,emplacement,y+30, largeurImage, hauteurImage);
         }
     }
 
@@ -100,4 +124,8 @@ public class Fenetre extends Parent {
 
         return confirmation;
     }
+
+    public Century getCentury() { return century; }
+
+    public ArrayList<Carte> getCartePresente() { return cartePresente; }
 }
