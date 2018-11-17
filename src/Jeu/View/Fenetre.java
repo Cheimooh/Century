@@ -23,13 +23,11 @@ public class Fenetre extends Parent {
     private int height;
     private int width;
     private GraphicsContext graphicsContext;
-    private ArrayList<Carte> cartePresente;
 
     public Fenetre(Century century, int width, int height) {
         this.century=century;
         this.height=height;
         this.width=width;
-        cartePresente=new ArrayList<>();
         Canvas canvas = new Canvas(width, height);
         ControlMouse controlMouse = new ControlMouse(this, width, height);
         canvas.setOnMouseClicked(controlMouse);
@@ -46,10 +44,8 @@ public class Fenetre extends Parent {
             afficherJoueur(i,hauteur);
         }
         for (int i = 0; i < 5; i++) {
-            Carte c = century.getPioche().getCarteMarchand();
-            Image imageCarte = c.getImage();
+            Image imageCarte = century.getCartePresenteSurLaPiocheMarchande().get(i).getImage();
             drawCartePiocheMarchande(imageCarte,i);
-            cartePresente.add(c);
         }
         afficherMainDuJoueur();
     }
@@ -130,16 +126,15 @@ public class Fenetre extends Parent {
     }
 
     public void retirerCarte(int i) {
-        cartePresente.remove(i);
-        cartePresente.add(century.getPioche().getCarteMarchand());
+        century.retirerCartePiocheMarchande(i);
         for (int j = 0; j < 5; j++) {
-            Image imageCarte = cartePresente.get(j).getImage();
+            Image imageCarte = century.getCartePresenteSurLaPiocheMarchande().get(j).getImage();
             drawCartePiocheMarchande(imageCarte,j);
         }
     }
 
     public boolean confirmation(int i) {
-        Carte c = cartePresente.get(i);
+        Carte c = century.getCartePresenteSurLaPiocheMarchande().get(i);
 
         Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
         alert.setTitle("Confirmation");
@@ -161,6 +156,4 @@ public class Fenetre extends Parent {
     }
 
     public Century getCentury() { return century; }
-
-    public ArrayList<Carte> getCartePresente() { return cartePresente; }
 }

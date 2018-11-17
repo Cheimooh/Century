@@ -29,7 +29,7 @@ public class ControlMouse implements EventHandler<MouseEvent> {
                 if(x>emplacement && x<emplacement+largeurImage){
                     //i est l'emplacement de la carte
                     if (fenetre.confirmation(i)) {
-                        fenetre.getCentury().ajouterCarteALaMain(fenetre.getCartePresente().get(i));
+                        fenetre.getCentury().ajouterCarteALaMain(fenetre.getCentury().getCartePresenteSurLaPiocheMarchande().get(i));
                         fenetre.retirerCarte(i);
                         fenetre.getCentury().tourSuivant();
                         fenetre.tourSuivant();

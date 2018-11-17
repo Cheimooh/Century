@@ -9,9 +9,12 @@ public class Century {
     private Joueur[] tabJoueur;
     private Pioche pioche;
     private int joueurActuel;
+    private ArrayList<Carte> cartePresenteSurLaPiocheMarchande;
 
     public Century(){
+        cartePresenteSurLaPiocheMarchande=new ArrayList<>();
         pioche = new Pioche();
+        initPiocheMarchande();
         // A MODIFIER
         nbJoueur = 4;
         String[] nomsJoueurs = new String[4];
@@ -21,6 +24,18 @@ public class Century {
         nomsJoueurs[3]="Theo";
         initJoueur(nomsJoueurs);
         joueurActuel=0;
+    }
+
+    private void initPiocheMarchande() {
+        for (int i = 0; i < 5; i++) {
+            Carte c = getPioche().getCarteMarchand();
+            cartePresenteSurLaPiocheMarchande.add(c);
+        }
+    }
+
+    public void retirerCartePiocheMarchande(int i) {
+        cartePresenteSurLaPiocheMarchande.remove(i);
+        cartePresenteSurLaPiocheMarchande.add(getPioche().getCarteMarchand());
     }
 
     public void tourSuivant(){
@@ -60,4 +75,6 @@ public class Century {
     public Pioche getPioche() { return pioche; }
 
     public int getJoueurActuel() { return joueurActuel; }
+
+    public ArrayList<Carte> getCartePresenteSurLaPiocheMarchande() {return cartePresenteSurLaPiocheMarchande;}
 }
