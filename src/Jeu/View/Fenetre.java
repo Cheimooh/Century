@@ -1,22 +1,13 @@
 package Jeu.View;
 
-import Jeu.Model.Carte;
-import Jeu.Model.Century;
+import Jeu.Model.*;
 import Jeu.Controller.ControlMouse;
-import Jeu.Model.Epice;
-import Jeu.Model.Joueur;
 import javafx.scene.Parent;
-import javafx.scene.canvas.Canvas;
-import javafx.scene.canvas.GraphicsContext;
-import javafx.scene.control.Alert;
-import javafx.scene.control.ButtonType;
-import javafx.scene.image.Image;
-import javafx.scene.image.ImageView;
+import javafx.scene.canvas.*;
+import javafx.scene.control.*;
+import javafx.scene.image.*;
 import javafx.scene.paint.Color;
-import javafx.scene.paint.Paint;
-
-import java.util.ArrayList;
-import java.util.Optional;
+import java.util.*;
 
 public class Fenetre extends Parent {
     private Century century;
@@ -26,6 +17,7 @@ public class Fenetre extends Parent {
 
     public Fenetre(Century century, int width, int height) {
         this.century=century;
+        century.setF(this);
         this.height=height;
         this.width=width;
         Canvas canvas = new Canvas(width, height);
@@ -36,6 +28,7 @@ public class Fenetre extends Parent {
         this.getChildren().add(canvas);
     }
 
+    //AFFICHAGE GENERAL
     private void afficherPlateau() {
         drawLine(250,0,250,height);
         for (int i = 0; i < century.getNbJoueur(); i++) {
@@ -50,6 +43,7 @@ public class Fenetre extends Parent {
         afficherMainDuJoueur();
     }
 
+    //CHANGEMENT DE L'AFFICHAGE A CHAQUE TOUR
     public void tourSuivant(){
         afficherMainDuJoueur();
         Color color = Color.LIGHTGREY;
@@ -62,9 +56,10 @@ public class Fenetre extends Parent {
         }
     }
 
+    //AFFICHAGE DE LA MAIN DU JOUEUR (EN BAS)
     private void afficherMainDuJoueur() {
-        int largeurImage = 111;
-        int hauteurImage = 500 / 3;
+        int largeurImage = 111/2;
+        int hauteurImage = 500 / 6;
         Joueur j = century.getTabJoueur()[century.getJoueurActuel()];
         int y = (height/3)*2;
         Color color = Color.LIGHTGREY;
@@ -74,28 +69,44 @@ public class Fenetre extends Parent {
         graphicsContext.strokeText(j.getNom(), 260, y+20);
         Image imageCarte;
         int emplacement;
+        if (j.getListeCartes().size()>8){
+
+        }
         for (int i = 0; i < j.getListeCartes().size(); i++) {
-            emplacement = 250+ largeurImage *(i+1)+(30*(i));
-            imageCarte=j.getListeCartes().get(i).getImage();
-            graphicsContext.drawImage(imageCarte,emplacement,y+30, largeurImage, hauteurImage);
+            if(i<=(j.getListeCartes().size()/2)-1) {
+                emplacement = 250 + largeurImage * (i + 1) + (30 * (i));
+                imageCarte = j.getListeCartes().get(i).getImage();
+                graphicsContext.drawImage(imageCarte, emplacement, y + 30, largeurImage, hauteurImage);
+            } else {
+                int i2 = i-j.getListeCartes().size()/2;
+                emplacement = 250 + largeurImage * (i2 + 1) + (30 * (i2));
+                imageCarte = j.getListeCartes().get(i).getImage();
+                graphicsContext.drawImage(imageCarte, emplacement, y + hauteurImage+50, largeurImage, hauteurImage);
+            }
         }
     }
 
+    //AFFICHAGE DE LA PIOCHE MARCHANDE
     private void drawCartePiocheMarchande(Image imageCarte,int i) {
         int largeurImage = 111;
         int emplacement = width- largeurImage *(i+1)-(30*(i+1));
         int hauteurImage = 500 / 3;
-        graphicsContext.drawImage(imageCarte,emplacement,(height/3), largeurImage, hauteurImage);
+        graphicsContext.drawImage(imageCarte,emplacement,(height/3.), largeurImage, hauteurImage);
     }
 
+    //AFFICHAGE DES JOUEURS A GAUCHE (DANS L'ORDRE DE LEUR TOUR
     private void afficherJoueur(int numJoueur, int hauteur) {
+        //AFFICHAGE DU NOM DU JOUEUR
         String nom = century.getTabJoueur()[numJoueur].getNom();
         graphicsContext.strokeText(nom, 20, hauteur+20);
+
+        // AFFICHAGE DU NOMBRE DE CARTES
         graphicsContext.setFill(Color.LIGHTBLUE);
         graphicsContext.fillRect(10, hauteur+30, 30, 45);
         int nbCarte = century.getTabJoueur()[numJoueur].getListeCartes().size();
         graphicsContext.strokeText("x"+nbCarte, 45, hauteur+55);
 
+        //AFFICHAGE DU NOMBRE D'EPICES
         ArrayList<Epice> listeEpices = century.getTabJoueur()[numJoueur].getCaravane().getEpices();
         int nbTumeric=0;
         int nbSafran=0;
@@ -113,26 +124,32 @@ public class Fenetre extends Parent {
         drawEpices(Epice.cannelle.getColor(), nbCannelle, 70, hauteur+120);
     }
 
+    //AFFICHAGE DES EPICES
     private void drawEpices(Color color, int nbEpices, int x, int y) {
         graphicsContext.setFill(color);
         graphicsContext.fillRect(x,y,20,20);
         graphicsContext.strokeText("x"+nbEpices, x+25, y+15);
     }
 
+    //AFFICHAGE D'UNE LIGNE du point (x1,y1) à (x2,y2)
     private void drawLine(int x1, int y1, int x2, int y2) {
         graphicsContext.moveTo(x1,y1);
         graphicsContext.lineTo(x2,y2);
         graphicsContext.stroke();
     }
 
+    //PERMET DE RETIRER UNE CARTE ET DE REDESSINER UNE NOUVELLE CARTE
     public void retirerCarte(int i) {
         century.retirerCartePiocheMarchande(i);
         for (int j = 0; j < 5; j++) {
-            Image imageCarte = century.getCartePresenteSurLaPiocheMarchande().get(j).getImage();
-            drawCartePiocheMarchande(imageCarte,j);
+            if (century.getCartePresenteSurLaPiocheMarchande().size()>j) {
+                Image imageCarte = century.getCartePresenteSurLaPiocheMarchande().get(j).getImage();
+                drawCartePiocheMarchande(imageCarte, j);
+            }
         }
     }
 
+    //MESSAGE DE CONFIRMATION LORSQUE L'ON SOUHAITE PRENDRE UNE CARTE
     public boolean confirmation(int i) {
         Carte c = century.getCartePresenteSurLaPiocheMarchande().get(i);
 
@@ -153,6 +170,13 @@ public class Fenetre extends Parent {
         }
 
         return confirmation;
+    }
+
+    //PERMET DE RETIRER UN EMPLACEMENT DANS LA CARTE MARCHANDE
+    public void retirerEmplacementCarteMarchande(int i) {
+        i=i+1;
+        graphicsContext.setFill(Color.LIGHTGREY);
+        graphicsContext.fillRect(width- 111 *(i+1)-(30*(i+1)), height/3., 111, 500/3.);
     }
 
     public Century getCentury() { return century; }

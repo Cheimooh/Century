@@ -28,11 +28,13 @@ public class ControlMouse implements EventHandler<MouseEvent> {
                 emplacement = width- largeurImage *(i+1)-(30*(i+1));
                 if(x>emplacement && x<emplacement+largeurImage){
                     //i est l'emplacement de la carte
-                    if (fenetre.confirmation(i)) {
-                        fenetre.getCentury().ajouterCarteALaMain(fenetre.getCentury().getCartePresenteSurLaPiocheMarchande().get(i));
-                        fenetre.retirerCarte(i);
-                        fenetre.getCentury().tourSuivant();
-                        fenetre.tourSuivant();
+                    if (fenetre.getCentury().getCartePresenteSurLaPiocheMarchande().size()>i) {
+                        if (fenetre.confirmation(i)) {
+                            fenetre.getCentury().ajouterCarteALaMain(fenetre.getCentury().getCartePresenteSurLaPiocheMarchande().get(i));
+                            fenetre.retirerCarte(i);
+                            fenetre.getCentury().tourSuivant();
+                            fenetre.tourSuivant();
+                        }
                     }
                     return;
                 }

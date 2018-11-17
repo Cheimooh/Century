@@ -22,7 +22,7 @@ public class Pioche {
         melangerPioche();
     }
 
-    public Carte getCarteMarchand(){
+    public Carte piocherCarteMarchand(){
         return piocheMarchand.poll();
     }
 
@@ -86,4 +86,6 @@ public class Pioche {
         piocheMarchand.add(new CarteEchange(TypeCarteEchange.trade_YYYYY_BB));
         piocheMarchand.add(new CarteEchange(TypeCarteEchange.trade_YYYYY_GGG));
     }
+
+    public Queue<Carte> getPiocheMarchand() {return piocheMarchand;}
 }

@@ -1,5 +1,7 @@
 package Jeu.Model;
 
+import Jeu.View.Fenetre;
+
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
@@ -10,6 +12,7 @@ public class Century {
     private Pioche pioche;
     private int joueurActuel;
     private ArrayList<Carte> cartePresenteSurLaPiocheMarchande;
+    private Fenetre f;
 
     public Century(){
         cartePresenteSurLaPiocheMarchande=new ArrayList<>();
@@ -28,14 +31,19 @@ public class Century {
 
     private void initPiocheMarchande() {
         for (int i = 0; i < 5; i++) {
-            Carte c = getPioche().getCarteMarchand();
+            Carte c = getPioche().piocherCarteMarchand();
             cartePresenteSurLaPiocheMarchande.add(c);
         }
     }
 
     public void retirerCartePiocheMarchande(int i) {
         cartePresenteSurLaPiocheMarchande.remove(i);
-        cartePresenteSurLaPiocheMarchande.add(getPioche().getCarteMarchand());
+        if(getPioche().getPiocheMarchand().size()>0) {
+            cartePresenteSurLaPiocheMarchande.add(getPioche().piocherCarteMarchand());
+        } else {
+            int emplacementARetirer = cartePresenteSurLaPiocheMarchande.size()-1;
+            f.retirerEmplacementCarteMarchande(emplacementARetirer);
+        }
     }
 
     public void tourSuivant(){
@@ -77,4 +85,6 @@ public class Century {
     public int getJoueurActuel() { return joueurActuel; }
 
     public ArrayList<Carte> getCartePresenteSurLaPiocheMarchande() {return cartePresenteSurLaPiocheMarchande;}
+
+    public void setF(Fenetre f) { this.f = f; }
 }
