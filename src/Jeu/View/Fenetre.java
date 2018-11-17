@@ -15,6 +15,9 @@ public class Fenetre extends Parent {
     private int width;
     private GraphicsContext graphicsContext;
 
+    int largeurImage = 111;
+    int hauteurImage = 500 / 3;
+
     public Fenetre(Century century, int width, int height) {
         this.century=century;
         century.setF(this);
@@ -58,8 +61,8 @@ public class Fenetre extends Parent {
 
     //AFFICHAGE DE LA MAIN DU JOUEUR (EN BAS)
     private void afficherMainDuJoueur() {
-        int largeurImage = 111/2;
-        int hauteurImage = 500 / 6;
+        int largeurImageMain = largeurImage/2;
+        int hauteurImageMain = hauteurImage/2;
         Joueur j = century.getTabJoueur()[century.getJoueurActuel()];
         int y = (height/3)*2;
         Color color = Color.LIGHTGREY;
@@ -69,28 +72,54 @@ public class Fenetre extends Parent {
         graphicsContext.strokeText(j.getNom(), 260, y+20);
         Image imageCarte;
         int emplacement;
-        if (j.getListeCartes().size()>8){
-
-        }
         for (int i = 0; i < j.getListeCartes().size(); i++) {
             if(i<=(j.getListeCartes().size()/2)-1) {
-                emplacement = 250 + largeurImage * (i + 1) + (30 * (i));
+                emplacement = 250 + largeurImageMain * (i + 1) + (30 * (i));
                 imageCarte = j.getListeCartes().get(i).getImage();
-                graphicsContext.drawImage(imageCarte, emplacement, y + 30, largeurImage, hauteurImage);
+                graphicsContext.drawImage(imageCarte, emplacement, y + 30, largeurImageMain, hauteurImageMain);
             } else {
                 int i2 = i-j.getListeCartes().size()/2;
-                emplacement = 250 + largeurImage * (i2 + 1) + (30 * (i2));
+                emplacement = 250 + largeurImageMain * (i2 + 1) + (30 * (i2));
                 imageCarte = j.getListeCartes().get(i).getImage();
-                graphicsContext.drawImage(imageCarte, emplacement, y + hauteurImage+50, largeurImage, hauteurImage);
+                graphicsContext.drawImage(imageCarte, emplacement, y + hauteurImageMain+50, largeurImageMain, hauteurImageMain);
             }
+        }
+        ArrayList<Epice> listeEpices = j.getCaravane().getEpices();
+        int debutCaravaneX=800;
+        graphicsContext.setFill(Color.color(0.65,0.62,0.94));
+        graphicsContext.fillRect(debutCaravaneX, y+30, 180,70);
+        for (int i = 0; i < listeEpices.size() ; i++) {
+            int emplacementX;
+            int emplacementY;
+            if(i<=(listeEpices.size()/2)-1) {
+                emplacementX= debutCaravaneX + i*30+10;
+                emplacementY= y+40;
+                drawEpicesMain(listeEpices, i, emplacementX, emplacementY);
+            } else {
+                int i2 = i-listeEpices.size()/2;
+                emplacementX= debutCaravaneX + i2*30+10;
+                emplacementY= y+70;
+                drawEpicesMain(listeEpices, i, emplacementX, emplacementY);
+            }
+        }
+    }
+
+    //AFFICHAGE DES EPICES DANS LA MAIN
+    private void drawEpicesMain(ArrayList<Epice> listeEpices, int i, int emplacementX, int emplacementY) {
+        if (listeEpices.get(i).equals(Epice.tumeric)) {
+            drawEpices(Epice.tumeric.getColor(),0,emplacementX, emplacementY,true);
+        } else if (listeEpices.get(i).equals(Epice.safran)) {
+            drawEpices(Epice.safran.getColor(),0,emplacementX, emplacementY,true);
+        }else if (listeEpices.get(i).equals(Epice.cardamome)) {
+            drawEpices(Epice.cardamome.getColor(),0,emplacementX, emplacementY,true);
+        }else if (listeEpices.get(i).equals(Epice.cannelle)) {
+            drawEpices(Epice.cannelle.getColor(),0,emplacementX, emplacementY,true);
         }
     }
 
     //AFFICHAGE DE LA PIOCHE MARCHANDE
     private void drawCartePiocheMarchande(Image imageCarte,int i) {
-        int largeurImage = 111;
         int emplacement = width- largeurImage *(i+1)-(30*(i+1));
-        int hauteurImage = 500 / 3;
         graphicsContext.drawImage(imageCarte,emplacement,(height/3.), largeurImage, hauteurImage);
     }
 
@@ -118,17 +147,19 @@ public class Fenetre extends Parent {
             if (listeEpice == Epice.cardamome) nbCardamome++;
             if (listeEpice == Epice.cannelle) nbCannelle++;
         }
-        drawEpices(Epice.tumeric.getColor(), nbTumeric, 70, hauteur+30);
-        drawEpices(Epice.safran.getColor(), nbSafran, 70, hauteur+60);
-        drawEpices(Epice.cardamome.getColor(), nbCardamome, 70, hauteur+90);
-        drawEpices(Epice.cannelle.getColor(), nbCannelle, 70, hauteur+120);
+        drawEpices(Epice.tumeric.getColor(), nbTumeric, 70, hauteur+30, false);
+        drawEpices(Epice.safran.getColor(), nbSafran, 70, hauteur+60, false);
+        drawEpices(Epice.cardamome.getColor(), nbCardamome, 70, hauteur+90, false);
+        drawEpices(Epice.cannelle.getColor(), nbCannelle, 70, hauteur+120, false);
     }
 
     //AFFICHAGE DES EPICES
-    private void drawEpices(Color color, int nbEpices, int x, int y) {
+    private void drawEpices(Color color, int nbEpices, int x, int y, boolean isMainDuJoueur) {
         graphicsContext.setFill(color);
         graphicsContext.fillRect(x,y,20,20);
-        graphicsContext.strokeText("x"+nbEpices, x+25, y+15);
+        if (!isMainDuJoueur) {
+            graphicsContext.strokeText("x" + nbEpices, x + 25, y + 15);
+        }
     }
 
     //AFFICHAGE D'UNE LIGNE du point (x1,y1) à (x2,y2)
