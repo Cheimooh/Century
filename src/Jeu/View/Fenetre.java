@@ -101,11 +101,11 @@ public class Fenetre extends Parent {
         int nbSafran=0;
         int nbCardamome=0;
         int nbCannelle=0;
-        for (int i = 0; i < listeEpices.size(); i++) {
-            if (listeEpices.get(i)==Epice.tumeric) nbTumeric++;
-            if (listeEpices.get(i)==Epice.safran) nbSafran++;
-            if (listeEpices.get(i)==Epice.cardamome) nbCardamome++;
-            if (listeEpices.get(i)==Epice.cannelle) nbCannelle++;
+        for (Epice listeEpice : listeEpices) {
+            if (listeEpice == Epice.tumeric) nbTumeric++;
+            if (listeEpice == Epice.safran) nbSafran++;
+            if (listeEpice == Epice.cardamome) nbCardamome++;
+            if (listeEpice == Epice.cannelle) nbCannelle++;
         }
         drawEpices(Epice.tumeric.getColor(), nbTumeric, 70, hauteur+30);
         drawEpices(Epice.safran.getColor(), nbSafran, 70, hauteur+60);
