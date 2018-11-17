@@ -3,6 +3,7 @@ package Jeu.View;
 import Jeu.Model.Carte;
 import Jeu.Model.Century;
 import Jeu.Controller.ControlMouse;
+import Jeu.Model.Epice;
 import Jeu.Model.Joueur;
 import javafx.scene.Parent;
 import javafx.scene.canvas.Canvas;
@@ -95,9 +96,31 @@ public class Fenetre extends Parent {
         String nom = century.getTabJoueur()[numJoueur].getNom();
         graphicsContext.strokeText(nom, 20, hauteur+20);
         graphicsContext.setFill(Color.LIGHTBLUE);
-        graphicsContext.fillRect(10, hauteur+30, 20, 30);
+        graphicsContext.fillRect(10, hauteur+30, 30, 45);
         int nbCarte = century.getTabJoueur()[numJoueur].getListeCartes().size();
-        graphicsContext.strokeText("x"+nbCarte, 35, hauteur+55);
+        graphicsContext.strokeText("x"+nbCarte, 45, hauteur+55);
+
+        ArrayList<Epice> listeEpices = century.getTabJoueur()[numJoueur].getCaravane().getEpices();
+        int nbTumeric=0;
+        int nbSafran=0;
+        int nbCardamome=0;
+        int nbCannelle=0;
+        for (int i = 0; i < listeEpices.size(); i++) {
+            if (listeEpices.get(i)==Epice.tumeric) nbTumeric++;
+            if (listeEpices.get(i)==Epice.safran) nbSafran++;
+            if (listeEpices.get(i)==Epice.cardamome) nbCardamome++;
+            if (listeEpices.get(i)==Epice.cannelle) nbCannelle++;
+        }
+        drawEpices(Epice.tumeric.getColor(), nbTumeric, 70, hauteur+30);
+        drawEpices(Epice.safran.getColor(), nbSafran, 70, hauteur+60);
+        drawEpices(Epice.cardamome.getColor(), nbCardamome, 70, hauteur+90);
+        drawEpices(Epice.cannelle.getColor(), nbCannelle, 70, hauteur+120);
+    }
+
+    private void drawEpices(Color color, int nbEpices, int x, int y) {
+        graphicsContext.setFill(color);
+        graphicsContext.fillRect(x,y,20,20);
+        graphicsContext.strokeText("x"+nbEpices, x+25, y+15);
     }
 
     private void drawLine(int x1, int y1, int x2, int y2) {

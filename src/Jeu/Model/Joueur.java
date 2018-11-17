@@ -1,6 +1,5 @@
 package Jeu.Model;
 
-import Jeu.Jeu;
 import javafx.scene.image.Image;
 
 import java.util.ArrayList;
@@ -31,4 +30,6 @@ public class Joueur {
     public String getNom() { return nom; }
 
     public ArrayList<Carte> getListeCartes() { return listeCartes; }
+
+    public Caravane getCaravane(){return caravane;}
 }
