@@ -7,18 +7,19 @@ import java.util.Arrays;
 import java.util.Collections;
 
 public class Century {
-    private int nbJoueur;
-    private Joueur[] tabJoueur;
-    private Pioche pioche;
-    private int joueurActuel;
-    private ArrayList<Carte> cartePresenteSurLaPiocheMarchande;
-    private Fenetre f;
+    private int nbJoueur; // Nombre de joueurs
+    private Joueur[] tabJoueur; // Tableau contenant les joueurs
+    private Pioche pioche; // Pioche contenant la pioche marchande et la pioche de commande
+    private int joueurActuel; // Le numéro du joueur dont c'est le tour
+    private ArrayList<Carte> cartePresenteSurLaPiocheMarchande; // La liste des 5 cartes présentent sur le plateau
+                                                                // (allant de droite à gauche)
+    private Fenetre f; // Fenetre affichant le plateau
 
     public Century(){
         cartePresenteSurLaPiocheMarchande=new ArrayList<>();
         pioche = new Pioche();
         initPiocheMarchande();
-        // A MODIFIER
+        // INITIALISATION DES JOUEURS (A MODIFIER)
         nbJoueur = 4;
         String[] nomsJoueurs = new String[4];
         nomsJoueurs[0]="Maeva";
@@ -29,6 +30,9 @@ public class Century {
         joueurActuel=0;
     }
 
+    /*
+     * Ajout des 5 cartes présentes sur le plateau dans la liste "cartePresenteSurLaPiocheMarchande"
+     */
     private void initPiocheMarchande() {
         for (int i = 0; i < 5; i++) {
             Carte c = getPioche().piocherCarteMarchand();
@@ -36,6 +40,9 @@ public class Century {
         }
     }
 
+    /*
+     * Retire la carte marchande à l'index i (quand une carte est piochée)
+     */
     public void retirerCartePiocheMarchande(int i) {
         cartePresenteSurLaPiocheMarchande.remove(i);
         if(getPioche().getPiocheMarchand().size()>0) {
@@ -46,11 +53,18 @@ public class Century {
         }
     }
 
+    /*
+     * Incrémente la variable joueurActuel
+     */
     public void tourSuivant(){
         joueurActuel++;
         if(joueurActuel>nbJoueur-1) joueurActuel=0;
     }
 
+    /*
+     * Initialise le tableau de joueur grâce à un tableau de noms
+     * Distribue les épices aux joueurs
+     */
     private void initJoueur(String[] noms) {
         tabJoueur = new Joueur[nbJoueur];
         for (int i = 0; i < nbJoueur; i++) {
@@ -64,6 +78,9 @@ public class Century {
         }
     }
 
+    /*
+     * Mélange le tableau de joueur
+     */
     private void melangerTabJoueur() {
         ArrayList<Joueur> listeJoueurs = new ArrayList<Joueur>(Arrays.asList(tabJoueur).subList(0, nbJoueur));
         Collections.shuffle(listeJoueurs);
@@ -72,6 +89,9 @@ public class Century {
         }
     }
 
+    /*
+     * Ajoute une carte à la main du joueur qui est en train de jouer
+     */
     public void ajouterCarteALaMain(Carte carte) {
         tabJoueur[joueurActuel].addCarte(carte);
     }

@@ -5,24 +5,31 @@ import javafx.scene.image.Image;
 import java.util.ArrayList;
 
 public class Joueur {
-    String nom;
-    ArrayList<Carte> listeCartes;
-    Caravane caravane;
+    private String nom; // Nom du joueur
+    private ArrayList<Carte> listeCartes; // Main du joueur (liste de cartes)
+    private Caravane caravane; // Caravane du joueur qui contient les épices
 
     public Joueur(String nom){
         this.nom=nom;
         this.listeCartes = new ArrayList<Carte>();
         this.caravane=new Caravane();
+        //AJOUT DES CARTES DE DEPART A LA MAIN DU JOUEUR
         listeCartes.add(new CarteAmelioration(2));
         listeCartes.add(new CarteProduction(2,0,0,0,new Image("Jeu/imgCartes/PYY.png")));
     }
 
+    /*
+     * Permet d'ajouter une ou plusieurs épices à la caravane
+     */
     public void addEpices(Epice[] epices) {
-        for (int i = 0; i < epices.length; i++) {
-            caravane.addEpice(epices[i]);
+        for (Epice epice : epices) {
+            caravane.addEpice(epice);
         }
     }
 
+    /*
+     * Permet d'ajouter une carte à la main du joueur
+     */
     public void addCarte(Carte carte) {
         listeCartes.add(carte);
     }

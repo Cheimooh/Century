@@ -3,7 +3,7 @@ package Jeu.Model;
 import javafx.scene.image.Image;
 
 public class Carte {
-    Image image;
+    private Image image; // Image de la carte
 
     public Carte(Image image) {
         this.image=image;
