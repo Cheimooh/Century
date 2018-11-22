@@ -19,14 +19,6 @@ public class Century {
         cartePresenteSurLaPiocheMarchande=new ArrayList<>();
         pioche = new Pioche();
         initPiocheMarchande();
-        // INITIALISATION DES JOUEURS (A MODIFIER)
-        nbJoueur = 4;
-        String[] nomsJoueurs = new String[4];
-        nomsJoueurs[0]="Maeva";
-        nomsJoueurs[1]="Ayman";
-        nomsJoueurs[2]="Matthieu";
-        nomsJoueurs[3]="Theo";
-        initJoueur(nomsJoueurs);
         joueurActuel=0;
     }
 
@@ -65,7 +57,8 @@ public class Century {
      * Initialise le tableau de joueur grâce à un tableau de noms
      * Distribue les épices aux joueurs
      */
-    private void initJoueur(String[] noms) {
+    public void initJoueur(String[] noms) {
+        nbJoueur = noms.length;
         tabJoueur = new Joueur[nbJoueur];
         for (int i = 0; i < nbJoueur; i++) {
             tabJoueur[i] = new Joueur(noms[i]);
