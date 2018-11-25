@@ -135,7 +135,25 @@ public class Fenetre extends Parent {
         int nbCarte = century.getTabJoueur()[numJoueur].getListeCartes().size();
         graphicsContext.strokeText("x"+nbCarte, 45, hauteur+55);
 
-        //AFFICHAGE DU NOMBRE D'EPICES
+        // AFFICHAGE DU NOMBRE DE CARTES COMMANDE
+        graphicsContext.setFill(Color.INDIANRED);
+        graphicsContext.fillRect(120, hauteur+30, 30,45);
+        int nbCarteCommande = century.getTabJoueur()[numJoueur].getListeCartesCommande().size();
+        graphicsContext.strokeText("x"+nbCarteCommande, 155, hauteur+55);
+
+        // AFFICHAGE DU NOMBRE DE PIECES D'OR
+        graphicsContext.setFill(Color.GOLD);
+        graphicsContext.fillOval(180, hauteur+30, 30,30);
+        int nbPiecesOr = century.getTabJoueur()[numJoueur].getNbPiecesOr();
+        graphicsContext.strokeText("x"+nbPiecesOr, 215, hauteur+50);
+
+        // AFFICHAGE DU NOMBRE DE PIECES D'ARGENT
+        graphicsContext.setFill(Color.SILVER);
+        graphicsContext.fillOval(180, hauteur+70, 30,30);
+        int nbPiecesArgent = century.getTabJoueur()[numJoueur].getNbPiecesArgent();
+        graphicsContext.strokeText("x"+nbPiecesArgent, 215, hauteur+90);
+
+        // AFFICHAGE DU NOMBRE D'EPICES
         ArrayList<Epice> listeEpices = century.getTabJoueur()[numJoueur].getCaravane().getEpices();
         int nbTumeric=0;
         int nbSafran=0;

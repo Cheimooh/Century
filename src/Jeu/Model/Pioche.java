@@ -11,11 +11,11 @@ import java.util.*;
 
 public class Pioche {
     private static Queue<Carte> piocheMarchand;
-    private static Queue<Carte> piochePoints;
+    private static Queue<Carte> piocheCommande;
 
     public Pioche(){
         piocheMarchand = new ArrayDeque<Carte>();
-        piochePoints = new ArrayDeque<Carte>();
+        piocheCommande = new ArrayDeque<Carte>();
         //creerCartesProduction();
         creerCartesEchange();
         creerCarteAmelioration();

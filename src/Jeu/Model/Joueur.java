@@ -7,11 +7,17 @@ public class Joueur {
     private String nom; // Nom du joueur
     private ArrayList<Carte> listeCartes; // Main du joueur (liste de cartes)
     private Caravane caravane; // Caravane du joueur qui contient les épices
+    private ArrayList<CarteCommande> listeCartesCommande;
+    private int nbPiecesOr;
+    private int nbPiecesArgent;
 
     public Joueur(String nom){
         this.nom=nom;
-        this.listeCartes = new ArrayList<Carte>();
+        this.listeCartes = new ArrayList<>();
+        this.listeCartesCommande = new ArrayList<>();
         this.caravane=new Caravane();
+        nbPiecesArgent=0;
+        nbPiecesOr=0;
         //AJOUT DES CARTES DE DEPART A LA MAIN DU JOUEUR
         listeCartes.add(new CarteAmelioration(2));
         listeCartes.add(new CarteProduction(2,0,0,0,new Image("Jeu/imgCartes/PYY.png")));
@@ -114,4 +120,10 @@ public class Joueur {
     public ArrayList<Carte> getListeCartes() { return listeCartes; }
 
     public Caravane getCaravane(){return caravane;}
+
+    public ArrayList<CarteCommande> getListeCartesCommande() { return listeCartesCommande; }
+
+    public int getNbPiecesOr() { return nbPiecesOr; }
+
+    public int getNbPiecesArgent() { return nbPiecesArgent; }
 }
