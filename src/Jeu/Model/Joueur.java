@@ -27,6 +27,29 @@ public class Joueur {
         }
     }
 
+    public void jouerCarte(int i) {
+        Carte carteJouee = listeCartes.get(i);
+        if (carteJouee instanceof CarteProduction){
+            jouerCarteProduction((CarteProduction) carteJouee);
+        }
+    }
+
+    private void jouerCarteProduction(CarteProduction carteJouee) {
+        int[] epicesProduites = carteJouee.getTab();
+        for (int i = 0; i <epicesProduites[0] ; i++) {
+            caravane.addEpice(Epice.tumeric);
+        }
+        for (int i = 0; i < epicesProduites[1]; i++) {
+            caravane.addEpice(Epice.safran);
+        }
+        for (int i = 0; i < epicesProduites[2]; i++) {
+            caravane.addEpice(Epice.cardamome);
+        }
+        for (int i = 0; i < epicesProduites[3]; i++) {
+            caravane.addEpice(Epice.cannelle);
+        }
+    }
+
     /*
      * Permet d'ajouter une carte à la main du joueur
      */

@@ -1,5 +1,6 @@
 package Jeu.Controller;
 
+import Jeu.Model.Joueur;
 import Jeu.View.Fenetre;
 import javafx.event.EventHandler;
 import javafx.scene.input.MouseEvent;
@@ -37,6 +38,31 @@ public class ControlMouse implements EventHandler<MouseEvent> {
                         }
                     }
                     return;
+                }
+            }
+        }
+        if (y>(height*2/3) && (y<height) && (x>250)){
+            int largeurImageMain = largeurImage/2;
+            int hauteurImageMain = hauteurCarte/2;
+            int y2 = (height/3)*2;
+            Joueur j = fenetre.getCentury().getTabJoueur()[fenetre.getCentury().getJoueurActuel()];
+            int emplacement;
+            for (int i = 0; i < j.getListeCartes().size(); i++) {
+                if(i<=(j.getListeCartes().size()/2)-1) {
+                    emplacement = 250 + largeurImageMain * (i + 1) + (30 * (i));
+                    if (x>emplacement && x<emplacement+largeurImageMain && y>y2+30 && y<y2+30+hauteurImageMain){
+                        j.jouerCarte(i);
+                        fenetre.getCentury().tourSuivant();
+                        fenetre.tourSuivant();
+                    }
+                } else {
+                    int i2 = i-j.getListeCartes().size()/2;
+                    emplacement = 250 + largeurImageMain * (i2 + 1) + (30 * (i2));
+                    if (x>emplacement && x<emplacement+largeurImageMain && y>y2+hauteurImageMain+50 && y<y+hauteurCarte*2+50){
+                        j.jouerCarte(i);
+                        fenetre.getCentury().tourSuivant();
+                        fenetre.tourSuivant();
+                    }
                 }
             }
         }

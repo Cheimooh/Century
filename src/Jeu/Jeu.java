@@ -1,14 +1,11 @@
 package Jeu;
 
-import Jeu.Controller.ControlButton;
 import Jeu.Model.Century;
 import Jeu.View.Fenetre;
 import javafx.application.Application;
 import javafx.scene.Group;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
-import javafx.scene.layout.BorderPane;
-import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
 import javafx.stage.Stage;
