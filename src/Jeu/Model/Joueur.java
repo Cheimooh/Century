@@ -1,7 +1,6 @@
 package Jeu.Model;
 
 import javafx.scene.image.Image;
-
 import java.util.ArrayList;
 
 public class Joueur {
@@ -32,6 +31,59 @@ public class Joueur {
         if (carteJouee instanceof CarteProduction){
             jouerCarteProduction((CarteProduction) carteJouee);
         }
+        if (carteJouee instanceof CarteEchange){
+            jouerCarteEchange((CarteEchange) carteJouee);
+        }
+    }
+
+    private void jouerCarteEchange(CarteEchange carteJouee) {
+        int[] epicesDonnees = carteJouee.getTabEpicesDonnees();
+        int[] epicesRecues = carteJouee.getTabEpicesRecues();
+
+        for (int i = 0; i < epicesDonnees[0] ; i++) {
+            caravane.getEpices().remove(Epice.tumeric);
+        }
+        for (int i = 0; i < epicesDonnees[1] ; i++) {
+            caravane.getEpices().remove(Epice.safran);
+        }
+        for (int i = 0; i < epicesDonnees[2] ; i++) {
+            caravane.getEpices().remove(Epice.cardamome);
+        }
+        for (int i = 0; i < epicesDonnees[3] ; i++) {
+            caravane.getEpices().remove(Epice.cannelle);
+        }
+        for (int i = 0; i < epicesRecues[0]; i++) {
+            caravane.addEpice(Epice.tumeric);
+        }
+        for (int i = 0; i < epicesRecues[1]; i++) {
+            caravane.addEpice(Epice.safran);
+        }
+        for (int i = 0; i < epicesRecues[2]; i++) {
+            caravane.addEpice(Epice.cardamome);
+        }
+        for (int i = 0; i < epicesRecues[3]; i++) {
+            caravane.addEpice(Epice.cannelle);
+        }
+    }
+
+    public boolean verifEchangePossible(CarteEchange carteJouee) {
+        int[] epicesDonnees = carteJouee.getTabEpicesDonnees();
+        int compteurTumeric=0;
+        int compteurSafran=0;
+        int compteurCardamome=0;
+        int compteurCannelle=0;
+        for (int i = 0; i < caravane.getEpices().size() ; i++) {
+            if(caravane.getEpices().get(i).equals(Epice.tumeric)) compteurTumeric++;
+            if(caravane.getEpices().get(i).equals(Epice.safran)) compteurSafran++;
+            if(caravane.getEpices().get(i).equals(Epice.cardamome)) compteurCardamome++;
+            if(caravane.getEpices().get(i).equals(Epice.cannelle)) compteurCannelle++;
+        }
+        boolean retour=true;
+        if (compteurTumeric<epicesDonnees[0]) retour=false;
+        if (compteurSafran<epicesDonnees[1]) retour=false;
+        if (compteurCardamome<epicesDonnees[2]) retour=false;
+        if (compteurCannelle<epicesDonnees[3]) retour=false;
+        return retour;
     }
 
     private void jouerCarteProduction(CarteProduction carteJouee) {

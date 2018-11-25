@@ -210,5 +210,12 @@ public class Fenetre extends Parent {
         graphicsContext.fillRect(width- 111 *(i+1)-(30*(i+1)), height/3., 111, 500/3.);
     }
 
+    public void afficheErreur(String titre, String erreur) {
+        Alert alert = new Alert(Alert.AlertType.ERROR);
+        alert.setTitle(titre);
+        alert.setContentText(erreur);
+        alert.showAndWait();
+    }
+
     public Century getCentury() { return century; }
 }

@@ -1,5 +1,7 @@
 package Jeu.Controller;
 
+import Jeu.Model.CarteEchange;
+import Jeu.Model.CarteProduction;
 import Jeu.Model.Joueur;
 import Jeu.View.Fenetre;
 import javafx.event.EventHandler;
@@ -59,9 +61,19 @@ public class ControlMouse implements EventHandler<MouseEvent> {
                     int i2 = i-j.getListeCartes().size()/2;
                     emplacement = 250 + largeurImageMain * (i2 + 1) + (30 * (i2));
                     if (x>emplacement && x<emplacement+largeurImageMain && y>y2+hauteurImageMain+50 && y<y+hauteurCarte*2+50){
-                        j.jouerCarte(i);
-                        fenetre.getCentury().tourSuivant();
-                        fenetre.tourSuivant();
+                        if (j.getListeCartes().get(i) instanceof CarteEchange){
+                            if (j.verifEchangePossible((CarteEchange) j.getListeCartes().get(i))){
+                                j.jouerCarte(i);
+                                fenetre.getCentury().tourSuivant();
+                                fenetre.tourSuivant();
+                            } else {
+                                fenetre.afficheErreur("Echange impossible","Vous n'avez pas suffisamment d'épices pour faire cet échange !");
+                            }
+                        } else {
+                            j.jouerCarte(i);
+                            fenetre.getCentury().tourSuivant();
+                            fenetre.tourSuivant();
+                        }
                     }
                 }
             }
