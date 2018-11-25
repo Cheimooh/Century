@@ -42,6 +42,10 @@ public class Joueur {
         }
     }
 
+    public boolean verifCartePrenable(int i) {
+        return caravane.getEpices().size() >= i;
+    }
+
     private void jouerCarteEchange(CarteEchange carteJouee) {
         int[] epicesDonnees = carteJouee.getTabEpicesDonnees();
         int[] epicesRecues = carteJouee.getTabEpicesRecues();

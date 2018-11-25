@@ -13,10 +13,20 @@ public class Century {
     private int joueurActuel; // Le numéro du joueur dont c'est le tour
     private ArrayList<Carte> cartePresenteSurLaPiocheMarchande; // La liste des 5 cartes présentent sur le plateau
                                                                 // (allant de droite à gauche)
+    private ArrayList<Epice> epicesSurLaCarte1;
+    private ArrayList<Epice> epicesSurLaCarte2;
+    private ArrayList<Epice> epicesSurLaCarte3;
+    private ArrayList<Epice> epicesSurLaCarte4;
+    private ArrayList<Epice> epicesSurLaCarte5;
     private Fenetre f; // Fenetre affichant le plateau
 
     public Century(){
         cartePresenteSurLaPiocheMarchande=new ArrayList<>();
+        epicesSurLaCarte1=new ArrayList<>();
+        epicesSurLaCarte2=new ArrayList<>();
+        epicesSurLaCarte3=new ArrayList<>();
+        epicesSurLaCarte4=new ArrayList<>();
+        epicesSurLaCarte5=new ArrayList<>();
         pioche = new Pioche();
         initPiocheMarchande();
         joueurActuel=0;
@@ -42,6 +52,37 @@ public class Century {
         } else {
             int emplacementARetirer = cartePresenteSurLaPiocheMarchande.size()-1;
             f.retirerEmplacementCarteMarchande(emplacementARetirer);
+        }
+
+        if (i==0) {
+            for (int j = 0; j < epicesSurLaCarte1.size() ; j++) {
+                tabJoueur[joueurActuel].getCaravane().addEpice(epicesSurLaCarte1.get(j));
+            }
+            epicesSurLaCarte1.clear();
+        }
+        if (i==1) {
+            for (int j = 0; j < epicesSurLaCarte2.size() ; j++) {
+                tabJoueur[joueurActuel].getCaravane().addEpice(epicesSurLaCarte2.get(j));
+            }
+            epicesSurLaCarte2.clear();
+        }
+        if (i==2) {
+            for (int j = 0; j < epicesSurLaCarte3.size() ; j++) {
+                tabJoueur[joueurActuel].getCaravane().addEpice(epicesSurLaCarte3.get(j));
+            }
+            epicesSurLaCarte3.clear();
+        }
+        if (i==3) {
+            for (int j = 0; j < epicesSurLaCarte4.size() ; j++) {
+                tabJoueur[joueurActuel].getCaravane().addEpice(epicesSurLaCarte4.get(j));
+            }
+            epicesSurLaCarte4.clear();
+        }
+        if (i==4) {
+            for (int j = 0; j < epicesSurLaCarte5.size() ; j++) {
+                tabJoueur[joueurActuel].getCaravane().addEpice(epicesSurLaCarte5.get(j));
+            }
+            epicesSurLaCarte5.clear();
         }
     }
 
@@ -75,7 +116,7 @@ public class Century {
      * Mélange le tableau de joueur
      */
     private void melangerTabJoueur() {
-        ArrayList<Joueur> listeJoueurs = new ArrayList<Joueur>(Arrays.asList(tabJoueur).subList(0, nbJoueur));
+        ArrayList<Joueur> listeJoueurs = new ArrayList<>(Arrays.asList(tabJoueur).subList(0, nbJoueur));
         Collections.shuffle(listeJoueurs);
         for (int i = 0; i < nbJoueur; i++) {
             tabJoueur[i]=listeJoueurs.get(i);
@@ -93,11 +134,21 @@ public class Century {
 
     public Joueur[] getTabJoueur() { return tabJoueur; }
 
-    public Pioche getPioche() { return pioche; }
+    private Pioche getPioche() { return pioche; }
 
     public int getJoueurActuel() { return joueurActuel; }
 
     public ArrayList<Carte> getCartePresenteSurLaPiocheMarchande() {return cartePresenteSurLaPiocheMarchande;}
 
     public void setF(Fenetre f) { this.f = f; }
+
+    public ArrayList<Epice> getEpicesSurLaCarte1() { return epicesSurLaCarte1; }
+
+    public ArrayList<Epice> getEpicesSurLaCarte2() { return epicesSurLaCarte2; }
+
+    public ArrayList<Epice> getEpicesSurLaCarte3() { return epicesSurLaCarte3; }
+
+    public ArrayList<Epice> getEpicesSurLaCarte4() { return epicesSurLaCarte4; }
+
+    public ArrayList<Epice> getEpicesSurLaCarte5() { return epicesSurLaCarte5; }
 }

@@ -15,8 +15,8 @@ public class Fenetre extends Parent {
     private int width;
     private GraphicsContext graphicsContext;
 
-    int largeurImage = 111;
-    int hauteurImage = 500 / 3;
+    private int largeurImage = 111;
+    private int hauteurImage = 500 / 3;
 
     public Fenetre(Century century, int width, int height) {
         this.century=century;
@@ -40,8 +40,9 @@ public class Fenetre extends Parent {
             afficherJoueur(i,hauteur);
         }
         for (int i = 0; i < 5; i++) {
+            ArrayList<Epice> epicesSurLaCarte = new ArrayList<>();
             Image imageCarte = century.getCartePresenteSurLaPiocheMarchande().get(i).getImage();
-            drawCartePiocheMarchande(imageCarte,i);
+            drawCartePiocheMarchande(imageCarte,i, epicesSurLaCarte);
         }
         afficherMainDuJoueur();
     }
@@ -118,9 +119,12 @@ public class Fenetre extends Parent {
     }
 
     //AFFICHAGE DE LA PIOCHE MARCHANDE
-    private void drawCartePiocheMarchande(Image imageCarte,int i) {
+    private void drawCartePiocheMarchande(Image imageCarte,int i, ArrayList<Epice> epices) {
         int emplacement = width- largeurImage *(i+1)-(30*(i+1));
         graphicsContext.drawImage(imageCarte,emplacement,(height/3.), largeurImage, hauteurImage);
+        for (int j = 0; j < epices.size(); j++) {
+            drawEpices(epices.get(j).getColor(), 0,emplacement+(j*25), (height/3)+hauteurImage+10, true);
+        }
     }
 
     //AFFICHAGE DES JOUEURS A GAUCHE (DANS L'ORDRE DE LEUR TOUR
@@ -190,10 +194,18 @@ public class Fenetre extends Parent {
     //PERMET DE RETIRER UNE CARTE ET DE REDESSINER UNE NOUVELLE CARTE
     public void retirerCarte(int i) {
         century.retirerCartePiocheMarchande(i);
+        graphicsContext.setFill(Color.LIGHTGREY);
+        graphicsContext.fillRect(width- largeurImage *(i+1)-(30*(i+1)),(height/3.+hauteurImage), largeurImage, 50);
         for (int j = 0; j < 5; j++) {
+            ArrayList<Epice> epicesSurLaCarte = new ArrayList<>();
+            if (j==0) epicesSurLaCarte=century.getEpicesSurLaCarte1();
+            if (j==1) epicesSurLaCarte=century.getEpicesSurLaCarte2();
+            if (j==2) epicesSurLaCarte=century.getEpicesSurLaCarte3();
+            if (j==3) epicesSurLaCarte=century.getEpicesSurLaCarte4();
+            if (j==4) epicesSurLaCarte=century.getEpicesSurLaCarte5();
             if (century.getCartePresenteSurLaPiocheMarchande().size()>j) {
                 Image imageCarte = century.getCartePresenteSurLaPiocheMarchande().get(j).getImage();
-                drawCartePiocheMarchande(imageCarte, j);
+                drawCartePiocheMarchande(imageCarte, j, epicesSurLaCarte);
             }
         }
     }
@@ -208,7 +220,7 @@ public class Fenetre extends Parent {
         String s = "Voulez-vous prendre cette carte ?";
         ImageView img = new ImageView(c.getImage());
         img.setFitWidth(111);
-        img.setFitHeight(500/3);
+        img.setFitHeight(500/3.);
 
         alert.setContentText(s);
         alert.setGraphic(img);

@@ -2,6 +2,7 @@ package Jeu.Controller;
 
 import Jeu.Model.CarteEchange;
 import Jeu.Model.CarteProduction;
+import Jeu.Model.Epice;
 import Jeu.Model.Joueur;
 import Jeu.View.Fenetre;
 import javafx.event.EventHandler;
@@ -24,6 +25,7 @@ public class ControlMouse implements EventHandler<MouseEvent> {
         int largeurImage = 111;
         int x = (int) event.getX();
         int y = (int) event.getY();
+        Joueur j = fenetre.getCentury().getTabJoueur()[fenetre.getCentury().getJoueurActuel()];
 
         if (y>(height/3) && (y<height/3+hauteurCarte)){
             int emplacement;
@@ -33,10 +35,15 @@ public class ControlMouse implements EventHandler<MouseEvent> {
                     //i est l'emplacement de la carte
                     if (fenetre.getCentury().getCartePresenteSurLaPiocheMarchande().size()>i) {
                         if (fenetre.confirmation(i)) {
-                            fenetre.getCentury().ajouterCarteALaMain(fenetre.getCentury().getCartePresenteSurLaPiocheMarchande().get(i));
-                            fenetre.retirerCarte(i);
-                            fenetre.getCentury().tourSuivant();
-                            fenetre.tourSuivant();
+                            if (j.verifCartePrenable(i)) {
+                                addEpicesPiocheMarchande(j,i);
+                                fenetre.getCentury().ajouterCarteALaMain(fenetre.getCentury().getCartePresenteSurLaPiocheMarchande().get(i));
+                                fenetre.retirerCarte(i);
+                                fenetre.getCentury().tourSuivant();
+                                fenetre.tourSuivant();
+                            } else {
+                                fenetre.afficheErreur("Carte non prenable","Vous n'avez pas suffisamment d'épices pour récupérer cette carte !");
+                            }
                         }
                     }
                     return;
@@ -47,7 +54,6 @@ public class ControlMouse implements EventHandler<MouseEvent> {
             int largeurImageMain = largeurImage/2;
             int hauteurImageMain = hauteurCarte/2;
             int y2 = (height/3)*2;
-            Joueur j = fenetre.getCentury().getTabJoueur()[fenetre.getCentury().getJoueurActuel()];
             int emplacement;
             for (int i = 0; i < j.getListeCartes().size(); i++) {
                 if(i<=(j.getListeCartes().size()/2)-1) {
@@ -77,6 +83,17 @@ public class ControlMouse implements EventHandler<MouseEvent> {
                     }
                 }
             }
+        }
+    }
+
+    private void addEpicesPiocheMarchande(Joueur j, int numCarte) {
+        for (int i = 0; i < numCarte; i++) {
+            Epice e = j.getCaravane().getEpices().remove(0);
+            if (i==0) fenetre.getCentury().getEpicesSurLaCarte1().add(e);
+            if (i==1) fenetre.getCentury().getEpicesSurLaCarte2().add(e);
+            if (i==2) fenetre.getCentury().getEpicesSurLaCarte3().add(e);
+            if (i==3) fenetre.getCentury().getEpicesSurLaCarte4().add(e);
+            if (i==4) fenetre.getCentury().getEpicesSurLaCarte5().add(e);
         }
     }
 }
