@@ -11,7 +11,7 @@ import javafx.scene.paint.Color;
 import java.util.Optional;
 
 public class FenetreCaravane {
-    Caravane caravane;
+    private Caravane caravane;
 
     public FenetreCaravane(Caravane caravane){
         this.caravane=caravane;
