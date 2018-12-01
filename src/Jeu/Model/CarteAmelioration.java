@@ -9,4 +9,6 @@ public class CarteAmelioration extends Carte {
         super(new Image("Jeu/imgCartes/A"+nbAmelioration+".png"));
         this.nbAmelioration = nbAmelioration;
     }
+
+    public int getNbAmelioration() { return nbAmelioration;}
 }
