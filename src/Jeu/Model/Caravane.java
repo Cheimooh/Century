@@ -17,6 +17,24 @@ public class Caravane {
         if (listeEpices.size()<10){
             listeEpices.add(epice);
         }
+        triEpices();
+    }
+
+    private void triEpices() {
+        ArrayList<Epice> newListeEpices=new ArrayList<>();
+        for (Epice listeEpice : listeEpices) {
+            if (listeEpice.equals(Epice.tumeric)) newListeEpices.add(listeEpice);
+        }
+        for (Epice listeEpice : listeEpices) {
+            if (listeEpice.equals(Epice.safran)) newListeEpices.add(listeEpice);
+        }
+        for (Epice listeEpice : listeEpices) {
+            if (listeEpice.equals(Epice.cardamome)) newListeEpices.add(listeEpice);
+        }
+        for (Epice listeEpice : listeEpices) {
+            if (listeEpice.equals(Epice.cannelle)) newListeEpices.add(listeEpice);
+        }
+        listeEpices=newListeEpices;
     }
 
     public ArrayList<Epice> getEpices() {

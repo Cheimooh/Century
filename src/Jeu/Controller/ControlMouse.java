@@ -1,7 +1,6 @@
 package Jeu.Controller;
 
 import Jeu.Model.CarteEchange;
-import Jeu.Model.CarteProduction;
 import Jeu.Model.Epice;
 import Jeu.Model.Joueur;
 import Jeu.View.Fenetre;

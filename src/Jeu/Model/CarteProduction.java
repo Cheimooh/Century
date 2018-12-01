@@ -1,11 +1,9 @@
 package Jeu.Model;
 
-import Jeu.Jeu;
-import Jeu.Model.Carte;
 import javafx.scene.image.Image;
 
 public class CarteProduction extends Carte {
-    int[] tab_achat;
+    private int[] tab_achat;
 
     public CarteProduction(int nb_Jaune, int nb_Rouge, int nb_Vert, int nb_Brun, Image image){
         super(image);
