@@ -48,21 +48,27 @@ public class ControlMouse implements EventHandler<MouseEvent> {
             }
         }
         if (y>(height*2/3) && (y<height) && (x>250)){
-            int largeurImageMain = largeurImage/2;
-            int hauteurImageMain = hauteurCarte/2;
-            int y2 = (height/3)*2;
-            int emplacement;
-            for (int i = 0; i < j.getListeCartes().size(); i++) {
-                if(i<=(j.getListeCartes().size()/2)-1) {
-                    emplacement = 250 + largeurImageMain * (i + 1) + (30 * (i));
-                    if (x>emplacement && x<emplacement+largeurImageMain && y>y2+30 && y<y2+30+hauteurImageMain){
-                        joueCarte(j, i);
-                    }
-                } else {
-                    int i2 = i-j.getListeCartes().size()/2;
-                    emplacement = 250 + largeurImageMain * (i2 + 1) + (30 * (i2));
-                    if (x>emplacement && x<emplacement+largeurImageMain && y>y2+hauteurImageMain+50 && y<y+hauteurCarte*2+50){
-                        joueCarte(j, i);
+            if (x>800 && x<900 && y>(height*2/3)+145 && y<(height*2/3)+167){
+                j.seReposer();
+                fenetre.getCentury().tourSuivant();
+                fenetre.tourSuivant();
+            } else {
+                int largeurImageMain = largeurImage / 2;
+                int hauteurImageMain = hauteurCarte / 2;
+                int y2 = (height / 3) * 2;
+                int emplacement;
+                for (int i = 0; i < j.getListeCartes().size(); i++) {
+                    if (i <= (j.getListeCartes().size() / 2) - 1) {
+                        emplacement = 250 + largeurImageMain * (i + 1) + (30 * (i));
+                        if (x > emplacement && x < emplacement + largeurImageMain && y > y2 + 30 && y < y2 + 30 + hauteurImageMain) {
+                            joueCarte(j, i);
+                        }
+                    } else {
+                        int i2 = i - j.getListeCartes().size() / 2;
+                        emplacement = 250 + largeurImageMain * (i2 + 1) + (30 * (i2));
+                        if (x > emplacement && x < emplacement + largeurImageMain && y > y2 + hauteurImageMain + 50 && y < y + hauteurCarte * 2 + 50) {
+                            joueCarte(j, i);
+                        }
                     }
                 }
             }
@@ -70,23 +76,26 @@ public class ControlMouse implements EventHandler<MouseEvent> {
     }
 
     private void joueCarte(Joueur j, int i) {
-        if (j.getListeCartes().get(i) instanceof CarteEchange){
-            if (j.verifEchangePossible((CarteEchange) j.getListeCartes().get(i))){
+        if (j.getCartesActives().get(i)==1) {
+            if (j.getListeCartes().get(i) instanceof CarteEchange) {
+                if (j.verifEchangePossible((CarteEchange) j.getListeCartes().get(i))) {
+                    j.jouerCarte(i);
+                    fenetre.getCentury().tourSuivant();
+                    fenetre.tourSuivant();
+                } else {
+                    fenetre.afficheErreur("Echange impossible", "Vous n'avez pas suffisamment d'épices pour faire cet échange !");
+                }
+            } else if (j.getListeCartes().get(i) instanceof CarteAmelioration) {
+                j.jouerCarte(i);
+                fenetre.afficheDemandeAmelioration(((CarteAmelioration) j.getListeCartes().get(i)).getNbAmelioration());
+                fenetre.getCentury().tourSuivant();
+                fenetre.tourSuivant();
+            } else if (j.getListeCartes().get(i) instanceof CarteProduction) {
                 j.jouerCarte(i);
                 fenetre.getCentury().tourSuivant();
                 fenetre.tourSuivant();
-            } else {
-                fenetre.afficheErreur("Echange impossible","Vous n'avez pas suffisamment d'épices pour faire cet échange !");
             }
-        } else if (j.getListeCartes().get(i) instanceof CarteAmelioration) {
-            fenetre.afficheDemandeAmelioration(((CarteAmelioration) j.getListeCartes().get(i)).getNbAmelioration());
-            fenetre.getCentury().tourSuivant();
-            fenetre.tourSuivant();
-        } else if (j.getListeCartes().get(i) instanceof CarteProduction){
-            j.jouerCarte(i);
-            fenetre.getCentury().tourSuivant();
-            fenetre.tourSuivant();
-        }
+        } else fenetre.afficheErreur("Carte non jouable", "Cette carte a déjà été jouée !");
     }
 
     private void addEpicesPiocheMarchande(Joueur j, int numCarte) {

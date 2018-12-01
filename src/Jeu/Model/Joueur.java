@@ -8,6 +8,7 @@ public class Joueur {
     private ArrayList<Carte> listeCartes; // Main du joueur (liste de cartes)
     private Caravane caravane; // Caravane du joueur qui contient les épices
     private ArrayList<CarteCommande> listeCartesCommande;
+    private ArrayList<Integer> cartesActives;
     private int nbPiecesOr;
     private int nbPiecesArgent;
 
@@ -15,12 +16,15 @@ public class Joueur {
         this.nom=nom;
         this.listeCartes = new ArrayList<>();
         this.listeCartesCommande = new ArrayList<>();
+        this.cartesActives = new ArrayList<>();
         this.caravane=new Caravane();
         nbPiecesArgent=0;
         nbPiecesOr=0;
         //AJOUT DES CARTES DE DEPART A LA MAIN DU JOUEUR
         listeCartes.add(new CarteAmelioration(2));
+        cartesActives.add(1);
         listeCartes.add(new CarteProduction(2,0,0,0,new Image("Jeu/imgCartes/PYY.png")));
+        cartesActives.add(1);
     }
 
     /*
@@ -36,9 +40,14 @@ public class Joueur {
         Carte carteJouee = listeCartes.get(i);
         if (carteJouee instanceof CarteProduction){
             jouerCarteProduction((CarteProduction) carteJouee);
+            cartesActives.set(i,0);
         }
         if (carteJouee instanceof CarteEchange){
             jouerCarteEchange((CarteEchange) carteJouee);
+            cartesActives.set(i,0);
+        }
+        if (carteJouee instanceof CarteAmelioration){
+            cartesActives.set(i,0);
         }
     }
 
@@ -117,6 +126,13 @@ public class Joueur {
      */
     public void addCarte(Carte carte) {
         listeCartes.add(carte);
+        cartesActives.add(1);
+    }
+
+    public void seReposer() {
+        for (int i = 0; i < cartesActives.size() ; i++) {
+            cartesActives.set(i,1);
+        }
     }
 
     public String getNom() { return nom; }
@@ -130,4 +146,6 @@ public class Joueur {
     public int getNbPiecesOr() { return nbPiecesOr; }
 
     public int getNbPiecesArgent() { return nbPiecesArgent; }
+
+    public ArrayList<Integer> getCartesActives() { return cartesActives; }
 }

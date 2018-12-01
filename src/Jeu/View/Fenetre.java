@@ -78,11 +78,17 @@ public class Fenetre extends Parent {
                 emplacement = 250 + largeurImageMain * (i + 1) + (30 * (i));
                 imageCarte = j.getListeCartes().get(i).getImage();
                 graphicsContext.drawImage(imageCarte, emplacement, y + 30, largeurImageMain, hauteurImageMain);
+                if (j.getCartesActives().get(i)==0){
+                    graphicsContext.strokeText("Inutilisable",emplacement,y+80);
+                }
             } else {
                 int i2 = i-j.getListeCartes().size()/2;
                 emplacement = 250 + largeurImageMain * (i2 + 1) + (30 * (i2));
                 imageCarte = j.getListeCartes().get(i).getImage();
                 graphicsContext.drawImage(imageCarte, emplacement, y + hauteurImageMain+50, largeurImageMain, hauteurImageMain);
+                if (j.getCartesActives().get(i)==0) {
+                    graphicsContext.strokeText("Inutilisable", emplacement, y + hauteurImageMain + 100);
+                }
             }
         }
         ArrayList<Epice> listeEpices = j.getCaravane().getEpices();
@@ -103,6 +109,9 @@ public class Fenetre extends Parent {
                 drawEpicesMain(listeEpices, i, emplacementX, emplacementY);
             }
         }
+        graphicsContext.setFill(Color.color(0.4,0.4,0.4));
+        graphicsContext.fillRect(debutCaravaneX, y+145, 100, 22);
+        graphicsContext.strokeText("Se resposer", debutCaravaneX+10,y+160);
     }
 
     //AFFICHAGE DES EPICES DANS LA MAIN
@@ -247,8 +256,6 @@ public class Fenetre extends Parent {
         alert.showAndWait();
     }
 
-    public Century getCentury() { return century; }
-
     public void afficheDemandeAmelioration(int nbAmelioration) {
         for (int i = 0; i <nbAmelioration ; i++) {
             Joueur j = century.getTabJoueur()[century.getJoueurActuel()];
@@ -303,4 +310,6 @@ public class Fenetre extends Parent {
             }
         }
     }
+
+    public Century getCentury() { return century; }
 }
