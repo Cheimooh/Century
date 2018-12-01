@@ -1,12 +1,16 @@
 package Jeu.Model;
 
+import Jeu.View.FenetreCaravane;
+
 import java.util.ArrayList;
 
 public class Caravane {
     private ArrayList<Epice> listeEpices; // Liste contenant les épices du joueur
+    FenetreCaravane fenetreCaravane;
 
     public Caravane(){
         listeEpices = new ArrayList<>();
+        fenetreCaravane = new FenetreCaravane(this);
     }
 
     /*
@@ -15,6 +19,9 @@ public class Caravane {
      */
     public void addEpice(Epice epice) {
         if (listeEpices.size()<10){
+            listeEpices.add(epice);
+        } else {
+            fenetreCaravane.fenetreSuppressionEpice();
             listeEpices.add(epice);
         }
         triEpices();

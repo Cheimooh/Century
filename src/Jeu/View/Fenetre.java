@@ -263,7 +263,7 @@ public class Fenetre extends Parent {
             alert.setTitle("Améliorer une épice");
             alert.setHeaderText("Veuillez choisir une épice à améliorer");
 
-            Canvas c = new Canvas(200, 100);
+            Canvas c = new Canvas(250, 100);
             GraphicsContext graphicsContext2 = c.getGraphicsContext2D();
 
             for (int k = 0; k < j.getCaravane().getEpices().size(); k++) {
