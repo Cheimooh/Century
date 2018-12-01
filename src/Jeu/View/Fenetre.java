@@ -267,7 +267,11 @@ public class Fenetre extends Parent {
             GraphicsContext graphicsContext2 = c.getGraphicsContext2D();
 
             for (int k = 0; k < j.getCaravane().getEpices().size(); k++) {
-                Color color = j.getCaravane().getEpices().get(i).getColor();
+                Color color;
+                if (j.getCaravane().getEpices().get(k).equals(Epice.tumeric))color = Epice.tumeric.getColor();
+                else if (j.getCaravane().getEpices().get(k).equals(Epice.safran))color = Epice.safran.getColor();
+                else if (j.getCaravane().getEpices().get(k).equals(Epice.cardamome))color = Epice.cardamome.getColor();
+                else color=Epice.cannelle.getColor();
                 graphicsContext2.setFill(color);
                 graphicsContext2.fillRect(k*22,50,20,20);
             }
