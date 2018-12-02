@@ -160,6 +160,10 @@ public class Century {
         tabJoueur[joueurActuel].addCarteCommande(carteCommande);
     }
 
+    public void retirerPieceOr() { if(nbPiecesOr>0) nbPiecesOr--; }
+
+    public void retirerPieceArgent() { if (nbPiecesArgent>0) nbPiecesArgent--; }
+
     public int getNbJoueur() { return nbJoueur; }
 
     public Joueur[] getTabJoueur() { return tabJoueur; }

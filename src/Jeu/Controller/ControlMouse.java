@@ -62,6 +62,13 @@ public class ControlMouse implements EventHandler<MouseEvent> {
             if (x>emplacement && x<emplacement+largeurImage){
                 if (fenetre.getCentury().getCartePresenteSurLaPiocheCommande().size()>i) {
                     if (j.verifCarteCommandePrenable(fenetre.getCentury().getCartePresenteSurLaPiocheCommande().get(i))){
+                        if (i==0){
+                            j.addPieceOr();
+                            fenetre.getCentury().retirerPieceOr();
+                        } else if (i==1){
+                            j.addPieceArgent();
+                            fenetre.getCentury().retirerPieceArgent();
+                        }
                         fenetre.getCentury().ajouterCarteCommandeALaMain(fenetre.getCentury().getCartePresenteSurLaPiocheCommande().get(i));
                         fenetre.retirerCarteCommande(i);
                         fenetre.getCentury().tourSuivant();

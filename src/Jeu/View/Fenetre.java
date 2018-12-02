@@ -46,7 +46,10 @@ public class Fenetre extends Parent {
         }
         for (int i = 0; i < 5; i++) {
             Image imageCarteCommande = century.getCartePresenteSurLaPiocheCommande().get(i).getImage();
-            drawCartePiocheCommande(imageCarteCommande,i);
+            int nbPieces=0;
+            if (i==0) nbPieces=century.getNbPiecesOr();
+            if (i==1) nbPieces=century.getNbPiecesArgent();
+            drawCartePiocheCommande(imageCarteCommande,i,nbPieces);
         }
         afficherMainDuJoueur();
     }
@@ -140,20 +143,22 @@ public class Fenetre extends Parent {
         }
     }
 
-    private void drawCartePiocheCommande(Image imageCarte,int i) {
+    private void drawCartePiocheCommande(Image imageCarte,int i, int nbPieces) {
         int emplacement = width- largeurImage *(i+1)-(30*(i+1));
         graphicsContext.drawImage(imageCarte,emplacement,50, largeurImage, hauteurImage);
         if (i==0){
-            graphicsContext.setFill(Color.GOLD);
-            graphicsContext.fillOval(emplacement+30, 10,30,30);
-            int nbPiecesOr = century.getNbPiecesOr();
-            graphicsContext.strokeText("x"+nbPiecesOr, emplacement+65,30);
+            if (nbPieces>0) {
+                graphicsContext.setFill(Color.GOLD);
+                graphicsContext.fillOval(emplacement + 30, 10, 30, 30);
+                graphicsContext.strokeText("x" + nbPieces, emplacement + 65, 30);
+            }
         }
         if (i==1){
-            graphicsContext.setFill(Color.SILVER);
-            graphicsContext.fillOval(emplacement+30, 10,30,30);
-            int nbPiecesArgent = century.getNbPiecesArgent();
-            graphicsContext.strokeText("x"+nbPiecesArgent, emplacement+65,30);
+            if (nbPieces>0) {
+                graphicsContext.setFill(Color.SILVER);
+                graphicsContext.fillOval(emplacement + 30, 10, 30, 30);
+                graphicsContext.strokeText("x" + nbPieces, emplacement + 65, 30);
+            }
         }
     }
 
@@ -242,10 +247,15 @@ public class Fenetre extends Parent {
 
     public void retirerCarteCommande(int i) {
         century.retirerCartePiocheCommande(i);
+        graphicsContext.setFill(Color.LIGHTGREY);
+        graphicsContext.fillRect(width- largeurImage *(i+1)-(30*(i+1)),0, largeurImage, 50);
         for (int j = 0; j < 5; j++) {
+            int nbPieces = 0;
+            if (j==0) nbPieces=century.getNbPiecesOr();
+            if (j==1) nbPieces=century.getNbPiecesArgent();
             if (century.getCartePresenteSurLaPiocheCommande().size()>j) {
                 Image imageCarte = century.getCartePresenteSurLaPiocheCommande().get(j).getImage();
-                drawCartePiocheCommande(imageCarte, j);
+                drawCartePiocheCommande(imageCarte, j,nbPieces);
             }
         }
     }

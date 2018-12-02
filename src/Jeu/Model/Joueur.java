@@ -150,6 +150,14 @@ public class Joueur {
 
     public void addCarteCommande(CarteCommande carteCommande) {
         listeCartesCommande.add(carteCommande);
+        int nbTumeric=carteCommande.getNbTumeric();
+        int nbSafran=carteCommande.getNbSafran();
+        int nbCardamome=carteCommande.getNbCardamome();
+        int nbCannelle=carteCommande.getNbCannelle();
+        for (int i = 0; i < nbTumeric; i++) { caravane.getEpices().remove(Epice.tumeric); }
+        for (int i = 0; i < nbSafran; i++) { caravane.getEpices().remove(Epice.safran); }
+        for (int i = 0; i < nbCardamome; i++) { caravane.getEpices().remove(Epice.cardamome); }
+        for (int i = 0; i < nbCannelle; i++) { caravane.getEpices().remove(Epice.cannelle); }
     }
 
     public void seReposer() {
@@ -157,6 +165,10 @@ public class Joueur {
             cartesActives.set(i,1);
         }
     }
+
+    public void addPieceOr() { nbPiecesOr++; }
+
+    public void addPieceArgent() { nbPiecesArgent++; }
 
     public String getNom() { return nom; }
 
