@@ -1,35 +1,53 @@
 package Jeu.Model;
 
-import Jeu.Jeu;
-import Jeu.Model.Carte;
-import Jeu.Model.CarteAmelioration;
-import Jeu.Model.CarteEchange;
-import Jeu.Model.CarteProduction;
 import javafx.scene.image.Image;
 
 import java.util.*;
 
 public class Pioche {
     private static Queue<Carte> piocheMarchand;
-    private static Queue<Carte> piocheCommande;
+    private static Queue<CarteCommande> piocheCommande;
 
     public Pioche(){
-        piocheMarchand = new ArrayDeque<Carte>();
-        piocheCommande = new ArrayDeque<Carte>();
-        //creerCartesProduction();
+        piocheMarchand = new ArrayDeque<>();
+        piocheCommande = new ArrayDeque<>();
+        creerCartesProduction();
         creerCartesEchange();
         creerCarteAmelioration();
+        creerPiocheCommande();
         melangerPioche();
+    }
+
+    private void creerPiocheCommande() {
+        piocheCommande.add(new CarteCommande(new Image("Jeu/imgCartesCommande/GGBB.png"), 0,0,2,2,14));
+        piocheCommande.add(new CarteCommande(new Image("Jeu/imgCartesCommande/GGGG.png"), 0,0,4,0,12));
+        piocheCommande.add(new CarteCommande(new Image("Jeu/imgCartesCommande/RRBB.png"), 0,2,0,2,12));
+        piocheCommande.add(new CarteCommande(new Image("Jeu/imgCartesCommande/RRGG.png"), 0,2,2,0,10));
+        piocheCommande.add(new CarteCommande(new Image("Jeu/imgCartesCommande/RRGGG.png"), 0,2,3,0,13));
+        piocheCommande.add(new CarteCommande(new Image("Jeu/imgCartesCommande/RRRGG.png"), 0,3,2,0,12));
+        piocheCommande.add(new CarteCommande(new Image("Jeu/imgCartesCommande/RRRRR.png"), 0,5,0,0,10));
+        piocheCommande.add(new CarteCommande(new Image("Jeu/imgCartesCommande/YYGG.png"), 2,0,2,0,8));
+        piocheCommande.add(new CarteCommande(new Image("Jeu/imgCartesCommande/YYRR.png"), 2,2,0,0,6));
+        piocheCommande.add(new CarteCommande(new Image("Jeu/imgCartesCommande/YYRRR.png"), 2,3,0,0,8));
+        piocheCommande.add(new CarteCommande(new Image("Jeu/imgCartesCommande/YYYBB.png"), 3,0,0,2,11));
     }
 
     public Carte piocherCarteMarchand(){
         return piocheMarchand.poll();
     }
 
+    public CarteCommande piocherCarteCommande(){
+        return piocheCommande.poll();
+    }
+
     private void melangerPioche() {
         List<Carte> listeCartes = new ArrayList<Carte>(piocheMarchand);
         Collections.shuffle(listeCartes);
         piocheMarchand = new ArrayDeque<>(listeCartes);
+
+        List<CarteCommande> listeCartesCommande = new ArrayList<>(piocheCommande);
+        Collections.shuffle(listeCartesCommande);
+        piocheCommande = new ArrayDeque<>(listeCartesCommande);
     }
 
     private void creerCarteAmelioration(){
@@ -42,7 +60,6 @@ public class Pioche {
         piocheMarchand.add(new CarteProduction(0,0,0,1, new Image("Jeu/imgCartes/PB.png")));
         piocheMarchand.add(new CarteProduction(1,0,1,0, new Image("Jeu/imgCartes/PYG.png")));
         piocheMarchand.add(new CarteProduction(0,2,0,0, new Image("Jeu/imgCartes/PRR.png")));
-        piocheMarchand.add(new CarteProduction(1,1,0,0, new Image("Jeu/imgCartes/PYR.png")));
         piocheMarchand.add(new CarteProduction(2,0,0,0,  new Image("Jeu/imgCartes/PYY.png")));
         piocheMarchand.add(new CarteProduction(2,1,0,0,  new Image("Jeu/imgCartes/PRYY.png")));
         piocheMarchand.add(new CarteProduction(3,0,0,0,  new Image("Jeu/imgCartes/PYYY.png")));

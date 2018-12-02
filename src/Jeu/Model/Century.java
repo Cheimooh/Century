@@ -13,6 +13,8 @@ public class Century {
     private int joueurActuel; // Le numéro du joueur dont c'est le tour
     private ArrayList<Carte> cartePresenteSurLaPiocheMarchande; // La liste des 5 cartes présentent sur le plateau
                                                                 // (allant de droite à gauche)
+    private ArrayList<CarteCommande> cartePresenteSurLaPiocheCommande;
+
     private ArrayList<Epice> epicesSurLaCarte1;
     private ArrayList<Epice> epicesSurLaCarte2;
     private ArrayList<Epice> epicesSurLaCarte3;
@@ -20,8 +22,12 @@ public class Century {
     private ArrayList<Epice> epicesSurLaCarte5;
     private Fenetre f; // Fenetre affichant le plateau
 
+    private int nbPiecesOr;
+    private int nbPiecesArgent;
+
     public Century(){
         cartePresenteSurLaPiocheMarchande=new ArrayList<>();
+        cartePresenteSurLaPiocheCommande=new ArrayList<>();
         epicesSurLaCarte1=new ArrayList<>();
         epicesSurLaCarte2=new ArrayList<>();
         epicesSurLaCarte3=new ArrayList<>();
@@ -29,6 +35,7 @@ public class Century {
         epicesSurLaCarte5=new ArrayList<>();
         pioche = new Pioche();
         initPiocheMarchande();
+        initPiocheCommande();
         joueurActuel=0;
     }
 
@@ -39,6 +46,13 @@ public class Century {
         for (int i = 0; i < 5; i++) {
             Carte c = getPioche().piocherCarteMarchand();
             cartePresenteSurLaPiocheMarchande.add(c);
+        }
+    }
+
+    private void initPiocheCommande() {
+        for (int i = 0; i < 5; i++) {
+            CarteCommande c = getPioche().piocherCarteCommande();
+            cartePresenteSurLaPiocheCommande.add(c);
         }
     }
 
@@ -100,6 +114,8 @@ public class Century {
      */
     public void initJoueur(String[] noms) {
         nbJoueur = noms.length;
+        nbPiecesOr=2*nbJoueur;
+        nbPiecesArgent=2*nbJoueur;
         tabJoueur = new Joueur[nbJoueur];
         for (int i = 0; i < nbJoueur; i++) {
             tabJoueur[i] = new Joueur(noms[i]);
@@ -140,6 +156,8 @@ public class Century {
 
     public ArrayList<Carte> getCartePresenteSurLaPiocheMarchande() {return cartePresenteSurLaPiocheMarchande;}
 
+    public ArrayList<CarteCommande> getCartePresenteSurLaPiocheCommande() { return cartePresenteSurLaPiocheCommande; }
+
     public void setF(Fenetre f) { this.f = f; }
 
     public ArrayList<Epice> getEpicesSurLaCarte1() { return epicesSurLaCarte1; }
@@ -151,4 +169,8 @@ public class Century {
     public ArrayList<Epice> getEpicesSurLaCarte4() { return epicesSurLaCarte4; }
 
     public ArrayList<Epice> getEpicesSurLaCarte5() { return epicesSurLaCarte5; }
+
+    public int getNbPiecesOr() { return nbPiecesOr; }
+
+    public int getNbPiecesArgent() { return nbPiecesArgent; }
 }
