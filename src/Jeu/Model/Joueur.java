@@ -55,6 +55,25 @@ public class Joueur {
         return caravane.getEpices().size() >= i;
     }
 
+    public boolean verifCarteCommandePrenable(CarteCommande carteCommande) {
+        int nbTumeric=0;
+        int nbSafran=0;
+        int nbCardamome=0;
+        int nbCannelle=0;
+        for (int i = 0; i < caravane.getEpices().size(); i++) {
+            if (caravane.getEpices().get(i).equals(Epice.tumeric)) nbTumeric++;
+            if (caravane.getEpices().get(i).equals(Epice.safran)) nbSafran++;
+            if (caravane.getEpices().get(i).equals(Epice.cardamome)) nbCardamome++;
+            if (caravane.getEpices().get(i).equals(Epice.cannelle)) nbCannelle++;
+        }
+
+        if (carteCommande.getNbTumeric()>nbTumeric) return false;
+        if (carteCommande.getNbSafran()>nbSafran) return false;
+        if (carteCommande.getNbCardamome()>nbCardamome) return false;
+        if (carteCommande.getNbCannelle()>nbCannelle) return false;
+        return true;
+    }
+
     private void jouerCarteEchange(CarteEchange carteJouee) {
         int[] epicesDonnees = carteJouee.getTabEpicesDonnees();
         int[] epicesRecues = carteJouee.getTabEpicesRecues();
@@ -127,6 +146,10 @@ public class Joueur {
     public void addCarte(Carte carte) {
         listeCartes.add(carte);
         cartesActives.add(1);
+    }
+
+    public void addCarteCommande(CarteCommande carteCommande) {
+        listeCartesCommande.add(carteCommande);
     }
 
     public void seReposer() {

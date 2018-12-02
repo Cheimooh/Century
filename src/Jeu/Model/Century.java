@@ -100,6 +100,16 @@ public class Century {
         }
     }
 
+    public void retirerCartePiocheCommande(int i) {
+        cartePresenteSurLaPiocheCommande.remove(i);
+        if(getPioche().getPiocheCommande().size()>0) {
+            cartePresenteSurLaPiocheCommande.add(getPioche().piocherCarteCommande());
+        } else {
+            int emplacementARetirer = cartePresenteSurLaPiocheCommande.size()-1;
+            f.retirerEmplacementCarteCommande(emplacementARetirer);
+        }
+    }
+
     /*
      * Incrémente la variable joueurActuel
      */
@@ -144,6 +154,10 @@ public class Century {
      */
     public void ajouterCarteALaMain(Carte carte) {
         tabJoueur[joueurActuel].addCarte(carte);
+    }
+
+    public void ajouterCarteCommandeALaMain(CarteCommande carteCommande) {
+        tabJoueur[joueurActuel].addCarteCommande(carteCommande);
     }
 
     public int getNbJoueur() { return nbJoueur; }

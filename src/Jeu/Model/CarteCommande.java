@@ -18,4 +18,12 @@ public class CarteCommande extends Carte {
         this.nbCannelle=nbCannelle;
         this.nbPoints=nbPoints;
     }
+
+    public int getNbTumeric() { return nbTumeric; }
+
+    public int getNbSafran() { return nbSafran; }
+
+    public int getNbCardamome() { return nbCardamome; }
+
+    public int getNbCannelle() { return nbCannelle; }
 }

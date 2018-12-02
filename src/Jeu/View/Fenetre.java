@@ -240,6 +240,16 @@ public class Fenetre extends Parent {
         }
     }
 
+    public void retirerCarteCommande(int i) {
+        century.retirerCartePiocheCommande(i);
+        for (int j = 0; j < 5; j++) {
+            if (century.getCartePresenteSurLaPiocheCommande().size()>j) {
+                Image imageCarte = century.getCartePresenteSurLaPiocheCommande().get(j).getImage();
+                drawCartePiocheCommande(imageCarte, j);
+            }
+        }
+    }
+
     //MESSAGE DE CONFIRMATION LORSQUE L'ON SOUHAITE PRENDRE UNE CARTE
     public boolean confirmation(int i) {
         Carte c = century.getCartePresenteSurLaPiocheMarchande().get(i);
@@ -268,6 +278,12 @@ public class Fenetre extends Parent {
         i=i+1;
         graphicsContext.setFill(Color.LIGHTGREY);
         graphicsContext.fillRect(width- 111 *(i+1)-(30*(i+1)), height/3., 111, 500/3.);
+    }
+
+    public void retirerEmplacementCarteCommande(int i) {
+        i=i+1;
+        graphicsContext.setFill(Color.LIGHTGREY);
+        graphicsContext.fillRect(width- 111 *(i+1)-(30*(i+1)), 50, 111, 500/3.);
     }
 
     public void afficheErreur(String titre, String erreur) {

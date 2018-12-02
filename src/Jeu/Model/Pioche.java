@@ -28,7 +28,7 @@ public class Pioche {
         piocheCommande.add(new CarteCommande(new Image("Jeu/imgCartesCommande/RRRRR.png"), 0,5,0,0,10));
         piocheCommande.add(new CarteCommande(new Image("Jeu/imgCartesCommande/YYGG.png"), 2,0,2,0,8));
         piocheCommande.add(new CarteCommande(new Image("Jeu/imgCartesCommande/YYRR.png"), 2,2,0,0,6));
-        piocheCommande.add(new CarteCommande(new Image("Jeu/imgCartesCommande/YYRRR.png"), 2,3,0,0,8));
+        piocheCommande.add(new CarteCommande(new Image("Jeu/imgCartesCommande/YYYGG.png"), 3,0,2,0,9));
         piocheCommande.add(new CarteCommande(new Image("Jeu/imgCartesCommande/YYYBB.png"), 3,0,0,2,11));
     }
 
@@ -105,4 +105,6 @@ public class Pioche {
     }
 
     public Queue<Carte> getPiocheMarchand() {return piocheMarchand;}
+
+    public Queue<CarteCommande> getPiocheCommande() { return piocheCommande; }
 }

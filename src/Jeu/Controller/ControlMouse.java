@@ -23,31 +23,11 @@ public class ControlMouse implements EventHandler<MouseEvent> {
         int x = (int) event.getX();
         int y = (int) event.getY();
         Joueur j = fenetre.getCentury().getTabJoueur()[fenetre.getCentury().getJoueurActuel()];
-
-        if (y>(height/3) && (y<height/3+hauteurCarte)){
-            int emplacement;
-            for (int i = 0; i < 5; i++) {
-                emplacement = width- largeurImage *(i+1)-(30*(i+1));
-                if(x>emplacement && x<emplacement+largeurImage){
-                    //i est l'emplacement de la carte
-                    if (fenetre.getCentury().getCartePresenteSurLaPiocheMarchande().size()>i) {
-                        if (fenetre.confirmation(i)) {
-                            if (j.verifCartePrenable(i)) {
-                                addEpicesPiocheMarchande(j,i);
-                                fenetre.getCentury().ajouterCarteALaMain(fenetre.getCentury().getCartePresenteSurLaPiocheMarchande().get(i));
-                                fenetre.retirerCarte(i);
-                                fenetre.getCentury().tourSuivant();
-                                fenetre.tourSuivant();
-                            } else {
-                                fenetre.afficheErreur("Carte non prenable","Vous n'avez pas suffisamment d'épices pour récupérer cette carte !");
-                            }
-                        }
-                    }
-                    return;
-                }
-            }
-        }
-        if (y>(height*2/3) && (y<height) && (x>250)){
+        if(y>50 && y<50+hauteurCarte){
+            gestionCarteCommande(x,y,largeurImage,j);
+        } else if (y>(height/3) && (y<height/3+hauteurCarte)){
+            gestionCarteMarchande(x,y,largeurImage,j);
+        } else if (y>(height*2/3) && (y<height) && (x>250)){
             if (x>800 && x<900 && y>(height*2/3)+145 && y<(height*2/3)+167){
                 j.seReposer();
                 fenetre.getCentury().tourSuivant();
@@ -68,6 +48,48 @@ public class ControlMouse implements EventHandler<MouseEvent> {
                         emplacement = 250 + largeurImageMain * (i2 + 1) + (30 * (i2));
                         if (x > emplacement && x < emplacement + largeurImageMain && y > y2 + hauteurImageMain + 50 && y < y + hauteurCarte * 2 + 50) {
                             joueCarte(j, i);
+                        }
+                    }
+                }
+            }
+        }
+    }
+
+    private void gestionCarteCommande(int x, int y, int largeurImage, Joueur j) {
+        int emplacement;
+        for (int i = 0; i <5 ; i++) {
+            emplacement = width- largeurImage *(i+1)-(30*(i+1));
+            if (x>emplacement && x<emplacement+largeurImage){
+                if (fenetre.getCentury().getCartePresenteSurLaPiocheCommande().size()>i) {
+                    if (j.verifCarteCommandePrenable(fenetre.getCentury().getCartePresenteSurLaPiocheCommande().get(i))){
+                        fenetre.getCentury().ajouterCarteCommandeALaMain(fenetre.getCentury().getCartePresenteSurLaPiocheCommande().get(i));
+                        fenetre.retirerCarteCommande(i);
+                        fenetre.getCentury().tourSuivant();
+                        fenetre.tourSuivant();
+                    } else {
+                        fenetre.afficheErreur("Carte non prenable","Vous n'avez pas suffisamment d'épices pour récupérer cette carte !");
+                    }
+                }
+            }
+        }
+    }
+
+    private void gestionCarteMarchande(int x, int y, int largeurImage, Joueur j){
+        int emplacement;
+        for (int i = 0; i < 5; i++) {
+            emplacement = width- largeurImage *(i+1)-(30*(i+1));
+            if(x>emplacement && x<emplacement+largeurImage){
+                //i est l'emplacement de la carte
+                if (fenetre.getCentury().getCartePresenteSurLaPiocheMarchande().size()>i) {
+                    if (fenetre.confirmation(i)) {
+                        if (j.verifCartePrenable(i)) {
+                            addEpicesPiocheMarchande(j,i);
+                            fenetre.getCentury().ajouterCarteALaMain(fenetre.getCentury().getCartePresenteSurLaPiocheMarchande().get(i));
+                            fenetre.retirerCarte(i);
+                            fenetre.getCentury().tourSuivant();
+                            fenetre.tourSuivant();
+                        } else {
+                            fenetre.afficheErreur("Carte non prenable","Vous n'avez pas suffisamment d'épices pour récupérer cette carte !");
                         }
                     }
                 }
