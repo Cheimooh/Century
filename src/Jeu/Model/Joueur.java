@@ -148,6 +148,26 @@ public class Joueur {
         cartesActives.add(1);
     }
 
+    public void trierCarte(){
+        ArrayList<Carte> newListeCartes=new ArrayList<>();
+        ArrayList<Integer> newCartesActives=new ArrayList<>();
+        for (int i = 0; i < listeCartes.size(); i++) {
+            if (cartesActives.get(i)==1){
+                newListeCartes.add(listeCartes.get(i));
+                newCartesActives.add(1);
+            }
+        }
+
+        for (int i = 0; i < listeCartes.size(); i++) {
+            if (cartesActives.get(i)==0){
+                newListeCartes.add(listeCartes.get(i));
+                newCartesActives.add(0);
+            }
+        }
+        listeCartes=newListeCartes;
+        cartesActives=newCartesActives;
+    }
+
     public void addCarteCommande(CarteCommande carteCommande) {
         listeCartesCommande.add(carteCommande);
         int nbTumeric=carteCommande.getNbTumeric();

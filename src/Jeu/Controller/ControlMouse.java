@@ -109,6 +109,7 @@ public class ControlMouse implements EventHandler<MouseEvent> {
             if (j.getListeCartes().get(i) instanceof CarteEchange) {
                 if (j.verifEchangePossible((CarteEchange) j.getListeCartes().get(i))) {
                     j.jouerCarte(i);
+                    j.trierCarte();
                     fenetre.getCentury().tourSuivant();
                     fenetre.tourSuivant();
                 } else {
@@ -117,10 +118,12 @@ public class ControlMouse implements EventHandler<MouseEvent> {
             } else if (j.getListeCartes().get(i) instanceof CarteAmelioration) {
                 j.jouerCarte(i);
                 fenetre.afficheDemandeAmelioration(((CarteAmelioration) j.getListeCartes().get(i)).getNbAmelioration());
+                j.trierCarte();
                 fenetre.getCentury().tourSuivant();
                 fenetre.tourSuivant();
             } else if (j.getListeCartes().get(i) instanceof CarteProduction) {
                 j.jouerCarte(i);
+                j.trierCarte();
                 fenetre.getCentury().tourSuivant();
                 fenetre.tourSuivant();
             }
