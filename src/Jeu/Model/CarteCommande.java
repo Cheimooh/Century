@@ -26,4 +26,6 @@ public class CarteCommande extends Carte {
     public int getNbCardamome() { return nbCardamome; }
 
     public int getNbCannelle() { return nbCannelle; }
+
+    public int getNbPoints() { return nbPoints; }
 }

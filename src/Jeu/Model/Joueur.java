@@ -11,6 +11,7 @@ public class Joueur {
     private ArrayList<Integer> cartesActives;
     private int nbPiecesOr;
     private int nbPiecesArgent;
+    private int nbPoints;
 
     public Joueur(String nom){
         this.nom=nom;
@@ -20,6 +21,7 @@ public class Joueur {
         this.caravane=new Caravane();
         nbPiecesArgent=0;
         nbPiecesOr=0;
+        nbPoints=0;
         //AJOUT DES CARTES DE DEPART A LA MAIN DU JOUEUR
         listeCartes.add(new CarteAmelioration(2));
         cartesActives.add(1);
@@ -51,9 +53,7 @@ public class Joueur {
         }
     }
 
-    public boolean verifCartePrenable(int i) {
-        return caravane.getEpices().size() >= i;
-    }
+    public boolean verifCartePrenable(int i) { return caravane.getEpices().size() >= i; }
 
     public boolean verifCarteCommandePrenable(CarteCommande carteCommande) {
         int nbTumeric=0;
@@ -178,6 +178,7 @@ public class Joueur {
         for (int i = 0; i < nbSafran; i++) { caravane.getEpices().remove(Epice.safran); }
         for (int i = 0; i < nbCardamome; i++) { caravane.getEpices().remove(Epice.cardamome); }
         for (int i = 0; i < nbCannelle; i++) { caravane.getEpices().remove(Epice.cannelle); }
+        nbPoints+=carteCommande.getNbPoints();
     }
 
     public void seReposer() {
@@ -186,9 +187,15 @@ public class Joueur {
         }
     }
 
-    public void addPieceOr() { nbPiecesOr++; }
+    public void addPieceOr() {
+        nbPiecesOr++;
+        nbPoints+=3;
+    }
 
-    public void addPieceArgent() { nbPiecesArgent++; }
+    public void addPieceArgent() {
+        nbPiecesArgent++;
+        nbPiecesArgent++;
+    }
 
     public String getNom() { return nom; }
 
