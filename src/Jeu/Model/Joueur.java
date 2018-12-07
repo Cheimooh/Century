@@ -210,4 +210,6 @@ public class Joueur {
     public int getNbPiecesArgent() { return nbPiecesArgent; }
 
     public ArrayList<Integer> getCartesActives() { return cartesActives; }
+
+    public int getNbPoints() { return nbPoints; }
 }

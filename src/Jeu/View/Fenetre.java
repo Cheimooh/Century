@@ -362,5 +362,68 @@ public class Fenetre extends Parent {
         }
     }
 
+    private void fenetreFinJeu(String nomVainqueur) {
+        Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+        alert.setTitle("Résultats");
+        alert.setContentText("Le vainqueur de cette partie est : " + nomVainqueur);
+
+        //Afficher classement
+
+        ButtonType recommencer = new ButtonType("Recommencer");
+        ButtonType quitter = new ButtonType("Quitter");
+
+        alert.getButtonTypes().clear();
+        alert.getButtonTypes().addAll(recommencer,quitter);
+
+        Optional<ButtonType> option = alert.showAndWait();
+
+        if (option.get() == recommencer){
+            // Recommencer le jeu
+        }
+        else if (option.get() == quitter){
+            System.exit(0);
+        }
+    }
+
+    public void afficheFenetreFinJeu(){
+        boolean partieFinie = false;
+        String nomVainqueur = "";
+        int[] listTotalPoint = new int[century.getTabJoueur().length];
+
+        for (int i = 0; i < century.getTabJoueur().length; i++) {
+            int j = century.getTabJoueur()[i].getNbPoints();
+            listTotalPoint[i]=j;
+        }
+        Arrays.sort(listTotalPoint);
+
+        if (century.getTabJoueur().length == 4 || century.getTabJoueur().length == 5){
+            for (int i = 0; i < century.getTabJoueur().length; i++){
+                if (century.getTabJoueur()[i].getListeCartesCommande().size() == 5){
+                    //recuperer joueur ayant le plus de point
+                    for (int k = 0; k < century.getTabJoueur().length; k++){
+                        if (century.getTabJoueur()[k].getNbPoints() == listTotalPoint[0]){
+                            nomVainqueur = century.getTabJoueur()[k].getNom();
+                            partieFinie=true;
+                        }
+                    }
+                }
+            }
+        }
+        else if (century.getTabJoueur().length == 2 || century.getTabJoueur().length == 3){
+            for (int i = 0; i < century.getTabJoueur().length; i++){
+                if (century.getTabJoueur()[i].getListeCartesCommande().size() == 6){
+                    //recuperer joueur ayant le plus de point
+                    for (int k = 0; k < century.getTabJoueur().length; k++){
+                        if (century.getTabJoueur()[k].getNbPoints() == listTotalPoint[0]){
+                            nomVainqueur = century.getTabJoueur()[k].getNom();
+                            partieFinie=true;
+                        }
+                    }
+                }
+            }
+        }
+        if (partieFinie) fenetreFinJeu(nomVainqueur);
+    }
+
     public Century getCentury() { return century; }
 }

@@ -71,9 +71,9 @@ public class ControlMouse implements EventHandler<MouseEvent> {
                         }
                         fenetre.getCentury().ajouterCarteCommandeALaMain(fenetre.getCentury().getCartePresenteSurLaPiocheCommande().get(i));
                         fenetre.retirerCarteCommande(i);
-
                         fenetre.getCentury().tourSuivant();
                         fenetre.tourSuivant();
+                        fenetre.afficheFenetreFinJeu();
                     } else {
                         fenetre.afficheErreur("Carte non prenable","Vous n'avez pas suffisamment d'épices pour récupérer cette carte !");
                     }
