@@ -71,6 +71,7 @@ public class ControlMouse implements EventHandler<MouseEvent> {
                         }
                         fenetre.getCentury().ajouterCarteCommandeALaMain(fenetre.getCentury().getCartePresenteSurLaPiocheCommande().get(i));
                         fenetre.retirerCarteCommande(i);
+
                         fenetre.getCentury().tourSuivant();
                         fenetre.tourSuivant();
                     } else {

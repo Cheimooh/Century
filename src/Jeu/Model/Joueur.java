@@ -194,7 +194,7 @@ public class Joueur {
 
     public void addPieceArgent() {
         nbPiecesArgent++;
-        nbPiecesArgent++;
+        nbPoints++;
     }
 
     public String getNom() { return nom; }
