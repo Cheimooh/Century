@@ -19,19 +19,40 @@ public class Pioche {
     }
 
     private void creerPiocheCommande() {
-        piocheCommande.add(new CarteCommande(new Image("Jeu/imgCartesCommande/GGBB.png"), 0,0,2,2,14));
-        piocheCommande.add(new CarteCommande(new Image("Jeu/imgCartesCommande/GGGG.png"), 0,0,4,0,12));
-        piocheCommande.add(new CarteCommande(new Image("Jeu/imgCartesCommande/RRBB.png"), 0,2,0,2,12));
-        piocheCommande.add(new CarteCommande(new Image("Jeu/imgCartesCommande/RRGG.png"), 0,2,2,0,10));
-        piocheCommande.add(new CarteCommande(new Image("Jeu/imgCartesCommande/RRGGG.png"), 0,2,3,0,13));
-        piocheCommande.add(new CarteCommande(new Image("Jeu/imgCartesCommande/RRRGG.png"), 0,3,2,0,12));
-        piocheCommande.add(new CarteCommande(new Image("Jeu/imgCartesCommande/RRRRR.png"), 0,5,0,0,10));
-        piocheCommande.add(new CarteCommande(new Image("Jeu/imgCartesCommande/YYGG.png"), 2,0,2,0,8));
-        piocheCommande.add(new CarteCommande(new Image("Jeu/imgCartesCommande/YYRR.png"), 2,2,0,0,6));
-        piocheCommande.add(new CarteCommande(new Image("Jeu/imgCartesCommande/YYYGG.png"), 3,0,2,0,9));
-        piocheCommande.add(new CarteCommande(new Image("Jeu/imgCartesCommande/YYYBB.png"), 3,0,0,2,11));
+        piocheCommande.add(new CarteCommande(new Image("Jeu/imgCartesCommande/C_BBBBB_20.png"), 0, 0, 0, 5, 20));
+        piocheCommande.add(new CarteCommande(new Image("Jeu/imgCartesCommande/C_BBBB_16.png"), 0, 0, 0, 4, 16));
+        piocheCommande.add(new CarteCommande(new Image("Jeu/imgCartesCommande/C_GGBB_14.png"), 0, 0, 2, 2, 14));
+        piocheCommande.add(new CarteCommande(new Image("Jeu/imgCartesCommande/C_GGBBB_18.png"), 0, 0, 2, 3, 18));
+        piocheCommande.add(new CarteCommande(new Image("Jeu/imgCartesCommande/C_GGGBB_17.png"), 0, 0, 3, 2, 17));
+        piocheCommande.add(new CarteCommande(new Image("Jeu/imgCartesCommande/C_RRBB_12.png"), 0, 2, 0, 2, 12));
+        piocheCommande.add(new CarteCommande(new Image("Jeu/imgCartesCommande/C_RRBBB_16.png"), 0, 2, 0, 3, 16));
+        piocheCommande.add(new CarteCommande(new Image("Jeu/imgCartesCommande/C_RRGB_12.png"), 0, 2, 1, 1, 12));
+        piocheCommande.add(new CarteCommande(new Image("Jeu/imgCartesCommande/C_RRGG_10.png"), 0, 2, 2, 0, 10));
+        piocheCommande.add(new CarteCommande(new Image("Jeu/imgCartesCommande/C_RRGGBB_19.png"), 0, 2, 2, 2, 19));
+        piocheCommande.add(new CarteCommande(new Image("Jeu/imgCartesCommande/C_RRGGG_13.png"), 0, 2, 3, 0, 13));
+        piocheCommande.add(new CarteCommande(new Image("Jeu/imgCartesCommande/C_RRRBB_14.png"), 0, 3, 0, 2, 14));
+        piocheCommande.add(new CarteCommande(new Image("Jeu/imgCartesCommande/C_RRRGG_12.png"), 0, 3, 2, 0, 12));
+        piocheCommande.add(new CarteCommande(new Image("Jeu/imgCartesCommande/C_RRRR_6.png"), 0, 3, 0, 0, 6));
+        piocheCommande.add(new CarteCommande(new Image("Jeu/imgCartesCommande/C_RRRRR_10.png"), 0, 4, 0, 0, 10));
+        piocheCommande.add(new CarteCommande(new Image("Jeu/imgCartesCommande/C_YGGB_12.png"), 1, 0, 2, 1, 12));
+        piocheCommande.add(new CarteCommande(new Image("Jeu/imgCartesCommande/C_YRGB_12.png"), 1, 1, 1, 1, 12));
+        piocheCommande.add(new CarteCommande(new Image("Jeu/imgCartesCommande/C_YRGBBB_20.png"), 1, 1, 1, 3, 20));
+        piocheCommande.add(new CarteCommande(new Image("Jeu/imgCartesCommande/C_YRGGGB_18.png"), 1, 1, 3, 1, 18));
+        piocheCommande.add(new CarteCommande(new Image("Jeu/imgCartesCommande/C_YRRRGB_16.png"), 1, 3, 1, 1, 16));
+        piocheCommande.add(new CarteCommande(new Image("Jeu/imgCartesCommande/C_YYBB_10.png"), 2, 0, 0, 2, 10));
+        piocheCommande.add(new CarteCommande(new Image("Jeu/imgCartesCommande/C_YYBBB_14.png"), 2, 0, 0, 3, 14));
+        piocheCommande.add(new CarteCommande(new Image("Jeu/imgCartesCommande/C_YYGG_8.png"), 2, 0, 2, 0, 8));
+        piocheCommande.add(new CarteCommande(new Image("Jeu/imgCartesCommande/C_YYGGBB_17.png"), 2, 0, 3, 2, 17));
+        piocheCommande.add(new CarteCommande(new Image("Jeu/imgCartesCommande/C_YYGGG_11.png"), 2, 0, 3, 0, 11));
+        piocheCommande.add(new CarteCommande(new Image("Jeu/imgCartesCommande/C_YYRB_9.png"), 2, 1, 0, 1, 9));
+        piocheCommande.add(new CarteCommande(new Image("Jeu/imgCartesCommande/C_YYRR_6.png"), 2, 2, 0, 0, 6));
+        piocheCommande.add(new CarteCommande(new Image("Jeu/imgCartesCommande/C_YYRRBB_15.png"), 2, 2, 0, 2, 15));
+        piocheCommande.add(new CarteCommande(new Image("Jeu/imgCartesCommande/C_YYRRGG_13.png"), 2, 2, 2, 0, 13));
+        piocheCommande.add(new CarteCommande(new Image("Jeu/imgCartesCommande/C_YYRRR_8.png"), 2, 3, 0, 0, 8));
+        piocheCommande.add(new CarteCommande(new Image("Jeu/imgCartesCommande/C_YYYGG_9.png"), 3, 0, 2, 0, 9));
+        piocheCommande.add(new CarteCommande(new Image("Jeu/imgCartesCommande/C_YYYRGB_14.png"), 3, 1, 1, 1, 14));
+        piocheCommande.add(new CarteCommande(new Image("Jeu/imgCartesCommande/C_YYYRR_7.png"), 3, 2, 0, 0, 7));
     }
-
     public Carte piocherCarteMarchand(){
         return piocheMarchand.poll();
     }
