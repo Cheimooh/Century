@@ -401,7 +401,7 @@ public class Fenetre extends Parent {
                 if (century.getTabJoueur()[i].getListeCartesCommande().size() == 5){
                     //recuperer joueur ayant le plus de point
                     for (int k = 0; k < century.getTabJoueur().length; k++){
-                        if (century.getTabJoueur()[k].getNbPoints() == listTotalPoint[0]){
+                        if (century.getTabJoueur()[k].getNbPoints() == listTotalPoint[listTotalPoint.length - 1]){
                             nomVainqueur = century.getTabJoueur()[k].getNom();
                             partieFinie=true;
                         }
@@ -414,7 +414,7 @@ public class Fenetre extends Parent {
                 if (century.getTabJoueur()[i].getListeCartesCommande().size() == 6){
                     //recuperer joueur ayant le plus de point
                     for (int k = 0; k < century.getTabJoueur().length; k++){
-                        if (century.getTabJoueur()[k].getNbPoints() == listTotalPoint[0]){
+                        if (century.getTabJoueur()[k].getNbPoints() == listTotalPoint[listTotalPoint.length - 1]){
                             nomVainqueur = century.getTabJoueur()[k].getNom();
                             partieFinie=true;
                         }
