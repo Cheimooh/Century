@@ -18,6 +18,9 @@ public class Fenetre extends Parent {
     private int largeurImage = 111;
     private int hauteurImage = 500 / 3;
 
+    private String[] classement;
+    private String[] affichageFinal;
+
     public Fenetre(Century century, int width, int height) {
         this.century=century;
         century.setF(this);
@@ -362,10 +365,26 @@ public class Fenetre extends Parent {
         }
     }
 
-    private void fenetreFinJeu(String nomVainqueur) {
+    private void fenetreFinJeu(String[] classement) {
         Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
         alert.setTitle("Résultats");
-        alert.setContentText("Le vainqueur de cette partie est : " + nomVainqueur);
+        alert.setHeight(300);
+        alert.setWidth(300);
+        affichageFinal = new String[century.getTabJoueur().length];
+
+        for (int i = 0; i < classement.length; i++) {
+            affichageFinal[i] = (i+1) +" : " + classement[i] + "\n";
+        }
+
+        String finale = "";
+        finale+= "Le vainqueur de cette partie est : " + classement[0] + "\n" +
+                "Voici le classment : \n";
+
+        for (int i = 0; i <classement.length ; i++) {
+            finale += affichageFinal[i];
+        }
+
+        alert.setContentText(finale);
 
         //Afficher classement
 
@@ -386,9 +405,10 @@ public class Fenetre extends Parent {
     }
 
     public void afficheFenetreFinJeu(){
-        boolean partieFinie = false;
-        String nomVainqueur = "";
         int[] listTotalPoint = new int[century.getTabJoueur().length];
+        boolean partieFinie = false;
+        classement = new String[century.getTabJoueur().length];
+
 
         for (int i = 0; i < century.getTabJoueur().length; i++) {
             int j = century.getTabJoueur()[i].getNbPoints();
@@ -401,10 +421,16 @@ public class Fenetre extends Parent {
                 if (century.getTabJoueur()[i].getListeCartesCommande().size() == 5){
                     //recuperer joueur ayant le plus de point
                     for (int k = 0; k < century.getTabJoueur().length; k++){
-                        if (century.getTabJoueur()[k].getNbPoints() == listTotalPoint[listTotalPoint.length - 1]){
-                            nomVainqueur = century.getTabJoueur()[k].getNom();
-                            partieFinie=true;
+                        for (int j = 1; j < century.getTabJoueur().length + 1 ; j++) {
+                            if (century.getTabJoueur()[k].getNbPoints() == listTotalPoint[listTotalPoint.length - j]){
+                                if (k>0 && century.getTabJoueur()[k].getNbPoints() == century.getTabJoueur()[k-1].getNbPoints()){
+                                    classement[j-1] = century.getTabJoueur()[k].getNom();
+                                }
+                                else classement[j-1] = century.getTabJoueur()[k].getNom();
+                                //partieFinie=true;
+                            }
                         }
+                        partieFinie=true;
                     }
                 }
             }
@@ -414,15 +440,20 @@ public class Fenetre extends Parent {
                 if (century.getTabJoueur()[i].getListeCartesCommande().size() == 6){
                     //recuperer joueur ayant le plus de point
                     for (int k = 0; k < century.getTabJoueur().length; k++){
-                        if (century.getTabJoueur()[k].getNbPoints() == listTotalPoint[listTotalPoint.length - 1]){
-                            nomVainqueur = century.getTabJoueur()[k].getNom();
-                            partieFinie=true;
-                        }
+                        for (int j = 1; j < century.getTabJoueur().length +1; j++)
+                            if (century.getTabJoueur()[k].getNbPoints() == listTotalPoint[listTotalPoint.length - j]) {
+                                if (k > 0 && century.getTabJoueur()[k].getNbPoints() == century.getTabJoueur()[k - 1].getNbPoints()) {
+                                    classement[j - 1] = century.getTabJoueur()[k].getNom();
+                                }
+                                else classement[j - 1] = century.getTabJoueur()[k].getNom();
+                                //partieFinie=true;
+                            }
+                        partieFinie=true;
                     }
                 }
             }
         }
-        if (partieFinie) fenetreFinJeu(nomVainqueur);
+        if (partieFinie) fenetreFinJeu(classement);
     }
 
     public Century getCentury() { return century; }
