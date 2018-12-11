@@ -1,6 +1,5 @@
 package Jeu.Model;
 
-import javafx.scene.image.Image;
 import java.util.ArrayList;
 
 public class Joueur {
@@ -70,8 +69,7 @@ public class Joueur {
         if (carteCommande.getNbTumeric()>nbTumeric) return false;
         if (carteCommande.getNbSafran()>nbSafran) return false;
         if (carteCommande.getNbCardamome()>nbCardamome) return false;
-        if (carteCommande.getNbCannelle()>nbCannelle) return false;
-        return true;
+        return carteCommande.getNbCannelle() <= nbCannelle;
     }
 
     private void jouerCarteEchange(CarteEchange carteJouee) {
