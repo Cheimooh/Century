@@ -1,13 +1,11 @@
 package Jeu.Model;
 
-import javafx.scene.image.Image;
-
 public class Carte {
-    private Image image; // Image de la carte
+    private String path; // Image de la carte
 
-    public Carte(Image image) {
-        this.image=image;
+    public Carte(String path) {
+        this.path=path;
     }
 
-    public Image getImage() { return image; }
+    public String getPath() { return path; }
 }

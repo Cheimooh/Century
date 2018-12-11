@@ -69,32 +69,32 @@ public class Century {
         }
 
         if (i==0) {
-            for (int j = 0; j < epicesSurLaCarte1.size() ; j++) {
-                tabJoueur[joueurActuel].getCaravane().addEpice(epicesSurLaCarte1.get(j));
+            for (Epice anEpicesSurLaCarte1 : epicesSurLaCarte1) {
+                tabJoueur[joueurActuel].getCaravane().addEpice(anEpicesSurLaCarte1);
             }
             epicesSurLaCarte1.clear();
         }
         if (i==1) {
-            for (int j = 0; j < epicesSurLaCarte2.size() ; j++) {
-                tabJoueur[joueurActuel].getCaravane().addEpice(epicesSurLaCarte2.get(j));
+            for (Epice anEpicesSurLaCarte2 : epicesSurLaCarte2) {
+                tabJoueur[joueurActuel].getCaravane().addEpice(anEpicesSurLaCarte2);
             }
             epicesSurLaCarte2.clear();
         }
         if (i==2) {
-            for (int j = 0; j < epicesSurLaCarte3.size() ; j++) {
-                tabJoueur[joueurActuel].getCaravane().addEpice(epicesSurLaCarte3.get(j));
+            for (Epice anEpicesSurLaCarte3 : epicesSurLaCarte3) {
+                tabJoueur[joueurActuel].getCaravane().addEpice(anEpicesSurLaCarte3);
             }
             epicesSurLaCarte3.clear();
         }
         if (i==3) {
-            for (int j = 0; j < epicesSurLaCarte4.size() ; j++) {
-                tabJoueur[joueurActuel].getCaravane().addEpice(epicesSurLaCarte4.get(j));
+            for (Epice anEpicesSurLaCarte4 : epicesSurLaCarte4) {
+                tabJoueur[joueurActuel].getCaravane().addEpice(anEpicesSurLaCarte4);
             }
             epicesSurLaCarte4.clear();
         }
         if (i==4) {
-            for (int j = 0; j < epicesSurLaCarte5.size() ; j++) {
-                tabJoueur[joueurActuel].getCaravane().addEpice(epicesSurLaCarte5.get(j));
+            for (Epice anEpicesSurLaCarte5 : epicesSurLaCarte5) {
+                tabJoueur[joueurActuel].getCaravane().addEpice(anEpicesSurLaCarte5);
             }
             epicesSurLaCarte5.clear();
         }

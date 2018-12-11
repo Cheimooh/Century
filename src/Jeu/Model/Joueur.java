@@ -25,7 +25,7 @@ public class Joueur {
         //AJOUT DES CARTES DE DEPART A LA MAIN DU JOUEUR
         listeCartes.add(new CarteAmelioration(2));
         cartesActives.add(1);
-        listeCartes.add(new CarteProduction(2,0,0,0,new Image("Jeu/imgCartes/PYY.png")));
+        listeCartes.add(new CarteProduction(2,0,0,0,"Jeu/imgCartes/PYY.png"));
         cartesActives.add(1);
     }
 

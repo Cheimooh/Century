@@ -5,7 +5,7 @@ public class CarteEchange extends Carte {
     private int[] tabEpicesRecues;
 
     public CarteEchange (TypeCarteEchange t){
-        super(t.getImage());
+        super(t.getPath());
         this.tabEpicesDonnees = t.getEpicesDonnees();
         this.tabEpicesRecues = t.getEpicesRecues();
     }

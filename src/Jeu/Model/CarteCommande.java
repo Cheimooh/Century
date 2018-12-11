@@ -1,7 +1,5 @@
 package Jeu.Model;
 
-import javafx.scene.image.Image;
-
 public class CarteCommande extends Carte {
     private int nbTumeric;
     private int nbSafran;
@@ -10,8 +8,8 @@ public class CarteCommande extends Carte {
 
     private int nbPoints;
 
-    public CarteCommande(Image image, int nbTumeric, int nbSafran, int nbCardamome, int nbCannelle, int nbPoints){
-        super(image);
+    public CarteCommande(String path, int nbTumeric, int nbSafran, int nbCardamome, int nbCannelle, int nbPoints){
+        super(path);
         this.nbTumeric=nbTumeric;
         this.nbSafran=nbSafran;
         this.nbCardamome=nbCardamome;

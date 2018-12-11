@@ -44,11 +44,11 @@ public class Fenetre extends Parent {
         }
         for (int i = 0; i < 5; i++) {
             ArrayList<Epice> epicesSurLaCarte = new ArrayList<>();
-            Image imageCarte = century.getCartePresenteSurLaPiocheMarchande().get(i).getImage();
+            Image imageCarte = new Image(century.getCartePresenteSurLaPiocheMarchande().get(i).getPath());
             drawCartePiocheMarchande(imageCarte,i, epicesSurLaCarte);
         }
         for (int i = 0; i < 5; i++) {
-            Image imageCarteCommande = century.getCartePresenteSurLaPiocheCommande().get(i).getImage();
+            Image imageCarteCommande = new Image(century.getCartePresenteSurLaPiocheCommande().get(i).getPath());
             int nbPieces=0;
             if (i==0) nbPieces=century.getNbPiecesOr();
             if (i==1) nbPieces=century.getNbPiecesArgent();
@@ -86,7 +86,7 @@ public class Fenetre extends Parent {
         for (int i = 0; i < j.getListeCartes().size(); i++) {
             if(i<=(j.getListeCartes().size()/2)-1) {
                 emplacement = 250 + largeurImageMain * (i + 1) + (30 * (i));
-                imageCarte = j.getListeCartes().get(i).getImage();
+                imageCarte = new Image(j.getListeCartes().get(i).getPath());
                 graphicsContext.drawImage(imageCarte, emplacement, y + 30, largeurImageMain, hauteurImageMain);
                 if (j.getCartesActives().get(i)==0){
                     graphicsContext.strokeText("Inutilisable",emplacement,y+80);
@@ -94,7 +94,7 @@ public class Fenetre extends Parent {
             } else {
                 int i2 = i-j.getListeCartes().size()/2;
                 emplacement = 250 + largeurImageMain * (i2 + 1) + (30 * (i2));
-                imageCarte = j.getListeCartes().get(i).getImage();
+                imageCarte = new Image(j.getListeCartes().get(i).getPath());
                 graphicsContext.drawImage(imageCarte, emplacement, y + hauteurImageMain+50, largeurImageMain, hauteurImageMain);
                 if (j.getCartesActives().get(i)==0) {
                     graphicsContext.strokeText("Inutilisable", emplacement, y + hauteurImageMain + 100);
@@ -242,7 +242,7 @@ public class Fenetre extends Parent {
             if (j==3) epicesSurLaCarte=century.getEpicesSurLaCarte4();
             if (j==4) epicesSurLaCarte=century.getEpicesSurLaCarte5();
             if (century.getCartePresenteSurLaPiocheMarchande().size()>j) {
-                Image imageCarte = century.getCartePresenteSurLaPiocheMarchande().get(j).getImage();
+                Image imageCarte = new Image(century.getCartePresenteSurLaPiocheMarchande().get(j).getPath());
                 drawCartePiocheMarchande(imageCarte, j, epicesSurLaCarte);
             }
         }
@@ -257,7 +257,7 @@ public class Fenetre extends Parent {
             if (j==0) nbPieces=century.getNbPiecesOr();
             if (j==1) nbPieces=century.getNbPiecesArgent();
             if (century.getCartePresenteSurLaPiocheCommande().size()>j) {
-                Image imageCarte = century.getCartePresenteSurLaPiocheCommande().get(j).getImage();
+                Image imageCarte = new Image(century.getCartePresenteSurLaPiocheCommande().get(j).getPath());
                 drawCartePiocheCommande(imageCarte, j,nbPieces);
             }
         }
@@ -271,7 +271,7 @@ public class Fenetre extends Parent {
         alert.setTitle("Confirmation");
 
         String s = "Voulez-vous prendre cette carte ?";
-        ImageView img = new ImageView(c.getImage());
+        ImageView img = new ImageView(c.getPath());
         img.setFitWidth(111);
         img.setFitHeight(500/3.);
 
