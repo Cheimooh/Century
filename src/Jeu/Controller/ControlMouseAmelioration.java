@@ -22,8 +22,8 @@ public class ControlMouseAmelioration implements EventHandler<MouseEvent> {
         Caravane caravane = j.getCaravane();
         int emplacementX;
         for (int i = 0; i < caravane.getEpices().size() ; i++) {
-            emplacementX = 22*i+90;
-            if (x>emplacementX && x<emplacementX+20 && y>60 && y<90){
+            emplacementX = 22*i+50;
+            if (x>emplacementX && x<emplacementX+20 && y>40 && y<60){
                 Epice epice = caravane.getEpices().get(i);
                 if (j.amelioreEpice(epice)) fenetreAmelioration.close();
             }

@@ -47,10 +47,7 @@ public class FenetreCaravane {
         graphicsContext.fillRect(  365, 15, 20, 20);
         graphicsContext.strokeText(s, 20,30);
         for (int k = 0; k < caravane.getEpices().size(); k++) {
-            if (caravane.getEpices().get(k).equals(Epice.tumeric)) color = Epice.tumeric.getColor();
-            else if (caravane.getEpices().get(k).equals(Epice.safran)) color = Epice.safran.getColor();
-            else if (caravane.getEpices().get(k).equals(Epice.cardamome)) color = Epice.cardamome.getColor();
-            else color = Epice.cannelle.getColor();
+            color = caravane.getEpices().get(k).getColor();
             graphicsContext.setFill(color);
             graphicsContext.fillRect(k * 22 + 90, 60, 20, 20);
         }
