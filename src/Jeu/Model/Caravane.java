@@ -6,12 +6,8 @@ import java.util.ArrayList;
 
 public class Caravane {
     private ArrayList<Epice> listeEpices; // Liste contenant les épices du joueur
-    FenetreCaravane fenetreCaravane;
 
-    public Caravane(){
-        listeEpices = new ArrayList<>();
-        fenetreCaravane = new FenetreCaravane(this);
-    }
+    public Caravane(){ listeEpices = new ArrayList<>(); }
 
     /*
      * Permet d'ajouter une épice à la caravane
@@ -21,6 +17,7 @@ public class Caravane {
         if (listeEpices.size()<10){
             listeEpices.add(epice);
         } else {
+            FenetreCaravane fenetreCaravane = new FenetreCaravane(this);
             fenetreCaravane.fenetreSuppressionEpice(epice);
             listeEpices.add(epice);
         }
