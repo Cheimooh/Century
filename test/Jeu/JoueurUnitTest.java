@@ -79,4 +79,38 @@ public class JoueurUnitTest {
         // Le joueur a suffisamment d'épices pour valider cette commande
         Assert.assertTrue(j.verifCarteCommandePrenable(carteCommande));
     }
+
+    @Test
+    public void testAmeliorationEpice(){
+        Joueur j = new Joueur("");
+        j.addEpices(new Epice[]{Epice.tumeric,Epice.safran,Epice.cardamome});
+        Assert.assertTrue(j.amelioreEpice(Epice.tumeric));
+        Assert.assertTrue(j.amelioreEpice(Epice.safran));
+        Assert.assertTrue(j.amelioreEpice(Epice.cardamome));
+
+        ArrayList<Epice> epicesTheoriques = new ArrayList<>();
+        epicesTheoriques.add(Epice.safran);
+        epicesTheoriques.add(Epice.cardamome);
+        epicesTheoriques.add(Epice.cannelle);
+
+        Assert.assertEquals(epicesTheoriques, j.getCaravane().getEpices());
+    }
+
+    @Test
+    public void testAmeliorationEpiceImpossible(){
+        Joueur j = new Joueur("");
+        j.addEpices(new Epice[]{Epice.cannelle});
+        Assert.assertFalse(j.amelioreEpice(Epice.cannelle));
+
+        ArrayList<Epice> epicesTheoriques = new ArrayList<>();
+        epicesTheoriques.add(Epice.cannelle);
+
+        Assert.assertEquals(epicesTheoriques, j.getCaravane().getEpices());
+    }
+
+    @Test
+    public void testAmeliorationEpiceAvecEpiceNonPresenteDansLaCaravane(){
+        Joueur j = new Joueur("");
+        Assert.assertFalse(j.amelioreEpice(Epice.safran));
+    }
 }
