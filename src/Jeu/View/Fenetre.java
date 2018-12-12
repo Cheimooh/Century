@@ -309,59 +309,7 @@ public class Fenetre extends Parent {
     public void afficheDemandeAmelioration(int nbAmelioration) {
         for (int i = 0; i <nbAmelioration ; i++) {
             Joueur j = century.getTabJoueur()[century.getJoueurActuel()];
-            Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
-            alert.setTitle("Améliorer une épice");
-            alert.setHeaderText("Veuillez choisir une épice à améliorer");
-
-            Canvas c = new Canvas(250, 100);
-            GraphicsContext graphicsContext2 = c.getGraphicsContext2D();
-
-            for (int k = 0; k < j.getCaravane().getEpices().size(); k++) {
-                Color color;
-                if (j.getCaravane().getEpices().get(k).equals(Epice.tumeric))color = Epice.tumeric.getColor();
-                else if (j.getCaravane().getEpices().get(k).equals(Epice.safran))color = Epice.safran.getColor();
-                else if (j.getCaravane().getEpices().get(k).equals(Epice.cardamome))color = Epice.cardamome.getColor();
-                else color=Epice.cannelle.getColor();
-                graphicsContext2.setFill(color);
-                graphicsContext2.fillRect(k*22,50,20,20);
-            }
-
-            ButtonType tumeric = new ButtonType("Tuméric");
-            ButtonType safran = new ButtonType("Safran");
-            ButtonType cardamome = new ButtonType("Cardamome");
-
-            alert.setGraphic(c);
-
-            alert.getButtonTypes().clear();
-            alert.getButtonTypes().addAll(tumeric, safran, cardamome);
-
-            Optional<ButtonType> option = alert.showAndWait();
-
-            if (option.get() == tumeric) {
-                if (j.getCaravane().getEpices().contains(Epice.tumeric)){
-                    j.getCaravane().getEpices().remove(Epice.tumeric);
-                    j.getCaravane().addEpice(Epice.safran);
-                } else {
-                    i--;
-                    afficheErreur("Amélioration impossible", "Vous ne posséder de Tuméric");
-                }
-            } else if (option.get() == safran) {
-                if (j.getCaravane().getEpices().contains(Epice.safran)){
-                    j.getCaravane().getEpices().remove(Epice.safran);
-                    j.getCaravane().addEpice(Epice.cardamome);
-                } else {
-                    i--;
-                    afficheErreur("Amélioration impossible", "Vous ne posséder de Safran");
-                }
-            } else if (option.get() == cardamome) {
-                if (j.getCaravane().getEpices().contains(Epice.cardamome)){
-                    j.getCaravane().getEpices().remove(Epice.cardamome);
-                    j.getCaravane().addEpice(Epice.cannelle);
-                } else {
-                    i--;
-                    afficheErreur("Amélioration impossible", "Vous ne posséder de Cardamome");
-                }
-            }
+            new FenetreAmelioration(j);
         }
     }
 
