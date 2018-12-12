@@ -44,6 +44,8 @@ public class Caravane {
         listeEpices=newListeEpices;
     }
 
+    public void removeEpice(int i) { listeEpices.remove(i); }
+
     public ArrayList<Epice> getEpices() {
         return listeEpices;
     }
