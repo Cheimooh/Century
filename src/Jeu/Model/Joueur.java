@@ -71,16 +71,10 @@ public class Joueur {
     public boolean verifCartePrenable(int i) { return caravane.getEpices().size() >= i; }
 
     public boolean verifCarteCommandePrenable(CarteCommande carteCommande) {
-        int nbTumeric=0;
-        int nbSafran=0;
-        int nbCardamome=0;
-        int nbCannelle=0;
-        for (int i = 0; i < caravane.getEpices().size(); i++) {
-            if (caravane.getEpices().get(i).equals(Epice.tumeric)) nbTumeric++;
-            if (caravane.getEpices().get(i).equals(Epice.safran)) nbSafran++;
-            if (caravane.getEpices().get(i).equals(Epice.cardamome)) nbCardamome++;
-            if (caravane.getEpices().get(i).equals(Epice.cannelle)) nbCannelle++;
-        }
+        int nbTumeric=caravane.getNbTumeric();
+        int nbSafran=caravane.getNbSafran();
+        int nbCardamome=caravane.getNbCardamome();
+        int nbCannelle=caravane.getNbCannelle();
 
         if (carteCommande.getNbTumeric()>nbTumeric) return false;
         if (carteCommande.getNbSafran()>nbSafran) return false;
@@ -120,21 +114,16 @@ public class Joueur {
 
     public boolean verifEchangePossible(CarteEchange carteJouee) {
         int[] epicesDonnees = carteJouee.getTabEpicesDonnees();
-        int compteurTumeric=0;
-        int compteurSafran=0;
-        int compteurCardamome=0;
-        int compteurCannelle=0;
-        for (int i = 0; i < caravane.getEpices().size() ; i++) {
-            if(caravane.getEpices().get(i).equals(Epice.tumeric)) compteurTumeric++;
-            if(caravane.getEpices().get(i).equals(Epice.safran)) compteurSafran++;
-            if(caravane.getEpices().get(i).equals(Epice.cardamome)) compteurCardamome++;
-            if(caravane.getEpices().get(i).equals(Epice.cannelle)) compteurCannelle++;
-        }
+        int nbTumeric=caravane.getNbTumeric();
+        int nbSafran=caravane.getNbSafran();
+        int nbCardamome=caravane.getNbCardamome();
+        int nbCannelle=caravane.getNbCannelle();
+
         boolean retour=true;
-        if (compteurTumeric<epicesDonnees[0]) retour=false;
-        if (compteurSafran<epicesDonnees[1]) retour=false;
-        if (compteurCardamome<epicesDonnees[2]) retour=false;
-        if (compteurCannelle<epicesDonnees[3]) retour=false;
+        if (nbTumeric<epicesDonnees[0]) retour=false;
+        if (nbSafran<epicesDonnees[1]) retour=false;
+        if (nbCardamome<epicesDonnees[2]) retour=false;
+        if (nbCannelle<epicesDonnees[3]) retour=false;
         return retour;
     }
 
