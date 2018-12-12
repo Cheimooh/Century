@@ -37,6 +37,22 @@ public class Joueur {
         }
     }
 
+    public boolean amelioreEpice(Epice epice) {
+        if (epice==Epice.tumeric){
+            caravane.getEpices().remove(Epice.tumeric);
+            caravane.addEpice(Epice.safran);
+            return true;
+        } else if (epice==Epice.safran){
+            caravane.getEpices().remove(Epice.safran);
+            caravane.addEpice(Epice.cardamome);
+            return true;
+        } else if (epice==Epice.cardamome){
+            caravane.getEpices().remove(Epice.cardamome);
+            caravane.addEpice(Epice.cannelle);
+            return true;
+        } else return false;
+    }
+
     public void jouerCarte(int i) {
         Carte carteJouee = listeCartes.get(i);
         if (carteJouee instanceof CarteProduction){

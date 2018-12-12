@@ -307,9 +307,10 @@ public class Fenetre extends Parent {
     }
 
     public void afficheDemandeAmelioration(int nbAmelioration) {
+        Joueur j = century.getTabJoueur()[century.getJoueurActuel()];
+        FenetreAmelioration fenetreAmelioration=new FenetreAmelioration(j);
         for (int i = 0; i <nbAmelioration ; i++) {
-            Joueur j = century.getTabJoueur()[century.getJoueurActuel()];
-            new FenetreAmelioration(j);
+            fenetreAmelioration.fenetreAmeliorationEpice();
         }
     }
 
