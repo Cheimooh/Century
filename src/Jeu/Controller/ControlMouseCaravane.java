@@ -20,7 +20,7 @@ public class ControlMouseCaravane implements EventHandler<MouseEvent> {
         int emplacementX;
         for (int i = 0; i < caravane.getEpices().size() ; i++) {
             emplacementX = 22*i+10;
-            if (x>emplacementX && x<emplacementX+20 && y>15 && y<35){
+            if (x>emplacementX && x<emplacementX+20 && y>50 && y<70){
                 caravane.removeEpice(i);
                 fenetreCaravane.close();
             }

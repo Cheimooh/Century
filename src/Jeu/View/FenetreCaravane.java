@@ -21,7 +21,7 @@ public class FenetreCaravane {
     public FenetreCaravane(Caravane caravane){
         this.caravane=caravane;
         popup = new Stage();
-        canvas = new Canvas(240,50);
+        canvas = new Canvas(400,100);
         graphicsContext = canvas.getGraphicsContext2D();
         initPopup();
     }
@@ -33,16 +33,22 @@ public class FenetreCaravane {
         popup.setScene(scene);
     }
 
-    public void fenetreSuppressionEpice(){
+    public void fenetreSuppressionEpice(Epice epice){
         pane.getChildren().clear();
+        graphicsContext.setFill(Color.LIGHTGREY);
+        graphicsContext.fillRect(0,0,400,100);
+        String s = "Veuillez sélectionner une épice à remplacer par l'épice suivante : ";
+        Color color = epice.getColor();
+        graphicsContext.setFill(color);
+        graphicsContext.fillRect(  355, 5, 20, 20);
+        graphicsContext.strokeText(s, 10,20);
         for (int k = 0; k < caravane.getEpices().size(); k++) {
-            Color color;
             if (caravane.getEpices().get(k).equals(Epice.tumeric)) color = Epice.tumeric.getColor();
             else if (caravane.getEpices().get(k).equals(Epice.safran)) color = Epice.safran.getColor();
             else if (caravane.getEpices().get(k).equals(Epice.cardamome)) color = Epice.cardamome.getColor();
             else color = Epice.cannelle.getColor();
             graphicsContext.setFill(color);
-            graphicsContext.fillRect(k * 22 + 10, 15, 20, 20);
+            graphicsContext.fillRect(k * 22 + 80, 50, 20, 20);
         }
         pane.getChildren().add(canvas);
         ControlMouseCaravane controlMouseCaravane = new ControlMouseCaravane(this);

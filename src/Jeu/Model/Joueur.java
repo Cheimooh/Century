@@ -21,12 +21,6 @@ public class Joueur {
         nbPiecesArgent=0;
         nbPiecesOr=0;
         nbPoints=0;
-        caravane.addEpice(Epice.safran);
-        caravane.addEpice(Epice.safran);
-        caravane.addEpice(Epice.cannelle);
-        caravane.addEpice(Epice.cannelle);
-        caravane.addEpice(Epice.cardamome);
-        caravane.addEpice(Epice.cardamome);
         //AJOUT DES CARTES DE DEPART A LA MAIN DU JOUEUR
         listeCartes.add(new CarteAmelioration(2));
         cartesActives.add(1);

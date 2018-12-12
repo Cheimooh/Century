@@ -21,7 +21,7 @@ public class Caravane {
         if (listeEpices.size()<10){
             listeEpices.add(epice);
         } else {
-            fenetreCaravane.fenetreSuppressionEpice();
+            fenetreCaravane.fenetreSuppressionEpice(epice);
             listeEpices.add(epice);
         }
         triEpices();
