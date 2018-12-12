@@ -10,6 +10,7 @@ import javafx.scene.layout.Pane;
 import javafx.scene.paint.Color;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
+import javafx.stage.StageStyle;
 
 public class FenetreCaravane {
     private Caravane caravane;
@@ -21,13 +22,14 @@ public class FenetreCaravane {
     public FenetreCaravane(Caravane caravane){
         this.caravane=caravane;
         popup = new Stage();
-        canvas = new Canvas(400,100);
+        canvas = new Canvas(420,120);
         graphicsContext = canvas.getGraphicsContext2D();
         initPopup();
     }
 
     private void initPopup() {
         popup.initModality(Modality.APPLICATION_MODAL);
+        popup.initStyle(StageStyle.TRANSPARENT);
         pane = new Pane();
         Scene scene = new Scene(pane);
         popup.setScene(scene);
@@ -35,20 +37,22 @@ public class FenetreCaravane {
 
     public void fenetreSuppressionEpice(Epice epice){
         pane.getChildren().clear();
+        graphicsContext.setFill(Color.BLACK);
+        graphicsContext.fillRect(0,0,420,120);
         graphicsContext.setFill(Color.LIGHTGREY);
-        graphicsContext.fillRect(0,0,400,100);
+        graphicsContext.fillRect(10,10,400,100);
         String s = "Veuillez sélectionner une épice à remplacer par l'épice suivante : ";
         Color color = epice.getColor();
         graphicsContext.setFill(color);
-        graphicsContext.fillRect(  355, 5, 20, 20);
-        graphicsContext.strokeText(s, 10,20);
+        graphicsContext.fillRect(  365, 15, 20, 20);
+        graphicsContext.strokeText(s, 20,30);
         for (int k = 0; k < caravane.getEpices().size(); k++) {
             if (caravane.getEpices().get(k).equals(Epice.tumeric)) color = Epice.tumeric.getColor();
             else if (caravane.getEpices().get(k).equals(Epice.safran)) color = Epice.safran.getColor();
             else if (caravane.getEpices().get(k).equals(Epice.cardamome)) color = Epice.cardamome.getColor();
             else color = Epice.cannelle.getColor();
             graphicsContext.setFill(color);
-            graphicsContext.fillRect(k * 22 + 80, 50, 20, 20);
+            graphicsContext.fillRect(k * 22 + 90, 60, 20, 20);
         }
         pane.getChildren().add(canvas);
         ControlMouseCaravane controlMouseCaravane = new ControlMouseCaravane(this);
