@@ -1,7 +1,8 @@
 package Jeu;
 
 import Jeu.Model.Century;
-import Jeu.View.Fenetre;
+import Jeu.View.FenetreJoueur;
+import Jeu.View.FenetrePrincipale;
 import javafx.application.Application;
 import javafx.scene.Group;
 import javafx.scene.Scene;
@@ -35,11 +36,18 @@ public class Jeu extends Application {
         century.initJoueur(nomsJoueurs);
         int height = 700;
         int width = 1000;
-        Fenetre fenetre = new Fenetre(century, width, height);
+        FenetreJoueur fenetreJoueur = new FenetreJoueur(century,800,300);
+        Group rootFenetreJoueur = new Group();
+        rootFenetreJoueur.getChildren().add(fenetreJoueur);
+        Stage stageFenetreJoueur = new Stage();
+        FenetrePrincipale fenetrePrincipale = new FenetrePrincipale(century, width, height, fenetreJoueur);
         Group root = new Group();
-        root.getChildren().add(fenetre);
+        root.getChildren().add(fenetrePrincipale);
         stage.setScene(new Scene(root, width, height, Color.LIGHTGREY));
         stage.show();
+        stageFenetreJoueur.setTitle("Century : fenêtre du joueur courant");
+        stageFenetreJoueur.setScene(new Scene(rootFenetreJoueur, 800, 300, Color.LIGHTGREY));
+        stageFenetreJoueur.show();
     }
 
     private void fenetreDemandeNbJoueurs(Stage primaryStage){

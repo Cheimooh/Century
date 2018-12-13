@@ -1,6 +1,6 @@
 package Jeu.Model;
 
-import Jeu.View.Fenetre;
+import Jeu.View.FenetrePrincipale;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -20,7 +20,7 @@ public class Century {
     private ArrayList<Epice> epicesSurLaCarte3;
     private ArrayList<Epice> epicesSurLaCarte4;
     private ArrayList<Epice> epicesSurLaCarte5;
-    private Fenetre f; // Fenetre affichant le plateau
+    private FenetrePrincipale f; // FenetrePrincipale affichant le plateau
 
     private int nbPiecesOr;
     private int nbPiecesArgent;
@@ -176,7 +176,7 @@ public class Century {
 
     public ArrayList<CarteCommande> getCartePresenteSurLaPiocheCommande() { return cartePresenteSurLaPiocheCommande; }
 
-    public void setF(Fenetre f) { this.f = f; }
+    public void setF(FenetrePrincipale f) { this.f = f; }
 
     public ArrayList<Epice> getEpicesSurLaCarte1() { return epicesSurLaCarte1; }
 
