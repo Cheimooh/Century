@@ -1,7 +1,7 @@
 package Jeu.View;
 
 import Jeu.Model.Century;
-import Jeu.Model.ControlMouseJoueur;
+import Jeu.Controller.ControlMouseJoueur;
 import Jeu.Model.Epice;
 import Jeu.Model.Joueur;
 import javafx.scene.Parent;
@@ -19,8 +19,10 @@ public class FenetreJoueur extends Parent {
     private int width;
     private GraphicsContext graphicsContext;
     private FenetrePrincipale fenetrePrincipale;
+    private int idJoueur;
 
-    public FenetreJoueur(Century century, int width, int height) {
+    public FenetreJoueur(Century century, int width, int height, int id) {
+        this.idJoueur=id;
         this.century=century;
         this.height=height;
         this.width=width;
@@ -37,7 +39,7 @@ public class FenetreJoueur extends Parent {
         int largeurImageMain = largeurImage /2;
         int hauteurImage = 500 / 3;
         int hauteurImageMain = hauteurImage /2;
-        Joueur j = century.getTabJoueur()[century.getJoueurActuel()];
+        Joueur j = century.getTabJoueur()[idJoueur];
         Color color = Color.LIGHTGREY;
         graphicsContext.setFill(color);
         graphicsContext.fillRect(0, 0, width, height);
@@ -124,4 +126,6 @@ public class FenetreJoueur extends Parent {
     public FenetrePrincipale getFenetrePrincipale() { return fenetrePrincipale; }
 
     public void setFenetrePrincipale(FenetrePrincipale fenetrePrincipale) { this.fenetrePrincipale = fenetrePrincipale; }
+
+    public int getIdJoueur() { return idJoueur; }
 }

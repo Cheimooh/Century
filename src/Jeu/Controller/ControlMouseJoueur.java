@@ -1,5 +1,9 @@
-package Jeu.Model;
+package Jeu.Controller;
 
+import Jeu.Model.CarteAmelioration;
+import Jeu.Model.CarteEchange;
+import Jeu.Model.CarteProduction;
+import Jeu.Model.Joueur;
 import Jeu.View.FenetreJoueur;
 import javafx.event.EventHandler;
 import javafx.scene.input.MouseEvent;
@@ -17,29 +21,33 @@ public class ControlMouseJoueur implements EventHandler<MouseEvent> {
         int largeurImage = 111;
         int x = (int) event.getX();
         int y = (int) event.getY();
-        Joueur j = fenetreJoueur.getCentury().getTabJoueur()[fenetreJoueur.getCentury().getJoueurActuel()];
-        if (x>600 && x<700 && y>145 && y<167){
-            j.seReposer();
-            fenetreJoueur.getCentury().tourSuivant();
-            fenetreJoueur.getFenetrePrincipale().tourSuivant();
-        } else {
-            int largeurImageMain = largeurImage / 2;
-            int hauteurImageMain = hauteurCarte / 2;
-            int emplacement;
-            for (int i = 0; i < j.getListeCartes().size(); i++) {
-                if (i <= (j.getListeCartes().size() / 2) - 1) {
-                    emplacement = largeurImageMain * (i + 1) + (30 * (i));
-                    if (x > emplacement && x < emplacement + largeurImageMain && y > 30 && y < 30 + hauteurImageMain) {
-                        joueCarte(j, i);
-                    }
-                } else {
-                    int i2 = i - j.getListeCartes().size() / 2;
-                    emplacement = largeurImageMain * (i2 + 1) + (30 * (i2));
-                    if (x > emplacement && x < emplacement + largeurImageMain && y > hauteurImageMain + 50 && y < y + hauteurCarte * 2 + 50) {
-                        joueCarte(j, i);
+        if (fenetreJoueur.getIdJoueur()==fenetreJoueur.getCentury().getJoueurActuel()) {
+            Joueur j = fenetreJoueur.getCentury().getTabJoueur()[fenetreJoueur.getCentury().getJoueurActuel()];
+            if (x > 600 && x < 700 && y > 145 && y < 167) {
+                j.seReposer();
+                fenetreJoueur.getCentury().tourSuivant();
+                fenetreJoueur.getFenetrePrincipale().tourSuivant();
+            } else {
+                int largeurImageMain = largeurImage / 2;
+                int hauteurImageMain = hauteurCarte / 2;
+                int emplacement;
+                for (int i = 0; i < j.getListeCartes().size(); i++) {
+                    if (i <= (j.getListeCartes().size() / 2) - 1) {
+                        emplacement = largeurImageMain * (i + 1) + (30 * (i));
+                        if (x > emplacement && x < emplacement + largeurImageMain && y > 30 && y < 30 + hauteurImageMain) {
+                            joueCarte(j, i);
+                        }
+                    } else {
+                        int i2 = i - j.getListeCartes().size() / 2;
+                        emplacement = largeurImageMain * (i2 + 1) + (30 * (i2));
+                        if (x > emplacement && x < emplacement + largeurImageMain && y > hauteurImageMain + 50 && y < y + hauteurCarte * 2 + 50) {
+                            joueCarte(j, i);
+                        }
                     }
                 }
             }
+        } else {
+            fenetreJoueur.afficheErreur("Vous ne pouvez pas jouer","Ce n'est pas votre tour !");
         }
     }
 

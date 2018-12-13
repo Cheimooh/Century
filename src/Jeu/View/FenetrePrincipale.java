@@ -14,14 +14,16 @@ public class FenetrePrincipale extends Parent {
     private int height;
     private int width;
     private GraphicsContext graphicsContext;
-    private FenetreJoueur fenetreJoueur;
+    private ArrayList<FenetreJoueur> fenetreJoueur;
 
     private int largeurImage = 111;
     private int hauteurImage = 500 / 3;
 
-    public FenetrePrincipale(Century century, int width, int height, FenetreJoueur fenetreJoueur) {
+    public FenetrePrincipale(Century century, int width, int height, ArrayList<FenetreJoueur> fenetreJoueur) {
         this.fenetreJoueur=fenetreJoueur;
-        fenetreJoueur.setFenetrePrincipale(this);
+        for (int i = 0; i < fenetreJoueur.size(); i++) {
+            fenetreJoueur.get(i).setFenetrePrincipale(this);
+        }
         this.century=century;
         century.setF(this);
         this.height=height;
@@ -54,12 +56,17 @@ public class FenetrePrincipale extends Parent {
             if (i==1) nbPieces=century.getNbPiecesArgent();
             drawCartePiocheCommande(imageCarteCommande,i,nbPieces);
         }
-        fenetreJoueur.afficherMainDuJoueur();
+        for (int i = 0; i < fenetreJoueur.size() ; i++) {
+            fenetreJoueur.get(i).afficherMainDuJoueur();
+        }
+
     }
 
     //CHANGEMENT DE L'AFFICHAGE A CHAQUE TOUR
     public void tourSuivant(){
-        fenetreJoueur.afficherMainDuJoueur();
+        for (int i = 0; i < fenetreJoueur.size() ; i++) {
+            fenetreJoueur.get(i).afficherMainDuJoueur();
+        }
         Color color = Color.LIGHTGREY;
         graphicsContext.setFill(color);
         graphicsContext.fillRect(0, 0, 250, height);

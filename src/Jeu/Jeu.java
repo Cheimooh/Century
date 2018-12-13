@@ -12,6 +12,8 @@ import javafx.scene.paint.Color;
 import javafx.stage.Stage;
 import javafx.scene.control.Label;
 
+import java.util.ArrayList;
+
 public class Jeu extends Application {
 
     private ComboBox<Integer> comboBox;
@@ -36,18 +38,32 @@ public class Jeu extends Application {
         century.initJoueur(nomsJoueurs);
         int height = 700;
         int width = 1000;
-        FenetreJoueur fenetreJoueur = new FenetreJoueur(century,800,300);
-        Group rootFenetreJoueur = new Group();
-        rootFenetreJoueur.getChildren().add(fenetreJoueur);
-        Stage stageFenetreJoueur = new Stage();
+        ArrayList<FenetreJoueur> fenetreJoueur = new ArrayList<>();
+        ArrayList<Group> rootFenetreJoueur = new ArrayList<>();
+        for (int i = 0; i < century.getNbJoueur() ; i++) {
+            fenetreJoueur.add(new FenetreJoueur(century,800,300,i));
+        }
+        for (int i = 0; i < century.getNbJoueur(); i++) {
+            rootFenetreJoueur.add(new Group());
+        }
+        for (int i = 0; i < century.getNbJoueur(); i++) {
+            rootFenetreJoueur.get(i).getChildren().add(fenetreJoueur.get(i));
+        }
+
+        ArrayList<Stage> stageFenetreJoueur = new ArrayList<>();
+        for (int i = 0; i < century.getNbJoueur() ; i++) {
+            stageFenetreJoueur.add(new Stage());
+        }
         FenetrePrincipale fenetrePrincipale = new FenetrePrincipale(century, width, height, fenetreJoueur);
         Group root = new Group();
         root.getChildren().add(fenetrePrincipale);
         stage.setScene(new Scene(root, width, height, Color.LIGHTGREY));
         stage.show();
-        stageFenetreJoueur.setTitle("Century : fenêtre du joueur courant");
-        stageFenetreJoueur.setScene(new Scene(rootFenetreJoueur, 800, 300, Color.LIGHTGREY));
-        stageFenetreJoueur.show();
+        for (int i = 0; i < century.getNbJoueur() ; i++) {
+            stageFenetreJoueur.get(i).setTitle("Century : fenêtre du joueur "+century.getTabJoueur()[i].getNom());
+            stageFenetreJoueur.get(i).setScene(new Scene(rootFenetreJoueur.get(i), 800, 300, Color.LIGHTGREY));
+            stageFenetreJoueur.get(i).show();
+        }
     }
 
     private void fenetreDemandeNbJoueurs(Stage primaryStage){
