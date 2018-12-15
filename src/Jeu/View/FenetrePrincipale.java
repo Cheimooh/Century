@@ -18,9 +18,11 @@ public class FenetrePrincipale extends Parent {
 
     private int largeurImage = 111;
     private int hauteurImage = 500 / 3;
+    private boolean flechesDessinees;
 
     public FenetrePrincipale(Century century, int width, int height, ArrayList<FenetreJoueur> fenetreJoueur) {
         this.fenetreJoueur=fenetreJoueur;
+        this.flechesDessinees=false;
         for (FenetreJoueur aFenetreJoueur : fenetreJoueur) {
             aFenetreJoueur.setFenetrePrincipale(this);
         }
@@ -59,7 +61,7 @@ public class FenetrePrincipale extends Parent {
         for (FenetreJoueur aFenetreJoueur : fenetreJoueur) {
             aFenetreJoueur.afficherMainDuJoueur();
         }
-
+        flechesDessinees=true;
     }
 
     //CHANGEMENT DE L'AFFICHAGE A CHAQUE TOUR
@@ -80,6 +82,10 @@ public class FenetrePrincipale extends Parent {
     //AFFICHAGE DE LA PIOCHE MARCHANDE
     private void drawCartePiocheMarchande(Image imageCarte,int i, ArrayList<Epice> epices) {
         int emplacement = width- largeurImage *(i+1)-(30*(i+1));
+        if (i>0 && !flechesDessinees){
+            Image fleche = new Image("Jeu/View/flechePioche.png");
+            graphicsContext.drawImage(fleche, emplacement+largeurImage+8, (height/3.)+80+(hauteurImage/2.),20,20);
+        }
         graphicsContext.drawImage(imageCarte,emplacement,(height/3.)+100, largeurImage, hauteurImage);
         for (int j = 0; j < epices.size(); j++) {
             drawEpices(epices.get(j).getColor(), 0,emplacement+(j*25), (height/3)+hauteurImage+110, true);
@@ -88,6 +94,10 @@ public class FenetrePrincipale extends Parent {
 
     private void drawCartePiocheCommande(Image imageCarte,int i, int nbPieces) {
         int emplacement = width- largeurImage *(i+1)-(30*(i+1));
+        if (i>0 && !flechesDessinees){
+            Image fleche = new Image("Jeu/View/flechePioche.png");
+            graphicsContext.drawImage(fleche, emplacement+largeurImage+8, 80+(hauteurImage/2.),20,20);
+        }
         graphicsContext.drawImage(imageCarte,emplacement,100, largeurImage, hauteurImage);
         if (i==0){
             if (nbPieces>0) {
