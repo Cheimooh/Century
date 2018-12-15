@@ -21,8 +21,23 @@ public class ControlMouseJoueur implements EventHandler<MouseEvent> {
         int largeurImage = 111;
         int x = (int) event.getX();
         int y = (int) event.getY();
+        Joueur j = fenetreJoueur.getCentury().getTabJoueur()[fenetreJoueur.getCentury().getJoueurActuel()];
+        Joueur joueurFenetre = fenetreJoueur.getCentury().getTabJoueur()[fenetreJoueur.getIdJoueur()];
+        if (x > 50 && x < 130 && y > 250 && y < 272) {
+            if (fenetreJoueur.getIndexCartes()>0){
+                fenetreJoueur.setIndexCartes(fenetreJoueur.getIndexCartes()-1);
+                fenetreJoueur.afficherMainDuJoueur();
+                return;
+            }
+        }
+        if (x > 150 && x < 230 && y > 250 && y < 272) {
+            if ((fenetreJoueur.getIndexCartes()+1)*6<joueurFenetre.getListeCartes().size()){
+                fenetreJoueur.setIndexCartes(fenetreJoueur.getIndexCartes()+1);
+                fenetreJoueur.afficherMainDuJoueur();
+                return;
+            }
+        }
         if (fenetreJoueur.getIdJoueur()==fenetreJoueur.getCentury().getJoueurActuel()) {
-            Joueur j = fenetreJoueur.getCentury().getTabJoueur()[fenetreJoueur.getCentury().getJoueurActuel()];
             if (x > 600 && x < 700 && y > 145 && y < 167) {
                 j.seReposer();
                 fenetreJoueur.getCentury().tourSuivant();
@@ -31,17 +46,19 @@ public class ControlMouseJoueur implements EventHandler<MouseEvent> {
                 int largeurImageMain = largeurImage / 2;
                 int hauteurImageMain = hauteurCarte / 2;
                 int emplacement;
-                for (int i = 0; i < j.getListeCartes().size(); i++) {
-                    if (i <= (j.getListeCartes().size() / 2) - 1) {
-                        emplacement = largeurImageMain * (i + 1) + (30 * (i));
-                        if (x > emplacement && x < emplacement + largeurImageMain && y > 30 && y < 30 + hauteurImageMain) {
-                            joueCarte(j, i);
-                        }
-                    } else {
-                        int i2 = i - j.getListeCartes().size() / 2;
-                        emplacement = largeurImageMain * (i2 + 1) + (30 * (i2));
-                        if (x > emplacement && x < emplacement + largeurImageMain && y > hauteurImageMain + 50 && y < y + hauteurCarte * 2 + 50) {
-                            joueCarte(j, i);
+                int indexCartes = fenetreJoueur.getIndexCartes();
+                for (int i = indexCartes*6; i < (indexCartes+1)*6; i++) {
+                    if (j.getListeCartes().size()>i) {
+                        if (i % 2 == 0) {
+                            emplacement = largeurImageMain + ((i-indexCartes*6) + 1) + (30 * (i-indexCartes*6));
+                            if (x > emplacement && x < emplacement + largeurImageMain && y > 30 && y < 30 + hauteurImageMain) {
+                                joueCarte(j, i);
+                            }
+                        } else {
+                            emplacement = largeurImageMain + (i-indexCartes*6) + (30 * ((i-1)-indexCartes*6));
+                            if (x > emplacement && x < emplacement + largeurImageMain && y > hauteurImageMain + 50 && y < hauteurImageMain*2 + 50) {
+                                joueCarte(j, i);
+                            }
                         }
                     }
                 }

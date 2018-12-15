@@ -10,7 +10,6 @@ import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.control.Alert;
 import javafx.scene.image.Image;
 import javafx.scene.paint.Color;
-
 import java.util.ArrayList;
 
 public class FenetreJoueur extends Parent {
@@ -20,12 +19,14 @@ public class FenetreJoueur extends Parent {
     private GraphicsContext graphicsContext;
     private FenetrePrincipale fenetrePrincipale;
     private int idJoueur;
+    private int indexCartes;
 
     public FenetreJoueur(Century century, int width, int height, int id) {
         this.idJoueur=id;
         this.century=century;
         this.height=height;
         this.width=width;
+        this.indexCartes=0;
         Canvas canvas = new Canvas(width, height);
         ControlMouseJoueur controlMouseJoueur = new ControlMouseJoueur(this);
         canvas.setOnMouseClicked(controlMouseJoueur);
@@ -35,35 +36,12 @@ public class FenetreJoueur extends Parent {
 
     public void afficherMainDuJoueur() {
         //AFFICHAGE DE LA MAIN DU JOUEUR (EN BAS)
-        int largeurImage = 111;
-        int largeurImageMain = largeurImage /2;
-        int hauteurImage = 500 / 3;
-        int hauteurImageMain = hauteurImage /2;
         Joueur j = century.getTabJoueur()[idJoueur];
         Color color = Color.LIGHTGREY;
         graphicsContext.setFill(color);
         graphicsContext.fillRect(0, 0, width, height);
         graphicsContext.strokeText(j.getNom(), 10, 20);
-        Image imageCarte;
-        int emplacement;
-        for (int i = 0; i < j.getListeCartes().size(); i++) {
-            if(i<=(j.getListeCartes().size()/2)-1) {
-                emplacement = largeurImageMain * (i + 1) + (30 * (i));
-                imageCarte = new Image(j.getListeCartes().get(i).getPath());
-                graphicsContext.drawImage(imageCarte, emplacement,  30, largeurImageMain, hauteurImageMain);
-                if (j.getCartesActives().get(i)==0){
-                    graphicsContext.strokeText("Inutilisable",emplacement,80);
-                }
-            } else {
-                int i2 = i-j.getListeCartes().size()/2;
-                emplacement = largeurImageMain * (i2 + 1) + (30 * (i2));
-                imageCarte = new Image(j.getListeCartes().get(i).getPath());
-                graphicsContext.drawImage(imageCarte, emplacement, hauteurImageMain+50, largeurImageMain, hauteurImageMain);
-                if (j.getCartesActives().get(i)==0) {
-                    graphicsContext.strokeText("Inutilisable", emplacement, hauteurImageMain + 100);
-                }
-            }
-        }
+        drawCartesMain(j);
         ArrayList<Epice> listeEpices = j.getCaravane().getEpices();
         int debutCaravaneX=600;
         graphicsContext.setFill(Color.color(0.65,0.62,0.94));
@@ -85,6 +63,42 @@ public class FenetreJoueur extends Parent {
         graphicsContext.setFill(Color.color(0.4,0.4,0.4));
         graphicsContext.fillRect(debutCaravaneX, 145, 100, 22);
         graphicsContext.strokeText("Se reposer", debutCaravaneX+10,160);
+    }
+
+    private void drawCartesMain(Joueur j){
+        Image imageCarte;
+        int emplacement;
+        for (int i = indexCartes*6; i < (indexCartes+1)*6; i++) {
+            if (j.getListeCartes().size()>i) {
+                int hauteurImageMain = 500 / 6;
+                int largeurImageMain = 111 / 2;
+                if (i % 2 == 0) {
+                    emplacement = largeurImageMain + ((i-indexCartes*6) + 1) + (30 * (i-indexCartes*6));
+                    imageCarte = new Image(j.getListeCartes().get(i).getPath());
+                    graphicsContext.drawImage(imageCarte, emplacement, 30, largeurImageMain, hauteurImageMain);
+                    if (j.getCartesActives().get(i) == 0) {
+                        graphicsContext.strokeText("Inutilisable", emplacement, 80);
+                    }
+                } else {
+                    emplacement = largeurImageMain + (i-indexCartes*6) + (30 * ((i-1)-indexCartes*6));
+                    imageCarte = new Image(j.getListeCartes().get(i).getPath());
+                    graphicsContext.drawImage(imageCarte, emplacement, hauteurImageMain + 50, largeurImageMain, hauteurImageMain);
+                    if (j.getCartesActives().get(i) == 0) {
+                        graphicsContext.strokeText("Inutilisable", emplacement, hauteurImageMain + 100);
+                    }
+                }
+            }
+        }
+        if (indexCartes>0){
+            graphicsContext.setFill(Color.color(0.4,0.4,0.4));
+            graphicsContext.fillRect(50, 250, 80, 22);
+            graphicsContext.strokeText("Précédent", 60,265);
+        }
+        if ((indexCartes+1)*6<j.getListeCartes().size()) {
+            graphicsContext.setFill(Color.color(0.4,0.4,0.4));
+            graphicsContext.fillRect(150, 250, 80, 22);
+            graphicsContext.strokeText("Suivant", 170,265);
+        }
     }
 
     //AFFICHAGE DES EPICES DANS LA MAIN
@@ -128,4 +142,8 @@ public class FenetreJoueur extends Parent {
     public void setFenetrePrincipale(FenetrePrincipale fenetrePrincipale) { this.fenetrePrincipale = fenetrePrincipale; }
 
     public int getIdJoueur() { return idJoueur; }
+
+    public int getIndexCartes() { return indexCartes; }
+
+    public void setIndexCartes(int indexCartes) { this.indexCartes = indexCartes; }
 }
