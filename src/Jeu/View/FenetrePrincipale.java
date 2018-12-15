@@ -40,10 +40,10 @@ public class FenetrePrincipale extends Parent {
 
     //AFFICHAGE GENERAL
     private void afficherPlateau() {
-        drawLine(250,0,250,height);
+        drawLine(250,0, height);
         for (int i = 0; i < century.getNbJoueur(); i++) {
             int hauteur = (height/century.getNbJoueur())*i;
-            drawLine(0,hauteur-1,250,hauteur-1);
+            drawLine(0,hauteur-1, hauteur-1);
             afficherJoueur(i,hauteur);
         }
         for (int i = 0; i < 5; i++) {
@@ -74,7 +74,7 @@ public class FenetrePrincipale extends Parent {
         graphicsContext.fillRect(0, 0, 250, height);
         for (int i = 0; i < century.getNbJoueur(); i++) {
             int hauteur = (height/century.getNbJoueur())*i;
-            drawLine(0,hauteur-1,250,hauteur-1);
+            drawLine(0,hauteur-1, hauteur-1);
             afficherJoueur(i,hauteur);
         }
     }
@@ -173,9 +173,9 @@ public class FenetrePrincipale extends Parent {
     }
 
     //AFFICHAGE D'UNE LIGNE du point (x1,y1) à (x2,y2)
-    private void drawLine(int x1, int y1, int x2, int y2) {
+    private void drawLine(int x1, int y1, int y2) {
         graphicsContext.moveTo(x1,y1);
-        graphicsContext.lineTo(x2,y2);
+        graphicsContext.lineTo(250,y2);
         graphicsContext.stroke();
     }
 
@@ -267,30 +267,29 @@ public class FenetrePrincipale extends Parent {
             affichageFinal[i] = (i+1) +" : " + classement[i] + "\n";
         }
 
-        String finale = "";
-        finale+= "Le vainqueur de cette partie est : " + classement[0] + "\n" +
-                "Voici le classment : \n";
+        StringBuilder finale = new StringBuilder();
+        finale.append("Le vainqueur de cette partie est : ").append(classement[0]).append("\n").append("Voici le classment : \n");
 
         for (int i = 0; i <classement.length ; i++) {
-            finale += affichageFinal[i];
+            finale.append(affichageFinal[i]);
         }
 
-        alert.setContentText(finale);
+        alert.setContentText(finale.toString());
 
         //Afficher classement
 
-        ButtonType recommencer = new ButtonType("Recommencer");
+        //ButtonType recommencer = new ButtonType("Recommencer");
         ButtonType quitter = new ButtonType("Quitter");
 
         alert.getButtonTypes().clear();
-        alert.getButtonTypes().addAll(recommencer,quitter);
+        alert.getButtonTypes().addAll(quitter);
 
         Optional<ButtonType> option = alert.showAndWait();
 
-        if (option.get() == recommencer){
-            // Recommencer le jeu
+        /*if (option.get() == recommencer){
+            Recommencer le jeu
         }
-        else if (option.get() == quitter){
+        else */if (option.get() == quitter){
             System.exit(0);
         }
     }
