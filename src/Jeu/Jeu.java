@@ -38,10 +38,12 @@ public class Jeu extends Application {
         century.initJoueur(nomsJoueurs);
         int height = 700;
         int width = 1000;
+        int heightFenetreJoueur = 300;
+        int widthFenetreJoueur = 400;
         ArrayList<FenetreJoueur> fenetreJoueur = new ArrayList<>();
         ArrayList<Group> rootFenetreJoueur = new ArrayList<>();
         for (int i = 0; i < century.getNbJoueur() ; i++) {
-            fenetreJoueur.add(new FenetreJoueur(century,800,300,i));
+            fenetreJoueur.add(new FenetreJoueur(century,widthFenetreJoueur,heightFenetreJoueur,i));
         }
         for (int i = 0; i < century.getNbJoueur(); i++) {
             rootFenetreJoueur.add(new Group());
@@ -61,7 +63,7 @@ public class Jeu extends Application {
         stage.show();
         for (int i = 0; i < century.getNbJoueur() ; i++) {
             stageFenetreJoueur.get(i).setTitle("Century : fenêtre du joueur "+century.getTabJoueur()[i].getNom());
-            stageFenetreJoueur.get(i).setScene(new Scene(rootFenetreJoueur.get(i), 800, 300, Color.LIGHTGREY));
+            stageFenetreJoueur.get(i).setScene(new Scene(rootFenetreJoueur.get(i), widthFenetreJoueur, heightFenetreJoueur, Color.LIGHTGREY));
             stageFenetreJoueur.get(i).show();
         }
     }
