@@ -38,7 +38,7 @@ public class ControlMouseJoueur implements EventHandler<MouseEvent> {
             }
         }
         if (fenetreJoueur.getIdJoueur()==fenetreJoueur.getCentury().getJoueurActuel()) {
-            if (x > 600 && x < 700 && y > 145 && y < 167) {
+            if (x > 250 && x < 330 && y > 250 && y < 272) {
                 j.seReposer();
                 fenetreJoueur.getCentury().tourSuivant();
                 fenetreJoueur.getFenetrePrincipale().tourSuivant();

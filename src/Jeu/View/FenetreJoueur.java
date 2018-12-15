@@ -42,27 +42,31 @@ public class FenetreJoueur extends Parent {
         graphicsContext.fillRect(0, 0, width, height);
         graphicsContext.strokeText(j.getNom(), 10, 20);
         drawCartesMain(j);
+        drawCaravane(j);
+    }
+
+    private void drawCaravane(Joueur j){
         ArrayList<Epice> listeEpices = j.getCaravane().getEpices();
-        int debutCaravaneX=600;
-        graphicsContext.setFill(Color.color(0.65,0.62,0.94));
-        graphicsContext.fillRect(debutCaravaneX, 30, 180,70);
+        int debutCaravaneX=260;
+        int debutCaravaneY = 30;
+        graphicsContext.setFill(Color.color(0.87,0.69,0.68));
+        graphicsContext.fillRect(debutCaravaneX, debutCaravaneY, 70,160);
         for (int i = 0; i < listeEpices.size() ; i++) {
             int emplacementX;
             int emplacementY;
-            if(i<=(listeEpices.size()/2)-1) {
-                emplacementX= debutCaravaneX + i*30+10;
-                emplacementY= 40;
+            if(i % 2 ==0) {
+                emplacementX= debutCaravaneX + 10;
+                emplacementY= debutCaravaneY + i*15+10;
                 drawEpicesMain(listeEpices, i, emplacementX, emplacementY);
             } else {
-                int i2 = i-listeEpices.size()/2;
-                emplacementX= debutCaravaneX + i2*30+10;
-                emplacementY= 70;
+                emplacementX= debutCaravaneX + 40;
+                emplacementY= debutCaravaneY + (i-1)*15+10;
                 drawEpicesMain(listeEpices, i, emplacementX, emplacementY);
             }
         }
         graphicsContext.setFill(Color.color(0.4,0.4,0.4));
-        graphicsContext.fillRect(debutCaravaneX, 145, 100, 22);
-        graphicsContext.strokeText("Se reposer", debutCaravaneX+10,160);
+        graphicsContext.fillRect(250, 250, 80, 22);
+        graphicsContext.strokeText("Se reposer", 260,265);
     }
 
     private void drawCartesMain(Joueur j){
