@@ -10,6 +10,8 @@ import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.control.Alert;
 import javafx.scene.image.Image;
 import javafx.scene.paint.Color;
+import javafx.scene.text.Font;
+
 import java.util.ArrayList;
 
 public class FenetreJoueur extends Parent {
@@ -40,7 +42,13 @@ public class FenetreJoueur extends Parent {
         Color color = Color.LIGHTGREY;
         graphicsContext.setFill(color);
         graphicsContext.fillRect(0, 0, width, height);
-        graphicsContext.strokeText(j.getNom(), 10, 20);
+        String nom = j.getNom();
+        if (century.getJoueurActuel()==idJoueur){
+            nom+=" : à vous de jouer !";
+        } else {
+            nom+=" : veuillez patienter";
+        }
+        graphicsContext.strokeText(nom, 200-(nom.length()*3), 20);
         drawCartesMain(j);
         drawCaravane(j);
     }
