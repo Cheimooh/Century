@@ -38,7 +38,10 @@ public enum TypeCarteEchange {
     trade_YYYY_GG(new int[]{4,0,0,0},new int[]{0,0,2,0}, "Jeu/imgCartes/YYYY_GG.png"),
 
     trade_YYYYY_BB(new int[]{5,0,0,0},new int[]{0,0,0,2}, "Jeu/imgCartes/YYYYY_BB.png"),
-    trade_YYYYY_GGG(new int[]{5,0,0,0},new int[]{0,0,3,0}, "Jeu/imgCartes/YYYYY_GGG.png");
+    trade_YYYYY_GGG(new int[]{5,0,0,0},new int[]{0,0,3,0}, "Jeu/imgCartes/YYYYY_GGG.png"),
+
+
+    trade_Test(new int[]{2,2,2,2},new int[]{1,1,1,1}, "");
 
     private int[] epicesDonnees;
     private int[] epicesRecues;

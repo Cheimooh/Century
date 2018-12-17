@@ -113,4 +113,74 @@ public class JoueurUnitTest {
         Joueur j = new Joueur("");
         Assert.assertFalse(j.amelioreEpice(Epice.safran));
     }
+
+    @Test
+    public void testEchangeAvecToutesLesEpices(){
+        Joueur j = new Joueur("");
+        CarteEchange ce = new CarteEchange(TypeCarteEchange.trade_Test);
+        j.addEpices(new Epice[]{Epice.tumeric,Epice.cannelle,Epice.cardamome,Epice.safran});
+        j.addEpices(new Epice[]{Epice.tumeric,Epice.cannelle,Epice.cardamome,Epice.safran});
+
+        j.addCarte(ce);
+        j.jouerCarte(j.getListeCartes().size()-1);
+
+        ArrayList<Epice> epicesTheoriques = new ArrayList<>();
+        epicesTheoriques.add(Epice.tumeric);
+        epicesTheoriques.add(Epice.safran);
+        epicesTheoriques.add(Epice.cardamome);
+        epicesTheoriques.add(Epice.cannelle);
+
+        Assert.assertEquals(epicesTheoriques, j.getCaravane().getEpices());
+    }
+
+    @Test
+    public void testVerificationEchangePossible() {
+        Joueur j = new Joueur("");
+        CarteEchange ce = new CarteEchange(TypeCarteEchange.trade_Test);
+        j.addEpices(new Epice[]{Epice.tumeric, Epice.cannelle, Epice.cardamome, Epice.safran});
+        j.addEpices(new Epice[]{Epice.tumeric, Epice.cannelle, Epice.cardamome, Epice.safran});
+
+        Assert.assertTrue(j.verifEchangePossible(ce));
+    }
+
+    @Test
+    public void testVerificationEchangeImpossible() {
+        Joueur j = new Joueur("");
+        CarteEchange ce = new CarteEchange(TypeCarteEchange.trade_Test);
+        j.addEpices(new Epice[]{Epice.tumeric, Epice.cannelle, Epice.cardamome, Epice.safran});
+
+        Assert.assertFalse(j.verifEchangePossible(ce));
+    }
+
+    @Test
+    public void testJouerCarteProductionAvecToutesLesEpices(){
+        Joueur j =new Joueur("");
+        CarteProduction cp = new CarteProduction(1,1,1,1,"");
+
+        j.addCarte(cp);
+        j.jouerCarte(j.getListeCartes().size()-1);
+
+        ArrayList<Epice> epicesTheoriques = new ArrayList<>();
+        epicesTheoriques.add(Epice.tumeric);
+        epicesTheoriques.add(Epice.safran);
+        epicesTheoriques.add(Epice.cardamome);
+        epicesTheoriques.add(Epice.cannelle);
+
+        Assert.assertEquals(epicesTheoriques,j.getCaravane().getEpices());
+    }
+
+    @Test
+    public void testAddCarteCommande(){
+        Joueur j = new Joueur("");
+        CarteCommande cc = new CarteCommande("",1,1,1,1,5);
+
+        j.addEpices(new Epice[]{Epice.tumeric,Epice.safran,Epice.cardamome,Epice.cannelle});
+        j.addCarteCommande(cc);
+
+        ArrayList<Epice> epicesTheoriques = new ArrayList<>();
+
+        Assert.assertEquals(epicesTheoriques, j.getCaravane().getEpices());
+        Assert.assertEquals(5,j.getNbPoints());
+        Assert.assertEquals(cc, j.getListeCartesCommande().get(0));
+    }
 }
