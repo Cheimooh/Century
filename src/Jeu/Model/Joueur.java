@@ -207,6 +207,7 @@ public class Joueur {
         nbPoints++;
     }
 
+    // AFFICHAGE GRAPHIQUE
     public String getNom() { return nom; }
 
     public ArrayList<Carte> getListeCartes() { return listeCartes; }

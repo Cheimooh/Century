@@ -16,5 +16,6 @@ public enum Epice {
         this.color=color;
     }
 
+    // AFFICHAGE GRAPHIQUE
     public Color getColor() { return color; }
 }

@@ -17,6 +17,7 @@ public class Caravane {
         if (listeEpices.size()<10){
             listeEpices.add(epice);
         } else {
+            // AFFICHAGE GRAPHIQUE
             FenetreCaravane fenetreCaravane = new FenetreCaravane(this);
             fenetreCaravane.fenetreSuppressionEpice(epice);
             listeEpices.add(epice);

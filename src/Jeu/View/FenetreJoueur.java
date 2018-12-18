@@ -57,7 +57,7 @@ public class FenetreJoueur extends Parent {
         ArrayList<Epice> listeEpices = j.getCaravane().getEpices();
         int debutCaravaneX=260;
         int debutCaravaneY = 45;
-        graphicsContext.setFill(Color.color(0.87,0.69,0.68));
+        graphicsContext.setFill(Color.color(0.8,0.9,1));
         graphicsContext.fillRect(debutCaravaneX, debutCaravaneY, 70,160);
         for (int i = 0; i < listeEpices.size() ; i++) {
             int emplacementX;
@@ -128,6 +128,8 @@ public class FenetreJoueur extends Parent {
 
     //AFFICHAGE DES EPICES
     private void drawEpices(Color color,  int x, int y) {
+        graphicsContext.setFill(Color.BLACK);
+        graphicsContext.fillRect(x-2,y-2,24,24);
         graphicsContext.setFill(color);
         graphicsContext.fillRect(x,y,20,20);
     }

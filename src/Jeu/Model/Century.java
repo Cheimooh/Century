@@ -63,6 +63,7 @@ public class Century {
         if(getPioche().getPiocheMarchand().size()>0) {
             cartePresenteSurLaPiocheMarchande.add(getPioche().piocherCarteMarchand());
         } else {
+            // AFFICHAGE GRAPHIQUE
             int emplacementARetirer = cartePresenteSurLaPiocheMarchande.size()-1;
             f.retirerEmplacementCarteMarchande(emplacementARetirer);
         }
@@ -104,6 +105,7 @@ public class Century {
         if(getPioche().getPiocheCommande().size()>0) {
             cartePresenteSurLaPiocheCommande.add(getPioche().piocherCarteCommande());
         } else {
+            // AFFICHAGE GRAPHIQUE
             int emplacementARetirer = cartePresenteSurLaPiocheCommande.size()-1;
             f.retirerEmplacementCarteCommande(emplacementARetirer);
         }
@@ -175,6 +177,7 @@ public class Century {
 
     public ArrayList<CarteCommande> getCartePresenteSurLaPiocheCommande() { return cartePresenteSurLaPiocheCommande; }
 
+    // AFFICHAGE GRAPHIQUE
     public void setF(FenetrePrincipale f) { this.f = f; }
 
     public ArrayList<Epice> getEpicesSurLaCarte1() { return epicesSurLaCarte1; }

@@ -7,5 +7,6 @@ public class Carte {
         this.path=path;
     }
 
+    // AFFICHAGE GRAPHIQUE
     public String getPath() { return path; }
 }

@@ -8,5 +8,6 @@ public class CarteAmelioration extends Carte {
         this.nbAmelioration = nbAmelioration;
     }
 
+    // AFFICHAGE GRAPHIQUE
     public int getNbAmelioration() { return nbAmelioration;}
 }
