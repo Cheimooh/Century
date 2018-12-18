@@ -1,7 +1,6 @@
 package Jeu.Model;
 
 import Jeu.View.FenetrePrincipale;
-
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
