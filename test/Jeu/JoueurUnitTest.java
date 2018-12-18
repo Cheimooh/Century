@@ -81,6 +81,15 @@ public class JoueurUnitTest {
     }
 
     @Test
+    public void testVerifCarteCommandeNonPrenable(){
+        CarteCommande carteCommande = new CarteCommande("",1,1,1,1,10);
+        Joueur j = new Joueur("");
+        j.addEpices(new Epice[]{Epice.tumeric,Epice.safran});
+        // Le joueur n'a pas suffisamment d'épices pour valider cette commande
+        Assert.assertFalse(j.verifCarteCommandePrenable(carteCommande));
+    }
+
+    @Test
     public void testAmeliorationEpice(){
         Joueur j = new Joueur("");
         j.addEpices(new Epice[]{Epice.tumeric,Epice.safran,Epice.cardamome});
@@ -182,5 +191,59 @@ public class JoueurUnitTest {
         Assert.assertEquals(epicesTheoriques, j.getCaravane().getEpices());
         Assert.assertEquals(5,j.getNbPoints());
         Assert.assertEquals(cc, j.getListeCartesCommande().get(0));
+    }
+
+    @Test
+    public void testTrierLesCartesEnFonctionDeLeurUtilisation(){
+        Joueur j = new Joueur("");
+        j.jouerCarte(0);
+
+        ArrayList<Integer> listeCartesActivesTheoriques = new ArrayList<>();
+        listeCartesActivesTheoriques.add(1);
+        listeCartesActivesTheoriques.add(0);
+
+        j.trierCarte();
+
+        Assert.assertEquals(listeCartesActivesTheoriques,j.getCartesActives());
+    }
+
+    @Test
+    public void testSeReposer(){
+        Joueur j = new Joueur("");
+
+        j.jouerCarte(0);
+
+        ArrayList<Integer> listeCartesActivesTheoriques = new ArrayList<>();
+        listeCartesActivesTheoriques.add(1);
+        listeCartesActivesTheoriques.add(1);
+
+        j.seReposer();
+
+        Assert.assertEquals(listeCartesActivesTheoriques,j.getCartesActives());
+    }
+
+    @Test
+    public void testAddPieceOr(){
+        Joueur j = new Joueur("");
+        j.addPieceOr();
+
+        Assert.assertEquals(1,j.getNbPiecesOr());
+    }
+
+    @Test
+    public void testAddPieceArgent(){
+        Joueur j = new Joueur("");
+        j.addPieceArgent();
+
+        Assert.assertEquals(1,j.getNbPiecesArgent());
+    }
+
+    @Test
+    public void testNombreDePoints(){
+        Joueur j = new Joueur("");
+        j.addCarteCommande(new CarteCommande("",0,0,0,0,10));
+        j.addCarteCommande(new CarteCommande("",0,0,0,0,7));
+
+        Assert.assertEquals(17,j.getNbPoints());
     }
 }

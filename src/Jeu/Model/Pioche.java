@@ -53,6 +53,7 @@ public class Pioche {
         piocheCommande.add(new CarteCommande("Jeu/imgCartesCommande/C_YYYRGB_14.png", 3, 1, 1, 1, 14));
         piocheCommande.add(new CarteCommande("Jeu/imgCartesCommande/C_YYYRR_7.png", 3, 2, 0, 0, 7));
     }
+
     public Carte piocherCarteMarchand(){
         return piocheMarchand.poll();
     }
