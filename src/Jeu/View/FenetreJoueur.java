@@ -39,7 +39,7 @@ public class FenetreJoueur extends Parent {
     public void afficherMainDuJoueur() {
         //AFFICHAGE DE LA MAIN DU JOUEUR (EN BAS)
         Joueur j = century.getTabJoueur()[idJoueur];
-        Color color = Color.LIGHTGREY;
+        Color color = Color.color(0.76, 0.76, 0.64);
         graphicsContext.setFill(color);
         graphicsContext.fillRect(0, 0, width, height);
         String nom = j.getNom();
@@ -72,7 +72,7 @@ public class FenetreJoueur extends Parent {
                 drawEpicesMain(listeEpices, i, emplacementX, emplacementY);
             }
         }
-        graphicsContext.setFill(Color.color(0.4,0.4,0.4));
+        graphicsContext.setFill(Color.WHITE);
         graphicsContext.fillRect(250, 250, 80, 22);
         graphicsContext.strokeText("Se reposer", 260,265);
     }
@@ -102,12 +102,12 @@ public class FenetreJoueur extends Parent {
             }
         }
         if (indexCartes>0){
-            graphicsContext.setFill(Color.color(0.4,0.4,0.4));
+            graphicsContext.setFill(Color.WHITE);
             graphicsContext.fillRect(50, 250, 80, 22);
             graphicsContext.strokeText("Précédent", 60,265);
         }
         if ((indexCartes+1)*6<j.getListeCartes().size()) {
-            graphicsContext.setFill(Color.color(0.4,0.4,0.4));
+            graphicsContext.setFill(Color.WHITE);
             graphicsContext.fillRect(150, 250, 80, 22);
             graphicsContext.strokeText("Suivant", 170,265);
         }

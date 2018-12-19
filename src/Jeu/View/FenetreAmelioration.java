@@ -42,7 +42,7 @@ public class FenetreAmelioration {
         pane.getChildren().clear();
         graphicsContext.setFill(Color.BLACK);
         graphicsContext.fillRect(0,0,420,140);
-        graphicsContext.setFill(Color.LIGHTGREY);
+        graphicsContext.setFill(Color.color(0.76, 0.76, 0.64));
         graphicsContext.fillRect(10,10,400,120);
         String s = "Veuillez sélectionner une épice à améliorer : ";
         Color color;

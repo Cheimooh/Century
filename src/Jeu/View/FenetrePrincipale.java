@@ -69,7 +69,7 @@ public class FenetrePrincipale extends Parent {
         for (FenetreJoueur aFenetreJoueur : fenetreJoueur) {
             aFenetreJoueur.afficherMainDuJoueur();
         }
-        Color color = Color.LIGHTGREY;
+        Color color = Color.color(0.76, 0.76, 0.64);
         graphicsContext.setFill(color);
         graphicsContext.fillRect(0, 0, 250, height);
         for (int i = 0; i < century.getNbJoueur(); i++) {
@@ -196,7 +196,7 @@ public class FenetrePrincipale extends Parent {
     //PERMET DE RETIRER UNE CARTE ET DE REDESSINER UNE NOUVELLE CARTE
     public void retirerCarte(int i) {
         century.retirerCartePiocheMarchande(i);
-        graphicsContext.setFill(Color.LIGHTGREY);
+        graphicsContext.setFill(Color.color(0.76, 0.76, 0.64));
         graphicsContext.fillRect(width- largeurImage *(i+1)-(30*(i+1))-5,(height/3.+hauteurImage)+100, largeurImage, 50);
         for (int j = 0; j < 5; j++) {
             ArrayList<Epice> epicesSurLaCarte = new ArrayList<>();
@@ -214,7 +214,7 @@ public class FenetrePrincipale extends Parent {
 
     public void retirerCarteCommande(int i) {
         century.retirerCartePiocheCommande(i);
-        graphicsContext.setFill(Color.LIGHTGREY);
+        graphicsContext.setFill(Color.color(0.76, 0.76, 0.64));
         graphicsContext.fillRect(width- largeurImage *(i+1)-(30*(i+1)),0, largeurImage, 100);
         for (int j = 0; j < 5; j++) {
             int nbPieces = 0;
@@ -253,13 +253,13 @@ public class FenetrePrincipale extends Parent {
     //PERMET DE RETIRER UN EMPLACEMENT DANS LA CARTE MARCHANDE
     public void retirerEmplacementCarteMarchande(int i) {
         i=i+1;
-        graphicsContext.setFill(Color.LIGHTGREY);
+        graphicsContext.setFill(Color.color(0.76, 0.76, 0.64));
         graphicsContext.fillRect(width- 111 *(i+1)-(30*(i+1)), height/3., 111, 500/3.);
     }
 
     public void retirerEmplacementCarteCommande(int i) {
         i=i+1;
-        graphicsContext.setFill(Color.LIGHTGREY);
+        graphicsContext.setFill(Color.color(0.76, 0.76, 0.64));
         graphicsContext.fillRect(width- 111 *(i+1)-(30*(i+1)), 50, 111, 500/3.);
     }
 

@@ -37,7 +37,7 @@ public class FenetreCaravane {
         pane.getChildren().clear();
         graphicsContext.setFill(Color.BLACK);
         graphicsContext.fillRect(0,0,420,120);
-        graphicsContext.setFill(Color.LIGHTGREY);
+        graphicsContext.setFill(Color.color(0.76, 0.76, 0.64));
         graphicsContext.fillRect(10,10,400,100);
         String s = "Veuillez sélectionner une épice à remplacer par l'épice suivante : ";
         Color color = epice.getColor();

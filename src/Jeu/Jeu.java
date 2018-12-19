@@ -59,11 +59,11 @@ public class Jeu extends Application {
         FenetrePrincipale fenetrePrincipale = new FenetrePrincipale(century, width, height, fenetreJoueur);
         Group root = new Group();
         root.getChildren().add(fenetrePrincipale);
-        stage.setScene(new Scene(root, width, height, Color.LIGHTGREY));
+        stage.setScene(new Scene(root, width, height, Color.color(0.76, 0.76, 0.64)));
         stage.show();
         for (int i = 0; i < century.getNbJoueur() ; i++) {
             stageFenetreJoueur.get(i).setTitle("Century : fenêtre du joueur "+century.getTabJoueur()[i].getNom());
-            stageFenetreJoueur.get(i).setScene(new Scene(rootFenetreJoueur.get(i), widthFenetreJoueur, heightFenetreJoueur, Color.LIGHTGREY));
+            stageFenetreJoueur.get(i).setScene(new Scene(rootFenetreJoueur.get(i), widthFenetreJoueur, heightFenetreJoueur, Color.color(0.76, 0.76, 0.64)));
             stageFenetreJoueur.get(i).show();
         }
     }
