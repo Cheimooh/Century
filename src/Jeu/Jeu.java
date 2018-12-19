@@ -111,17 +111,20 @@ public class Jeu extends Application {
 
     private void fenetreDemandeNomsJoueurs(){
         Button buttonValider = new Button("Valider");
+        Button buttonRetour = new Button("Retour");
         Label[] label = new Label[nbJoueurs];
         TextField[] textField = new TextField[nbJoueurs];
         buttonValider.setOnAction(event -> initialiseNomsJoueurs(textField));
+        buttonRetour.setOnAction(event -> fenetreDemandeNbJoueurs(stage));
         VBox vBox2 = new VBox(10);
         for (int i = 0; i < textField.length; i++) {
             label[i] = new Label("Nom du joueur " + (i+1) + " :");
             textField[i] = new TextField();
+
             textField[i].setPromptText("Saisissez le nom du joueur " + (i+1));
             vBox2.getChildren().addAll(label[i],textField[i]);
         }
-        vBox2.getChildren().addAll(buttonValider);
+        vBox2.getChildren().addAll(buttonValider,buttonRetour);
         Scene scene2 = new Scene(vBox2, 500, 500);
         stage.setScene(scene2);
         stage.show();
