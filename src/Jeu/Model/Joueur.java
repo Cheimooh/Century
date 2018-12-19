@@ -16,6 +16,11 @@ public class Joueur {
         this.nom=nom;
         this.listeCartes = new ArrayList<>();
         this.listeCartesCommande = new ArrayList<>();
+        listeCartesCommande.add(new CarteCommande("",0,0,0,0,2));
+        listeCartesCommande.add(new CarteCommande("",0,0,0,0,2));
+        listeCartesCommande.add(new CarteCommande("",0,0,0,0,2));
+        listeCartesCommande.add(new CarteCommande("",0,0,0,0,2));
+        listeCartesCommande.add(new CarteCommande("",0,0,0,0,2));
         this.cartesActives = new ArrayList<>();
         this.caravane=new Caravane();
         nbPiecesArgent=0;

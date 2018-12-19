@@ -286,7 +286,7 @@ public class FenetrePrincipale extends Parent {
         }
 
         StringBuilder finale = new StringBuilder();
-        finale.append("Le vainqueur de cette partie est : ").append(classement[0]).append("\n").append("Voici le classment : \n");
+        finale.append("Le vainqueur de cette partie est : ").append(classement[0]).append("\n").append("Voici le classement : \n");
 
         for (int i = 0; i <classement.length ; i++) {
             finale.append(affichageFinal[i]);
