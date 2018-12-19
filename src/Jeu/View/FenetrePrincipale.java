@@ -101,6 +101,8 @@ public class FenetrePrincipale extends Parent {
         graphicsContext.drawImage(imageCarte,emplacement,100, largeurImage, hauteurImage);
         if (i==0){
             if (nbPieces>0) {
+                graphicsContext.setFill(Color.BLACK);
+                graphicsContext.fillOval(emplacement + 28, 58, 34, 34);
                 graphicsContext.setFill(Color.GOLD);
                 graphicsContext.fillOval(emplacement + 30, 60, 30, 30);
                 graphicsContext.strokeText("x" + nbPieces, emplacement + 65, 80);
@@ -108,6 +110,8 @@ public class FenetrePrincipale extends Parent {
         }
         if (i==1){
             if (nbPieces>0) {
+                graphicsContext.setFill(Color.BLACK);
+                graphicsContext.fillOval(emplacement + 28, 58, 34, 34);
                 graphicsContext.setFill(Color.SILVER);
                 graphicsContext.fillOval(emplacement + 30, 60, 30, 30);
                 graphicsContext.strokeText("x" + nbPieces, emplacement + 65, 80);
@@ -122,24 +126,32 @@ public class FenetrePrincipale extends Parent {
         graphicsContext.strokeText(nom, 20, hauteur+20);
 
         // AFFICHAGE DU NOMBRE DE CARTES
+        graphicsContext.setFill(Color.BLACK);
+        graphicsContext.fillRect(8,hauteur+28,34,49);
         graphicsContext.setFill(Color.LIGHTBLUE);
         graphicsContext.fillRect(10, hauteur+30, 30, 45);
         int nbCarte = century.getTabJoueur()[numJoueur].getListeCartes().size();
         graphicsContext.strokeText("x"+nbCarte, 45, hauteur+55);
 
         // AFFICHAGE DU NOMBRE DE CARTES COMMANDE
+        graphicsContext.setFill(Color.BLACK);
+        graphicsContext.fillRect(118,hauteur+28,34,49);
         graphicsContext.setFill(Color.INDIANRED);
         graphicsContext.fillRect(120, hauteur+30, 30,45);
         int nbCarteCommande = century.getTabJoueur()[numJoueur].getListeCartesCommande().size();
         graphicsContext.strokeText("x"+nbCarteCommande, 155, hauteur+55);
 
         // AFFICHAGE DU NOMBRE DE PIECES D'OR
+        graphicsContext.setFill(Color.BLACK);
+        graphicsContext.fillOval(178,hauteur+28,34,34);
         graphicsContext.setFill(Color.GOLD);
         graphicsContext.fillOval(180, hauteur+30, 30,30);
         int nbPiecesOr = century.getTabJoueur()[numJoueur].getNbPiecesOr();
         graphicsContext.strokeText("x"+nbPiecesOr, 215, hauteur+50);
 
         // AFFICHAGE DU NOMBRE DE PIECES D'ARGENT
+        graphicsContext.setFill(Color.BLACK);
+        graphicsContext.fillOval(178,hauteur+68,34,34);
         graphicsContext.setFill(Color.SILVER);
         graphicsContext.fillOval(180, hauteur+70, 30,30);
         int nbPiecesArgent = century.getTabJoueur()[numJoueur].getNbPiecesArgent();
@@ -165,6 +177,8 @@ public class FenetrePrincipale extends Parent {
 
     //AFFICHAGE DES EPICES
     private void drawEpices(Color color, int nbEpices, int x, int y, boolean isMainDuJoueur) {
+        graphicsContext.setFill(Color.BLACK);
+        graphicsContext.fillRect(x-2,y-2,24,24);
         graphicsContext.setFill(color);
         graphicsContext.fillRect(x,y,20,20);
         if (!isMainDuJoueur) {
@@ -183,7 +197,7 @@ public class FenetrePrincipale extends Parent {
     public void retirerCarte(int i) {
         century.retirerCartePiocheMarchande(i);
         graphicsContext.setFill(Color.LIGHTGREY);
-        graphicsContext.fillRect(width- largeurImage *(i+1)-(30*(i+1)),(height/3.+hauteurImage)+100, largeurImage, 50);
+        graphicsContext.fillRect(width- largeurImage *(i+1)-(30*(i+1))-5,(height/3.+hauteurImage)+100, largeurImage, 50);
         for (int j = 0; j < 5; j++) {
             ArrayList<Epice> epicesSurLaCarte = new ArrayList<>();
             if (j==0) epicesSurLaCarte=century.getEpicesSurLaCarte1();
@@ -266,9 +280,9 @@ public class FenetrePrincipale extends Parent {
         for (int i = 0; i < (classement.length); i++) {
             System.out.println(classement[i]);
             if (i>0 && points[points.length - i] == points[points.length - (i+1)]) {
-                affichageFinal[i] = i + " : " + classement[i] + " avec -> " + classement[i] + " Points" + "\n";
+                affichageFinal[i] = i + " : " + classement[i] + " avec -> " + points[points.length-1-i] + " Points" + "\n";
             }else
-                affichageFinal[i] = (i+1) +" : " + classement[i] + " avec -> " + classement[i] + " Points" + "\n";
+                affichageFinal[i] = (i+1) +" : " + classement[i] + " avec -> " + points[points.length-1-i] + " Points" + "\n";
         }
 
         StringBuilder finale = new StringBuilder();
